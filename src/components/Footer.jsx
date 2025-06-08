@@ -32,7 +32,7 @@ const Footer = () => {
               Studio Figura Wrocław <span className="text-orange-500">Stabłowice</span>
             </Link>
             <p className="text-gray-300 mb-4 leading-relaxed">
-              Twoje miejsce dla zdrowia, urody i dobrego samopoczucia 
+              Twoje miejsce dla zdrowia, urody i dobrego samopoczucia.
               Profesjonalne zabiegi w przyjaznej atmosferze.
             </p>
             <div className="flex gap-4">
