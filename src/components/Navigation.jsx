@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import ContactModal from './ContactModal';
@@ -7,6 +7,30 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const navigate = useNavigate();
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMenuOpen && !event.target.closest('nav')) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
 
   const handleNavigation = (path) => {
     if (window.location.pathname !== '/') {
@@ -38,8 +62,8 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
-              <Link to="/" className="text-2xl font-bold text-gray-800 hover:text-orange-500 transition-colors">
-                Studio Figura Wrocław <span className="text-orange-500">Stabłowice</span>
+              <Link to="/" className="text-xl md:text-2xl font-bold text-gray-800 hover:text-orange-500 transition-colors">
+                Studio Figura <span className="text-orange-500">Stabłowice</span>
               </Link>
             </div>
             {/* Desktop Menu */}
@@ -61,6 +85,7 @@ const Navigation = () => {
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gray-700 hover:text-orange-500 p-2"
+                aria-label="Toggle menu"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -69,15 +94,48 @@ const Navigation = () => {
         </div>
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              <button onClick={() => handleNavigation('#home')} className="block w-full text-left px-3 py-2 text-orange-500 font-medium">Strona główna</button>
-              <button onClick={() => handleNavigation('#about')} className="block w-full text-left px-3 py-2 text-gray-700 hover:text-orange-500">O nas</button>
-              <button onClick={() => handleNavigation('#services')} className="block w-full text-left px-3 py-2 text-gray-700 hover:text-orange-500">Usługi</button>
-              <button onClick={() => handleNavigation('#results')} className="block w-full text-left px-3 py-2 text-gray-700 hover:text-orange-500">Efekty</button>
-              <button onClick={handleContactClick} className="block w-full text-left px-3 py-2 text-gray-700 hover:text-orange-500">Kontakt</button>
-              <Link to="/cennik" className="block w-full text-left px-3 py-2 text-gray-700 hover:text-orange-500">Cennik</Link>
-              <button onClick={handleContactClick} className="w-full mt-4 bg-orange-500 text-white px-6 py-2 rounded-full font-medium">
+          <div className="md:hidden fixed inset-0 bg-white z-50 pt-16">
+            <div className="px-4 pt-4 pb-6 space-y-2">
+              <button 
+                onClick={() => handleNavigation('#home')} 
+                className="block w-full text-left px-4 py-3 text-orange-500 font-medium text-lg border-b border-gray-100"
+              >
+                Strona główna
+              </button>
+              <button 
+                onClick={() => handleNavigation('#about')} 
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+              >
+                O nas
+              </button>
+              <button 
+                onClick={() => handleNavigation('#services')} 
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+              >
+                Usługi
+              </button>
+              <button 
+                onClick={() => handleNavigation('#results')} 
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+              >
+                Efekty
+              </button>
+              <button 
+                onClick={handleContactClick} 
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+              >
+                Kontakt
+              </button>
+              <Link 
+                to="/cennik" 
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+              >
+                Cennik
+              </Link>
+              <button 
+                onClick={handleContactClick} 
+                className="w-full mt-6 bg-orange-500 text-white px-6 py-3 rounded-full font-medium text-lg"
+              >
                 Umów wizytę
               </button>
             </div>

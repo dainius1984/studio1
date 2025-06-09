@@ -1,16 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { pricingData } from './PricingData';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import StickySidebar from '../components/StickySidebar';
+import BookingModal from '../components/BookingModal';
 
 const Pricing = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const handleServiceClick = (service) => {
+    setSelectedService(service);
+    setIsModalOpen(true);
+  };
+
   const renderPackage = (pkg) => (
-    <div key={pkg.entries} className="relative bg-gray-50 p-4 rounded-lg text-center hover:shadow-md transition-shadow">
+    <div 
+      key={pkg.entries} 
+      className="relative bg-gray-50 p-4 rounded-lg text-center hover:shadow-md transition-shadow cursor-pointer"
+      onClick={() => handleServiceClick(pkg)}
+    >
       <h4 className="text-lg font-semibold text-gray-800 mb-2">{pkg.entries}</h4>
       {pkg.discountedPrice ? (
         <>
@@ -27,6 +40,25 @@ const Pricing = () => {
     </div>
   );
 
+  const renderServiceCard = (service, index) => (
+    <div 
+      key={index} 
+      className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 cursor-pointer"
+      onClick={() => handleServiceClick(service)}
+    >
+      <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
+        <img 
+          src={service.image} 
+          alt={service.name || service.title} 
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
+      <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.name || service.title}</h3>
+      <p className="text-gray-600 mb-4">{service.longDescription || service.details}</p>
+      <p className="text-blue-700 text-2xl font-bold">{service.price} zł</p>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-white pt-20">
       <Navigation />
@@ -38,20 +70,7 @@ const Pricing = () => {
         <section className="bg-white rounded-lg shadow-md p-6 mb-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Konsultacje</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {pricingData.consultations.map((service, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6">
-                <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
-                  <img 
-                    src={service.image} 
-                    alt={service.name} 
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">{service.name}</h3>
-                <p className="text-gray-600 mb-4">{service.longDescription}</p>
-                <p className="text-blue-700 text-2xl font-bold">{service.price} zł</p>
-              </div>
-            ))}
+            {pricingData.consultations.map((service, index) => renderServiceCard(service, index))}
           </div>
         </section>
 
@@ -258,6 +277,13 @@ const Pricing = () => {
             </div>
           </div>
         </section>
+
+        {/* Booking Modal */}
+        <BookingModal 
+          isOpen={isModalOpen} 
+          onClose={() => setIsModalOpen(false)}
+          selectedService={selectedService}
+        />
       </div>
       <Footer />
     </div>

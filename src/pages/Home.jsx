@@ -23,11 +23,13 @@ const Home = () => {
       <Navigation />
       <StickySidebar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <HeroSection />
-        <ServicesSection />
-        <WhyChooseUsSection />
-        <TestimonialsSection />
-        <CTASection />
+        <div className="bg-white rounded-lg shadow-sm">
+          <HeroSection />
+          <ServicesSection />
+          <WhyChooseUsSection />
+          <TestimonialsSection />
+          <CTASection />
+        </div>
       </div>
       <Footer />
       <LeadModal isOpen={showModal} onClose={() => setShowModal(false)} />
