@@ -78,8 +78,9 @@ const Navigation = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
-              <Link to="/" className="flex items-center text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-800 hover:text-orange-500 transition-colors">
+              <Link to="/" className="flex items-center text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-800 hover:text-orange-500 transition-colors">
                 <span className="whitespace-nowrap">Studio Figura</span>
+                <span className="text-orange-500 ml-1 hidden sm:inline">Wrocław</span>
                 <span className="text-orange-500 ml-1">Stabłowice</span>
               </Link>
             </div>
@@ -103,12 +104,6 @@ const Navigation = () => {
                   className={getNavLinkClass('/')}
                 >
                   Usługi
-                </button>
-                <button 
-                  onClick={() => handleNavigation('#results')} 
-                  className={getNavLinkClass('/')}
-                >
-                  Efekty
                 </button>
                 <button 
                   onClick={handleContactClick} 
