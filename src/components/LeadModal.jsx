@@ -19,10 +19,21 @@ const LeadModal = ({ isOpen, onClose }) => {
 
   // Prevent background scroll when modal is open
   useEffect(() => {
-    if (isOpen) document.body.style.overflow = "hidden";
-    else document.body.style.overflow = "";
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      // Check if modal was already shown in this session
+      const wasShown = sessionStorage.getItem('leadModalShown');
+      if (wasShown) {
+        onClose();
+      } else {
+        // Mark as shown in this session
+        sessionStorage.setItem('leadModalShown', 'true');
+      }
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => { document.body.style.overflow = ""; };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   const validate = () => {
     const errs = {};
@@ -33,8 +44,7 @@ const LeadModal = ({ isOpen, onClose }) => {
   };
 
   const handlePrivacyPolicyClick = (e) => {
-    // Don't prevent default - let the Link navigate
-    onClose(); // Close the modal
+    onClose();
   };
 
   const sendEmail = async (e) => {

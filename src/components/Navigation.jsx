@@ -11,8 +11,9 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = (e) => {
+    e.stopPropagation(); // Prevent event bubbling
+    setIsMenuOpen(prev => !prev);
   };
 
   // Close mobile menu when clicking outside
@@ -103,6 +104,7 @@ const Navigation = () => {
                 onClick={toggleMenu}
                 className="text-gray-700 hover:text-orange-500 p-2 transition-transform duration-300 ease-in-out"
                 aria-label="Toggle menu"
+                type="button"
               >
                 {isMenuOpen ? (
                   <X size={24} className="transform rotate-180 transition-transform duration-300" />

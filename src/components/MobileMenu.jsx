@@ -5,7 +5,12 @@ const MobileMenu = ({ isOpen, handleNavigation, handleContactClick }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden fixed inset-x-0 top-16 bg-white z-[101] mobile-menu shadow-lg rounded-b-2xl transform transition-all duration-300 ease-in-out">
+    <div 
+      className="md:hidden fixed inset-x-0 top-16 bg-white z-[101] mobile-menu shadow-lg rounded-b-2xl transform transition-all duration-300 ease-in-out"
+      style={{
+        animation: isOpen ? 'slideDown 0.3s ease-out' : 'slideUp 0.3s ease-out'
+      }}
+    >
       <div className="px-4 pt-4 pb-6 space-y-1">
         <button 
           onClick={() => handleNavigation('#home')} 
