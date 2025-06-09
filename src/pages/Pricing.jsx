@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { pricingData } from './PricingData';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import StickySidebar from '../components/StickySidebar';
-import BookingModal from '../components/BookingModal';
 
 const Pricing = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const handleServiceClick = (service) => {
-    setSelectedService(service);
-    setIsModalOpen(true);
-  };
-
   const renderPackage = (pkg) => (
     <div 
       key={pkg.entries} 
-      className="relative bg-gray-50 p-4 rounded-lg text-center hover:shadow-md transition-shadow cursor-pointer"
-      onClick={() => handleServiceClick(pkg)}
+      className="relative bg-gray-50 p-4 rounded-lg text-center hover:shadow-md transition-shadow"
     >
       <h4 className="text-lg font-semibold text-gray-800 mb-2">{pkg.entries}</h4>
       {pkg.discountedPrice ? (
@@ -43,8 +33,7 @@ const Pricing = () => {
   const renderServiceCard = (service, index) => (
     <div 
       key={index} 
-      className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6 cursor-pointer"
-      onClick={() => handleServiceClick(service)}
+      className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow p-6"
     >
       <div className="relative w-full h-48 mb-4 rounded-lg overflow-hidden">
         <img 
@@ -278,11 +267,10 @@ const Pricing = () => {
           </div>
         </section>
 
-        {/* Booking Modal */}
-        <BookingModal 
-          isOpen={isModalOpen} 
-          onClose={() => setIsModalOpen(false)}
-          selectedService={selectedService}
+        {/* Lead Modal */}
+        <LeadModal 
+          isOpen={isLeadModalOpen} 
+          onClose={() => setIsLeadModalOpen(false)}
         />
       </div>
       <Footer />
