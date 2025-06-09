@@ -12,7 +12,7 @@ const Navigation = () => {
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (isMenuOpen && !event.target.closest('nav')) {
+      if (isMenuOpen && !event.target.closest('nav') && !event.target.closest('.mobile-menu')) {
         setIsMenuOpen(false);
       }
     };
@@ -34,6 +34,8 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   const handleNavigation = (path) => {
+    setIsMenuOpen(false); // Close menu first
+    
     if (window.location.pathname !== '/') {
       navigate('/');
       // Wait for navigation to complete before scrolling
@@ -49,7 +51,6 @@ const Navigation = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     }
-    setIsMenuOpen(false);
   };
 
   const handleContactClick = () => {
@@ -133,57 +134,55 @@ const Navigation = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-700 hover:text-orange-500 p-2"
+                className="text-gray-700 hover:text-orange-500 p-2 transition-transform duration-300 ease-in-out"
                 aria-label="Toggle menu"
               >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMenuOpen ? (
+                  <X size={24} className="transform rotate-180 transition-transform duration-300" />
+                ) : (
+                  <Menu size={24} className="transform rotate-0 transition-transform duration-300" />
+                )}
               </button>
             </div>
           </div>
         </div>
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-0 bg-white z-[101] pt-16">
-            <div className="px-4 pt-4 pb-6 space-y-2">
+          <div className="md:hidden fixed inset-x-0 top-16 bg-white z-[101] mobile-menu shadow-lg rounded-b-2xl transform transition-all duration-300 ease-in-out">
+            <div className="px-4 pt-4 pb-6 space-y-1">
               <button 
                 onClick={() => handleNavigation('#home')} 
-                className="block w-full text-left px-4 py-3 text-orange-500 font-medium text-lg border-b border-gray-100"
+                className="block w-full text-left px-4 py-3 text-orange-500 font-medium text-lg rounded-lg hover:bg-orange-50 transition-colors"
               >
                 Strona główna
               </button>
               <button 
                 onClick={() => handleNavigation('#about')} 
-                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
               >
                 O nas
               </button>
               <button 
                 onClick={() => handleNavigation('#services')} 
-                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
               >
                 Usługi
               </button>
               <button 
-                onClick={() => handleNavigation('#results')} 
-                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
-              >
-                Efekty
-              </button>
-              <button 
                 onClick={handleContactClick} 
-                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
               >
                 Kontakt
               </button>
               <Link 
                 to="/cennik" 
-                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg border-b border-gray-100"
+                className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
               >
                 Cennik
               </Link>
               <button 
                 onClick={handleContactClick} 
-                className="w-full mt-6 bg-orange-500 text-white px-6 py-3 rounded-full font-medium text-lg"
+                className="w-full mt-4 bg-orange-500 text-white px-6 py-3 rounded-full font-medium text-lg hover:bg-orange-600 transition-colors shadow-md"
               >
                 Umów wizytę
               </button>
