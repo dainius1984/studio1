@@ -73,7 +73,7 @@ const Navigation = () => {
 
   return (
     <>
-      <nav className="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
+      <nav className="bg-white shadow-lg fixed top-0 left-0 right-0 z-[100]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
@@ -143,7 +143,7 @@ const Navigation = () => {
         </div>
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden fixed inset-0 bg-white z-50 pt-16">
+          <div className="md:hidden fixed inset-0 bg-white z-[101] pt-16">
             <div className="px-4 pt-4 pb-6 space-y-2">
               <button 
                 onClick={() => handleNavigation('#home')} 
