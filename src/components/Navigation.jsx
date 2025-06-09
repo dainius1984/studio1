@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import ContactModal from './ContactModal';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Close mobile menu when clicking outside
   useEffect(() => {
@@ -56,26 +57,74 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  const isActive = (path) => {
+    if (path === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname === path;
+  };
+
+  const getNavLinkClass = (path) => {
+    const baseClass = "px-3 py-2 text-sm font-medium transition-colors";
+    return isActive(path)
+      ? `${baseClass} text-orange-500`
+      : `${baseClass} text-gray-700 hover:text-orange-500`;
+  };
+
   return (
     <>
       <nav className="bg-white shadow-lg fixed top-0 left-0 right-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
-              <Link to="/" className="text-xl md:text-2xl font-bold text-gray-800 hover:text-orange-500 transition-colors">
-                Studio Figura <span className="text-orange-500">Stabłowice</span>
+              <Link to="/" className="flex items-center text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-800 hover:text-orange-500 transition-colors">
+                <span className="whitespace-nowrap">Studio Figura</span>
+                <span className="text-orange-500 ml-1">Stabłowice</span>
               </Link>
             </div>
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <button onClick={() => handleNavigation('#home')} className="text-orange-500 hover:text-orange-600 px-3 py-2 text-sm font-medium transition-colors">Strona główna</button>
-                <button onClick={() => handleNavigation('#about')} className="text-gray-700 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">O nas</button>
-                <button onClick={() => handleNavigation('#services')} className="text-gray-700 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Usługi</button>
-                <button onClick={() => handleNavigation('#results')} className="text-gray-700 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Efekty</button>
-                <button onClick={handleContactClick} className="text-gray-700 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Kontakt</button>
-                <Link to="/cennik" className="text-gray-700 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors">Cennik</Link>
-                <button onClick={handleContactClick} className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors">
+                <button 
+                  onClick={() => handleNavigation('#home')} 
+                  className={getNavLinkClass('/')}
+                >
+                  Strona główna
+                </button>
+                <button 
+                  onClick={() => handleNavigation('#about')} 
+                  className={getNavLinkClass('/')}
+                >
+                  O nas
+                </button>
+                <button 
+                  onClick={() => handleNavigation('#services')} 
+                  className={getNavLinkClass('/')}
+                >
+                  Usługi
+                </button>
+                <button 
+                  onClick={() => handleNavigation('#results')} 
+                  className={getNavLinkClass('/')}
+                >
+                  Efekty
+                </button>
+                <button 
+                  onClick={handleContactClick} 
+                  className="text-gray-700 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors"
+                >
+                  Kontakt
+                </button>
+                <Link 
+                  to="/cennik" 
+                  className={getNavLinkClass('/cennik')}
+                >
+                  Cennik
+                </Link>
+                <button 
+                  onClick={handleContactClick} 
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full text-sm font-medium transition-colors"
+                >
                   Umów wizytę
                 </button>
               </div>
