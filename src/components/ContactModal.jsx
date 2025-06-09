@@ -50,7 +50,7 @@ const ContactModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md overflow-y-auto">
       <div
         className="bg-white rounded-3xl shadow-2xl p-4 sm:p-8 max-w-full sm:max-w-md w-full relative my-8 animate-fade-in"
         style={{
@@ -157,9 +157,9 @@ const ContactModal = ({ isOpen, onClose }) => {
         ) : (
           <div className="text-center py-8 animate-fade-in">
             <div className="mb-4">
-              <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6 animate-success-circle">
+              <div className="w-24 h-24 bg-gradient-to-br from-green-50 to-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-success-circle">
                 <svg 
-                  className="w-10 h-10 text-green-500 animate-checkmark-draw" 
+                  className="w-12 h-12 text-green-500 animate-checkmark-draw" 
                   viewBox="0 0 24 24" 
                   fill="none" 
                   stroke="currentColor" 
@@ -171,12 +171,20 @@ const ContactModal = ({ isOpen, onClose }) => {
                   <path d="M20 6L9 17L4 12" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 mb-3 animate-slide-up">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4 animate-slide-up" style={{ fontFamily: 'Raleway, Arial, sans-serif' }}>
                 Dziękujemy!
               </h3>
-              <p className="text-gray-600 text-lg animate-slide-up-delayed">
+              <p className="text-gray-600 text-xl animate-slide-up-delayed max-w-sm mx-auto" style={{ fontFamily: 'Inter, Arial, sans-serif' }}>
                 Oddzwonimy do Ciebie w ciągu 15 minut
               </p>
+              <div className="mt-8 animate-fade-in-delayed">
+                <button
+                  onClick={onClose}
+                  className="px-8 py-3 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-colors shadow-md"
+                >
+                  Zamknij
+                </button>
+              </div>
             </div>
           </div>
         )}
