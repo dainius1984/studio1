@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { pricingData } from './PricingData';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import StickySidebar from '../components/StickySidebar';
+import LeadModal from '../components/LeadModal';
 
 const Pricing = () => {
+  const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
