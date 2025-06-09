@@ -9,6 +9,10 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   // Close mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -34,11 +38,10 @@ const Navigation = () => {
   }, [isMenuOpen]);
 
   const handleNavigation = (path) => {
-    setIsMenuOpen(false); // Close menu first
+    setIsMenuOpen(false);
     
     if (window.location.pathname !== '/') {
       navigate('/');
-      // Wait for navigation to complete before scrolling
       setTimeout(() => {
         const element = document.querySelector(path);
         if (element) {
@@ -80,8 +83,7 @@ const Navigation = () => {
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-800 hover:text-orange-500 transition-colors">
                 <span className="whitespace-nowrap">Studio Figura</span>
-                <span className="text-orange-500 ml-1 hidden sm:inline">Wrocław</span>
-                <span className="text-orange-500 ml-1">Stabłowice</span>
+                <span className="text-orange-500 ml-1">Wrocław Stabłowice</span>
               </Link>
             </div>
             {/* Desktop Menu */}
@@ -128,7 +130,7 @@ const Navigation = () => {
             {/* Mobile menu button */}
             <div className="md:hidden">
               <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                onClick={toggleMenu}
                 className="text-gray-700 hover:text-orange-500 p-2 transition-transform duration-300 ease-in-out"
                 aria-label="Toggle menu"
               >
