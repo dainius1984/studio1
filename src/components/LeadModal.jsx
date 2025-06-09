@@ -55,25 +55,24 @@ const LeadModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm overflow-y-auto">
       <div
-        className="bg-white rounded-3xl shadow-2xl p-4 sm:p-8 max-w-full sm:max-w-md w-full relative animate-fade-in"
+        className="bg-white rounded-3xl shadow-2xl p-4 sm:p-8 max-w-full sm:max-w-md w-full relative my-8 animate-fade-in"
         style={{
           boxShadow: '0 8px 40px 0 rgba(255,98,0,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.10)',
           border: '2px solid #FF6200',
-          paddingTop: 40, // more space for the heading
+          paddingTop: 40,
         }}
       >
         <button
-          className="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl transition"
+          className="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl transition z-50"
           onClick={onClose}
           aria-label="Zamknij"
-          style={{ zIndex: 10 }}
         >
           <X size={28} />
         </button>
         {!submitted ? (
-          <>
+          <div className="max-h-[calc(100vh-8rem)] overflow-y-auto">
             <h2 className="text-center mb-2" style={{ fontFamily: 'Raleway, Arial, sans-serif', fontWeight: 800, color: '#FF6200', fontSize: 28, letterSpacing: '-0.5px', lineHeight: 1.1 }}>
               Przejdź z nami metamorfozę
             </h2>
@@ -153,7 +152,7 @@ const LeadModal = ({ isOpen, onClose }) => {
                 </span>
               </button>
             </form>
-          </>
+          </div>
         ) : (
           <div className="text-center py-8 animate-fade-in">
             <div className="mb-4">
