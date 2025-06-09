@@ -1,7 +1,14 @@
 import React from 'react';
-import { Star, ArrowRight, Play } from 'lucide-react';
+import { Star, ArrowRight } from 'lucide-react';
 
 const HeroSection = () => {
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    if (servicesSection) {
+      servicesSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-orange-50 to-orange-100 py-20 overflow-hidden">
       <div className="absolute inset-0 bg-white/30"></div>
@@ -17,13 +24,12 @@ const HeroSection = () => {
               Profesjonalne zabiegi, najnowsze technologie i indywidualne podejście.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-lg">
-                Rozpocznij transformację
-                <ArrowRight className="inline ml-2" size={20} />
-              </button>
-              <button className="border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all flex items-center justify-center">
-                <Play className="mr-2" size={20} />
-                Zobacz film
+              <button 
+                onClick={scrollToServices}
+                className="group bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto"
+              >
+                <span>Rozpocznij transformację</span>
+                <ArrowRight className="inline transition-transform group-hover:translate-x-1" size={20} />
               </button>
             </div>
           </div>
