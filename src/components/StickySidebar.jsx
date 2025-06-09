@@ -29,7 +29,7 @@ const sidebarLinks = [
 ];
 
 const StickySidebar = () => (
-  <div className="fixed top-1/4 right-0 z-50 flex flex-col gap-4">
+  <div className="fixed top-1/4 right-0 z-40 hidden md:flex flex-col gap-4">
     {sidebarLinks.map((link, idx) => (
       <a
         key={idx}
