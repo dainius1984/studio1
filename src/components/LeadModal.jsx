@@ -155,7 +155,17 @@ const LeadModal = ({ isOpen, onClose }) => {
             </form>
           </>
         ) : (
-          null
+          <div className="text-center py-8 animate-fade-in">
+            <div className="mb-4">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 animate-scale-in">
+                <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 animate-slide-up">Dziękujemy!</h3>
+              <p className="text-gray-600 animate-slide-up-delayed">Skontaktujemy się z Tobą wkrótce</p>
+            </div>
+          </div>
         )}
       </div>
     </div>
