@@ -1,50 +1,42 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const MobileMenu = ({ isOpen, handleNavigation, handleContactClick }) => {
   if (!isOpen) return null;
 
   return (
-    <div 
-      className="md:hidden fixed inset-x-0 top-16 bg-white z-[101] mobile-menu shadow-lg rounded-b-2xl transform transition-all duration-300 ease-in-out"
-      style={{
-        animation: isOpen ? 'slideDown 0.3s ease-out' : 'slideUp 0.3s ease-out'
-      }}
+    <div
+      className={`md:hidden fixed inset-0 bg-white z-[99] transform transition-transform duration-300 ease-in-out ${
+        isOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}
     >
-      <div className="px-4 pt-4 pb-6 space-y-1">
-        <button 
-          onClick={() => handleNavigation('#home')} 
-          className="block w-full text-left px-4 py-3 text-orange-500 font-medium text-lg rounded-lg hover:bg-orange-50 transition-colors"
+      <div className="pt-20 pb-6 px-4 space-y-4">
+        <button
+          onClick={() => handleNavigation('#top')}
+          className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500"
         >
-          Strona główna
+          Start
         </button>
-        <button 
-          onClick={() => handleNavigation('#about')} 
-          className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
+        <button
+          onClick={() => handleNavigation('/cennik')}
+          className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500"
         >
-          O nas
+          Cennik
         </button>
-        <button 
-          onClick={() => handleNavigation('#services')} 
-          className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
+        <button
+          onClick={() => handleNavigation('/uslugi')}
+          className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500"
         >
           Usługi
         </button>
-        <button 
-          onClick={handleContactClick} 
-          className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
+        <button
+          onClick={() => handleNavigation('/kontakt')}
+          className="block w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-orange-500"
         >
           Kontakt
         </button>
-        <Link 
-          to="/cennik" 
-          className="block w-full text-left px-4 py-3 text-gray-700 hover:text-orange-500 text-lg rounded-lg hover:bg-orange-50 transition-colors"
-        >
-          Cennik
-        </Link>
-        <button 
-          onClick={handleContactClick} 
-          className="w-full mt-4 bg-orange-500 text-white px-6 py-3 rounded-full font-medium text-lg hover:bg-orange-600 transition-colors shadow-md"
+        <button
+          onClick={handleContactClick}
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white px-4 py-3 rounded-full text-base font-medium transition-colors mt-4"
         >
           Umów wizytę
         </button>

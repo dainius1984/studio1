@@ -43,6 +43,24 @@ const Navigation = () => {
   const handleNavigation = (path) => {
     setIsMenuOpen(false);
     
+    // Handle scroll to top
+    if (path === '#top') {
+      if (window.location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 100);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      return;
+    }
+    // Handle route paths
+    if (path.startsWith('/')) {
+      navigate(path);
+      return;
+    }
+    // Handle hash links
     if (window.location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -67,6 +85,9 @@ const Navigation = () => {
   const isActive = (path) => {
     if (path === '/') {
       return location.pathname === '/';
+    }
+    if (path === '/uslugi') {
+      return location.pathname === '/uslugi' || location.pathname.startsWith('/uslugi/');
     }
     return location.pathname === path;
   };

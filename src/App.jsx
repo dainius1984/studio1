@@ -5,6 +5,9 @@ import Home from './pages/Home';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import Pricing from './pages/Pricing';
+import Services from './pages/Services';
+import ServiceCategory from './pages/ServiceCategory';
+import Contact from './pages/Contact';
 
 function App() {
   return (
@@ -14,6 +17,10 @@ function App() {
         <Route path="/polityka-prywatnosci" element={<PrivacyPolicy />} />
         <Route path="/regulamin" element={<Terms />} />
         <Route path="/cennik" element={<Pricing />} />
+        <Route path="/kontakt" element={<Contact />} />
+        <Route path="/uslugi" element={<Services />}>
+          <Route path=":category" element={<ServiceCategory />} />
+        </Route>
       </Routes>
     </Router>
   );

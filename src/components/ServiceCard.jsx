@@ -1,7 +1,14 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-const ServiceCard = ({ title, description, icon, features, video }) => {
+const ServiceCard = ({ title, description, icon, features, video, category }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/uslugi/${category}`, { state: { scrollToTop: true } });
+  };
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-white to-orange-50 p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border border-orange-100 group">
       {video && (
@@ -32,8 +39,15 @@ const ServiceCard = ({ title, description, icon, features, video }) => {
             </li>
           ))}
         </ul>
-        <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full font-semibold transition-colors shadow-md" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
-          Dowiedz się więcej
+        <button 
+          onClick={handleClick}
+          className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full font-semibold transition-all transform hover:scale-105 shadow-md group" 
+          style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}
+        >
+          <span className="flex items-center justify-center gap-2">
+            Dowiedz się więcej
+            <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </span>
         </button>
       </div>
     </div>

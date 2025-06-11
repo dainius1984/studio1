@@ -44,7 +44,7 @@ const ContactModal = ({ isOpen, onClose }) => {
       setPolicy(false);
       setSubmitted(false);
       setErrors({});
-    }, 2000);
+    }, 3000);
   };
 
   if (!isOpen) return null;

@@ -65,7 +65,7 @@ const LeadModal = ({ isOpen, onClose }) => {
     setSubmitted(true);
     setTimeout(() => {
       onClose();
-    }, 800);
+    }, 3000);
   };
 
   if (!isOpen) return null;

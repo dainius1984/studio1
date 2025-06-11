@@ -13,25 +13,28 @@ const iconStyle = {
 const ServicesSection = () => {
   const services = [
     {
-      title: "Kryolipoliza",
-      description: "Nieinwazyjne usuwanie tkanki tłuszczowej poprzez zamrażanie",
+      title: "Strefa Wellness",
+      description: "Nowoczesne podejście do ćwiczeń, dzięki któremu dostrzeżesz efekty szybciej niż podczas tradycyjnych treningów.",
       icon: <CubeIcon style={iconStyle} />,
-      features: ["Bez bólu", "Bez przestojów", "Długotrwałe efekty"],
-      video: process.env.PUBLIC_URL + "/video/1.mp4"
+      features: ["Masaże relaksacyjne", "Sauna", "Jaccuzi", "Zabiegi odprężające"],
+      video: process.env.PUBLIC_URL + "/video/1.mp4",
+      category: "wellness"
     },
     {
-      title: "Kavitacja",
-      description: "Ultradźwiękowe modelowanie sylwetki i redukcja cellulitu",
+      title: "Strefa Fitness",
+      description: "Nowoczesne podejście do ćwiczeń, dzięki któremu dostrzeżesz efekty szybciej niż podczas tradycyjnych treningów.",
       icon: <BoltIcon style={iconStyle} />,
-      features: ["Szybkie efekty", "Bezpieczne", "Komfortowe"],
-      video: process.env.PUBLIC_URL + "/video/2.mp4"
+      features: ["Treningi personalne", "Zajęcia grupowe", "Sprzęt najnowszej generacji", "Konsultacje z trenerem"],
+      video: process.env.PUBLIC_URL + "/video/2.mp4",
+      category: "fitness"
     },
     {
-      title: "Vacustyler",
-      description: "Stymulacja krążenia i ujędrnienie skóry",
+      title: "Kosmetologia Estetyczna",
+      description: "Nowoczesne podejście do ćwiczeń, dzięki któremu dostrzeżesz efekty szybciej niż podczas tradycyjnych treningów.",
       icon: <SparklesIcon style={iconStyle} />,
-      features: ["Poprawa krążenia", "Ujędrnienie", "Detoks"],
-      video: process.env.PUBLIC_URL + "/video/3.mp4"
+      features: ["Zabiegi na twarz", "Zabiegi na ciało", "Depilacja laserowa", "Zabiegi anti-aging"],
+      video: process.env.PUBLIC_URL + "/video/3.mp4",
+      category: "kosmetologia"
     }
   ];
 
@@ -56,6 +59,7 @@ const ServicesSection = () => {
               icon={service.icon}
               features={service.features}
               video={service.video}
+              category={service.category}
             />
           ))}
         </div>

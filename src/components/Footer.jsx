@@ -1,30 +1,31 @@
 import React from 'react';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Lock, FileText } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+
+const footerServices = [
+  {
+    label: 'Strefa Wellness',
+    category: 'wellness',
+  },
+  {
+    label: 'Strefa Fitness',
+    category: 'fitness',
+  },
+  {
+    label: 'Kosmetologia Estetyczna',
+    category: 'kosmetologia',
+  },
+];
 
 const Footer = () => {
   const navigate = useNavigate();
 
-  const handleNavigation = (path) => {
-    if (window.location.pathname !== '/') {
-      navigate('/');
-      // Wait for navigation to complete before scrolling
-      setTimeout(() => {
-        const element = document.querySelector(path);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      const element = document.querySelector(path);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+  const handleServiceClick = (category) => {
+    navigate(`/uslugi/${category}`, { state: { scrollToTop: true } });
   };
 
   return (
-    <footer className="bg-gray-800 text-white py-12">
+    <footer className="bg-gray-800 text-white pt-12 pb-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
@@ -47,10 +48,17 @@ const Footer = () => {
           <div>
             <h4 className="font-bold mb-4">Usługi</h4>
             <ul className="space-y-2 text-gray-300">
-              <li><button onClick={() => handleNavigation('#services')} type="button" className="hover:text-orange-500 transition-colors bg-transparent border-none p-0 m-0 cursor-pointer text-inherit">Kryolipoliza</button></li>
-              <li><button onClick={() => handleNavigation('#services')} type="button" className="hover:text-orange-500 transition-colors bg-transparent border-none p-0 m-0 cursor-pointer text-inherit">Kavitacja</button></li>
-              <li><button onClick={() => handleNavigation('#services')} type="button" className="hover:text-orange-500 transition-colors bg-transparent border-none p-0 m-0 cursor-pointer text-inherit">Vacustyler</button></li>
-              <li><button onClick={() => handleNavigation('#services')} type="button" className="hover:text-orange-500 transition-colors bg-transparent border-none p-0 m-0 cursor-pointer text-inherit">Masaże</button></li>
+              {footerServices.map((service) => (
+                <li key={service.category}>
+                  <button
+                    onClick={() => handleServiceClick(service.category)}
+                    type="button"
+                    className="hover:text-orange-500 transition-colors bg-transparent border-none p-0 m-0 cursor-pointer text-inherit"
+                  >
+                    {service.label}
+                  </button>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
@@ -71,17 +79,19 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-          <p className="mb-2">&copy; 2025 Studio Figura Wrocław Stabłowice. Wszystkie prawa zastrzeżone.</p>
-          <p>
-            <Link to="/polityka-prywatnosci" className="text-orange-500 hover:text-orange-400 transition-colors">
-              Polityka Prywatności
+        <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-300 text-sm">
+          <div className="mb-2 md:mb-0">Studio Figura © 2018 - {new Date().getFullYear()}</div>
+          <div className="flex flex-wrap items-center gap-4">
+            <Link to="/polityka-prywatnosci" className="flex items-center gap-1 text-orange-400 hover:text-orange-300 transition-colors">
+              <Lock size={16} className="inline-block" />
+              Polityka prywatności
             </Link>
-            {' | '}
-            <Link to="/regulamin" className="text-orange-500 hover:text-orange-400 transition-colors">
+            <span className="hidden md:inline-block text-gray-500">|</span>
+            <Link to="/regulamin" className="flex items-center gap-1 text-orange-400 hover:text-orange-300 transition-colors">
+              <FileText size={16} className="inline-block" />
               Regulamin
             </Link>
-          </p>
+          </div>
         </div>
       </div>
     </footer>
