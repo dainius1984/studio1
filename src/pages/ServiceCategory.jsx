@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import { fitnessDevices } from '../data/fitnessDevices';
 import { wellnessDevices } from '../data/wellnessDevices';
+import { kosmetologiaDevices } from '../data/kosmetologiaDevices';
 
 const categories = {
   wellness: {
@@ -119,6 +120,35 @@ const ServiceCategory = () => {
             ) : category === 'wellness' ? (
               <div className="space-y-10">
                 {wellnessDevices.map((device, idx) => (
+                  <motion.div
+                    key={device.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+                  >
+                    <div className="md:w-1/3 w-full h-64 md:h-auto flex items-center justify-center bg-orange-50">
+                      <img
+                        src={device.image}
+                        alt={device.title}
+                        className="object-contain max-h-56 w-auto mx-auto"
+                      />
+                    </div>
+                    <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
+                      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
+                      <p className="text-gray-600 mb-4 text-base md:text-lg">{device.description}</p>
+                      <ul className="list-disc pl-5 space-y-1 text-orange-600 text-base">
+                        {device.features.map((feature, i) => (
+                          <li key={i} className="text-gray-700">{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            ) : category === 'kosmetologia' ? (
+              <div className="space-y-10">
+                {kosmetologiaDevices.map((device, idx) => (
                   <motion.div
                     key={device.title}
                     initial={{ opacity: 0, y: 20 }}

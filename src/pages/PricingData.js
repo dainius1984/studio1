@@ -27,28 +27,28 @@ export const pricingData = {
       {
         device: "ROLL SHAPER",
         duration: "30 MIN",
-        price: "40 zł",
+        price: 40,
         image: "/img/test.jpg",
         description: "Zaawansowane urządzenie do modelowania sylwetki"
       },
       {
         device: "VACU SHAPER",
         duration: "30 MIN",
-        price: "60 zł",
+        price: 60,
         image: "/img/test.jpg",
         description: "Rewolucyjne urządzenie do redukcji tkanki tłuszczowej"
       },
       {
         device: "SWAN INFRA SHAPER",
         duration: "30 MIN",
-        price: "60 zł",
+        price: 60,
         image: "/img/test.jpg",
         description: "Innowacyjny system z promieniowaniem podczerwonym"
       },
       {
         device: "ROWER POZIOMY",
         duration: "30/60 MIN",
-        price: "40/60 zł",
+        price: 40,
         image: "/img/test.jpg",
         description: "Profesjonalny sprzęt fitness do treningu cardio"
       },
@@ -57,35 +57,35 @@ export const pricingData = {
       {
         device: "LIMFODRENAŻ SPODNIE",
         duration: "30/60 MIN",
-        price: "40/60 zł",
+        price: 40,
         image: "/img/test.jpg",
         description: "Drenaż limfatyczny z wykorzystaniem presoterapii"
       },
       {
         device: "LIMFODRENAŻ + BODY WRAPPING",
         duration: "30/60 MIN",
-        price: "45/70 zł",
+        price: 45,
         image: "/img/test.jpg",
         description: "Kompleksowy zabieg drenujący z owijaniem ciała"
       },
       {
         device: "ELEKTROSTYMULACJA IR",
         duration: "30 MIN",
-        price: "110 zł",
+        price: 110,
         image: "/img/test.jpg",
         description: "Elektrostymulacja z promieniowaniem podczerwonym"
       },
       {
         device: "ELEKTROSTYMULACJA + IR + SERUM",
         duration: "30 MIN",
-        price: "130 zł",
+        price: 130,
         image: "/img/test.jpg",
         description: "Kompleksowy zabieg z serum aktywnym"
       },
       {
         device: "BODY WRAPPING",
         duration: "usługa",
-        price: "40 zł",
+        price: 40,
         image: "/img/test.jpg",
         description: "Profesjonalne owijanie ciała"
       },
