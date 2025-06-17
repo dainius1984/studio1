@@ -43,7 +43,7 @@ export const pricingData = {
         duration: "30 MIN",
         price: 60,
         image: "/img/test.jpg",
-        description: "Innowacyjny system z promieniowaniem podczerwonym"
+        description: "Innowacyjny system z technologią podczerwieni"
       },
       {
         device: "ROWER POZIOMY",
@@ -73,7 +73,7 @@ export const pricingData = {
         duration: "30 MIN",
         price: 110,
         image: "/img/test.jpg",
-        description: "Elektrostymulacja z promieniowaniem podczerwonym"
+        description: "Innowacyjny system z technologią podczerwieni"
       },
       {
         device: "ELEKTROSTYMULACJA + IR + SERUM",
