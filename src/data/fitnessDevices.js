@@ -22,29 +22,6 @@ export const fitnessDevices = [
     ]
   },
   {
-    title: 'Swan Infra Shaper Bike',
-    image: '/images/swan-infra-shaper-bike.jpg',
-    description: 'Swan Infra Shaper Bike to połączenie roweru z lampami podczerwonymi i podciśnieniem, co pozwala na skuteczne spalanie tkanki tłuszczowej i modelowanie sylwetki.',
-    features: [
-      'redukcja cellulitu',
-      'ujędrnienie ciała',
-      'aktywizacja i odbudowa skóry',
-      'wymodelowanie sylwetki',
-      'zwiększenie wydolności organizmu'
-    ]
-  },
-  {
-    title: 'Tulip Thermo Climber',
-    image: '/images/tulip-thermo-climber.jpg',
-    description: 'Trening na ruchomych schodach z aktywnym podgrzewaniem, który poprawia wydolność organizmu, modeluje sylwetkę i przyspiesza spalanie tkanki tłuszczowej.',
-    features: [
-      'wymodelowanie sylwetki',
-      'zwiększenie wydolności organizmu',
-      'zwiększenie odporności na infekcje',
-      'wygładzenie skóry'
-    ]
-  },
-  {
     title: 'Vacu Shaper Classic',
     image: '/images/vacu-shaper-classic.jpg',
     description: 'Vacu Shaper Classic umożliwia selektywne spalanie tkanki tłuszczowej z dolnych partii ciała dzięki podciśnieniu, co przyspiesza redukcję cellulitu i wymodelowanie sylwetki.',
@@ -53,17 +30,6 @@ export const fitnessDevices = [
       'wymodelowanie sylwetki',
       'zmniejszenie obwodów ciała',
       'spadek masy ciała bez utraty tkanki mięśniowej'
-    ]
-  },
-  {
-    title: 'Vacu Shaper Bike',
-    image: '/images/vacu-shaper-bike.jpg',
-    description: 'Rower poziomy z podciśnieniem, który umożliwia intensywne spalanie tkanki tłuszczowej i modelowanie sylwetki.',
-    features: [
-      'redukcja tkanki tłuszczowej',
-      'lepsze ukrwienie skóry',
-      'wymodelowanie sylwetki',
-      'redukcja cellulitu'
     ]
   },
   {
