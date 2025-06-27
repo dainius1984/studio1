@@ -54,15 +54,11 @@ const Contact = () => {
                         <div className="text-sm">
                           <div className="flex justify-between">
                             <span>Pon-Pt:</span>
-                            <span>8:00 - 21:00</span>
+                            <span>8:30 - 20:30</span>
                           </div>
                           <div className="flex justify-between">
                             <span>Sob:</span>
-                            <span>9:00 - 15:00</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span>Nd:</span>
-                            <span>Zamknięte</span>
+                            <span>9:00 - 13:00</span>
                           </div>
                         </div>
                       }
@@ -88,7 +84,7 @@ const Contact = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="Studio Figura Wrocław Stabłowice"
-                ></iframe>
+                />
               </div>
             </div>
           </div>
@@ -104,4 +100,4 @@ const Contact = () => {
   );
 };
 
-export default Contact; 
+export default Contact;
