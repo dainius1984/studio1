@@ -36,7 +36,7 @@ const Contact = () => {
                     <ContactInfoCard 
                       icon={Mail}
                       title="Napisz"
-                      description="kontakt@studiofigura-wroclaw-stablowice.pl"
+                      description="studiofigurawroclaw@gmail.com"
                     />
                     <ContactInfoCard 
                       icon={MapPin}
