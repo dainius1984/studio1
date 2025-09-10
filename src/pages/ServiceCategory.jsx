@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
@@ -61,6 +61,9 @@ const ServiceCategory = () => {
 
   const currentCategory = categories[category];
   const categoryKeys = Object.keys(categories);
+  const formatFeature = (text) => (typeof text === 'string' && text.length > 0)
+    ? text.charAt(0).toUpperCase() + text.slice(1)
+    : text;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -108,11 +111,18 @@ const ServiceCategory = () => {
                     <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
                       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
                       <p className="text-gray-600 mb-4 text-base md:text-lg">{device.description}</p>
-                      <ul className="list-disc pl-5 space-y-1 text-orange-600 text-base">
-                        {device.features.map((feature, i) => (
-                          <li key={i} className="text-gray-700">{feature}</li>
-                        ))}
-                      </ul>
+                      {Array.isArray(device.features) && device.features.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {device.features.map((feature, i) => (
+                            <span
+                              key={i}
+                              className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-orange-100 text-orange-800 border border-orange-200 font-medium"
+                            >
+                              {formatFeature(feature)}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}
@@ -137,11 +147,18 @@ const ServiceCategory = () => {
                     <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
                       <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
                       <p className="text-gray-600 mb-4 text-base md:text-lg">{device.description}</p>
-                      <ul className="list-disc pl-5 space-y-1 text-orange-600 text-base">
-                        {device.features.map((feature, i) => (
-                          <li key={i} className="text-gray-700">{feature}</li>
-                        ))}
-                      </ul>
+                      {Array.isArray(device.features) && device.features.length > 0 && (
+                        <div className="flex flex-wrap gap-2">
+                          {device.features.map((feature, i) => (
+                            <span
+                              key={i}
+                              className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-orange-100 text-orange-800 border border-orange-200 font-medium"
+                            >
+                              {formatFeature(feature)}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}
@@ -163,15 +180,7 @@ const ServiceCategory = () => {
                         className="object-contain max-h-56 w-auto mx-auto"
                       />
                     </div>
-                    <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
-                      <p className="text-gray-600 mb-4 text-base md:text-lg">{device.description}</p>
-                      <ul className="list-disc pl-5 space-y-1 text-orange-600 text-base">
-                        {device.features.map((feature, i) => (
-                          <li key={i} className="text-gray-700">{feature}</li>
-                        ))}
-                      </ul>
-                    </div>
+                    <DeviceDetails device={device} />
                   </motion.div>
                 ))}
               </div>
@@ -223,3 +232,44 @@ const ServiceCategory = () => {
 };
 
 export default ServiceCategory; 
+
+// Local component for cosmetology device details with expand/collapse
+const DeviceDetails = ({ device }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
+      {device.krotkiOpis && (
+        <p className="text-gray-700 mb-3 text-base md:text-lg">{device.krotkiOpis}</p>
+      )}
+      {(device.dlugiOpis || device.description) && (
+        <div className="mb-4">
+          <p className={`text-gray-600 text-sm md:text-base ${expanded ? '' : 'line-clamp-3'}`}>
+            {device.dlugiOpis || device.description}
+          </p>
+          {(device.dlugiOpis || device.description)?.length > 180 && (
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="mt-2 inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold text-sm"
+            >
+              {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+            </button>
+          )}
+        </div>
+      )}
+      {Array.isArray(device.features) && device.features.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {device.features.map((feature, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-orange-100 text-orange-800 border border-orange-200 font-medium"
+            >
+              {typeof feature === 'string' && feature.length > 0 ? feature.charAt(0).toUpperCase() + feature.slice(1) : feature}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};

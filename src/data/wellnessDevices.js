@@ -2,7 +2,7 @@ export const wellnessDevices = [
   {
     title: 'Limfodrenaż',
     image: '/images/rolka.jpg',
-    description: 'Limfodrenaż to urządzenie, które wykonuje masaż uciskowy, pobudzający układ limfatyczny. Stymuluje to organizm do szybszego oczyszczania się z toksyn oraz skutecznego odprężenia ciała i umysłu. Limfodrenaż stanowi jedną z najskuteczniejszych metod modelowania łydek i ud, odchudzania oraz usuwania cellulitu.',
+    description: 'Limfodrenaż to urządzenie, które wykonuje masaż uciskowy, pobudzający układ limfatyczny. Stymuluje organizm do szybszego oczyszczania się z toksyn oraz skutecznego odprężenia ciała i umysłu. Limfodrenaż stanowi jedną z najskuteczniejszych metod modelowania łydek i ud, odchudzania oraz usuwania cellulitu.',
     features: [
       'wspomaganie redukcji tkanki tłuszczowej',
       'usunięcie zalegającej wody w organizmie',

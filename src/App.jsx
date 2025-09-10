@@ -6,6 +6,8 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import Pricing from './pages/Pricing';
 import Services from './pages/Services';
+import Products from './pages/Products';
+import ProductsCategory from './pages/ProductsCategory';
 import ServiceCategory from './pages/ServiceCategory';
 import Contact from './pages/Contact';
 
@@ -20,6 +22,9 @@ function App() {
         <Route path="/kontakt" element={<Contact />} />
         <Route path="/uslugi" element={<Services />}>
           <Route path=":category" element={<ServiceCategory />} />
+        </Route>
+        <Route path="/produkty" element={<Products />}>
+          <Route path=":category" element={<ProductsCategory />} />
         </Route>
       </Routes>
     </Router>

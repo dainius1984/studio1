@@ -22,6 +22,12 @@ const DesktopMenu = ({ handleNavigation, handleContactClick, isActive, getNavLin
       Usługi
       </button>
       <button
+        onClick={() => handleNavigation('/produkty')}
+        className={getNavLinkClass('/produkty')}
+      >
+        Produkty
+      </button>
+      <button
         onClick={() => handleNavigation('/kontakt')}
         className={getNavLinkClass('/kontakt')}
       >
