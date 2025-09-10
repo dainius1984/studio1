@@ -64,6 +64,18 @@ const ProductsCategory = () => {
               <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 whitespace-pre-line">{product.title}</h2>
                 <p className="text-gray-600 mb-4 text-base md:text-lg whitespace-pre-line">{product.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {product.packaging && (
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-orange-100 text-orange-800 border border-orange-200 font-medium">
+                      {product.packaging}
+                    </span>
+                  )}
+                  {product.polskiProdukt && (
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-green-100 text-green-800 border border-green-200 font-semibold">
+                      Polski produkt
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
