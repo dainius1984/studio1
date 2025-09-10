@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
 import { productsData } from '../data/productsData';
+import { Flag, Package } from 'lucide-react';
 
 const tabs = {
   suplementy: {
@@ -64,16 +65,18 @@ const ProductsCategory = () => {
               <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 whitespace-pre-line">{product.title}</h2>
                 <p className="text-gray-600 mb-4 text-base md:text-lg whitespace-pre-line">{product.description}</p>
-                <div className="space-y-2">
+                <div className="flex flex-wrap gap-2">
                   {product.polskiProdukt && (
-                    <div className="rounded-xl bg-green-50 text-green-800 border border-green-200 px-4 py-2 text-sm md:text-base font-semibold shadow-sm">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-green-50 text-green-800 border border-green-200 px-3 py-1 text-xs md:text-sm font-semibold shadow-sm w-fit">
+                      <Flag size={16} className="text-green-600" />
                       Wyprodukowano w Polsce
-                    </div>
+                    </span>
                   )}
                   {product.packaging && (
-                    <div className="rounded-xl bg-orange-50 text-orange-800 border border-orange-200 px-4 py-2 text-sm md:text-base font-medium shadow-sm">
-                      <span className="font-semibold">Opakowanie zawiera:</span> {" "}{product.packaging}
-                    </div>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-800 border border-orange-200 px-3 py-1 text-xs md:text-sm font-medium shadow-sm w-fit">
+                      <Package size={16} className="text-orange-600" />
+                      <span className="font-semibold">Opakowanie:</span> {product.packaging}
+                    </span>
                   )}
                 </div>
               </div>
