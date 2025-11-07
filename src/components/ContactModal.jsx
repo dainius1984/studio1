@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { X, ArrowRight, AlertCircle, Phone } from "lucide-react";
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+
+// EmailJS configuration
+const EMAILJS_PUBLIC_KEY = "0f8Jce-Gsw4GbjCQ_";
+const EMAILJS_SERVICE_ID = "service_m4uai4d";
+const EMAILJS_TEMPLATE_ID = "template_r7rcz39";
+
+// Initialize EmailJS with your public key
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 const ContactModal = ({ isOpen, onClose }) => {
   const [name, setName] = useState("");
@@ -8,6 +17,7 @@ const ContactModal = ({ isOpen, onClose }) => {
   const [policy, setPolicy] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
   // Prevent background scroll when modal is open
   useEffect(() => {
@@ -35,16 +45,45 @@ const ContactModal = ({ isOpen, onClose }) => {
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
     
-    setSubmitted(true);
-    setTimeout(() => {
-      onClose();
-      // Reset form after closing
-      setName("");
-      setPhone("");
-      setPolicy(false);
-      setSubmitted(false);
-      setErrors({});
-    }, 3000);
+    setIsLoading(true);
+    
+    try {
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        name: name.trim(),
+        phone: phone.trim(),
+        // Add timestamp for reference
+        timestamp: new Date().toLocaleString('pl-PL'),
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      // Success - show success message
+      setSubmitted(true);
+      setIsLoading(false);
+      
+      // Auto-close after 3 seconds and reset form
+      setTimeout(() => {
+        onClose();
+        setName("");
+        setPhone("");
+        setPolicy(false);
+        setSubmitted(false);
+        setErrors({});
+      }, 3000);
+    } catch (error) {
+      // Handle error
+      console.error('EmailJS Error:', error);
+      setIsLoading(false);
+      setErrors({ 
+        submit: 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.' 
+      });
+    }
   };
 
   if (!isOpen) return null;
@@ -135,11 +174,19 @@ const ContactModal = ({ isOpen, onClose }) => {
                   </div>
                 )}
               </div>
+              {errors.submit && (
+                <div className="flex items-center gap-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm animate-fade-in-tooltip-smooth mb-4">
+                  <AlertCircle size={18} className="text-red-500" />
+                  <span>{errors.submit}</span>
+                </div>
+              )}
               <button
                 type="submit"
-                className="w-full py-3 rounded-full transition flex items-center justify-center gap-2 group
+                disabled={isLoading}
+                className={`w-full py-3 rounded-full transition flex items-center justify-center gap-2 group
                   bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white text-lg font-semibold shadow-lg
-                  hover:from-[#FF8C00] hover:to-[#FF6200] focus:from-[#FF8C00] focus:to-[#FF6200] cursor-pointer"
+                  hover:from-[#FF8C00] hover:to-[#FF6200] focus:from-[#FF8C00] focus:to-[#FF6200]
+                  ${isLoading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
                 style={{
                   fontFamily: 'Inter, Arial, sans-serif',
                   fontWeight: 600,
@@ -147,10 +194,12 @@ const ContactModal = ({ isOpen, onClose }) => {
                   textShadow: '0 2px 8px rgba(0,0,0,0.08)',
                 }}
               >
-                Wyślij
-                <span className="transition-transform duration-200 group-hover:translate-x-1">
-                  <ArrowRight size={22} />
-                </span>
+                {isLoading ? 'Wysyłanie...' : 'Wyślij'}
+                {!isLoading && (
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">
+                    <ArrowRight size={22} />
+                  </span>
+                )}
               </button>
             </form>
           </div>

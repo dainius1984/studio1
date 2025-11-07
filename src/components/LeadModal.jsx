@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { X, ArrowRight, AlertCircle } from "lucide-react";
 import { Link } from 'react-router-dom';
+import emailjs from '@emailjs/browser';
+
+// EmailJS configuration
+const EMAILJS_PUBLIC_KEY = "0f8Jce-Gsw4GbjCQ_";
+const EMAILJS_SERVICE_ID = "service_m4uai4d";
+const EMAILJS_TEMPLATE_ID = "template_r7rcz39";
+
+// Initialize EmailJS with your public key
+emailjs.init(EMAILJS_PUBLIC_KEY);
 
 const LeadModal = ({ isOpen, onClose }) => {
   const [name, setName] = useState("");
@@ -8,38 +17,29 @@ const LeadModal = ({ isOpen, onClose }) => {
   const [policy, setPolicy] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Check if modal has been submitted before
+  // Check if modal has been submitted before - safety check
   useEffect(() => {
-    const hasSubmitted = localStorage.getItem('leadModalSubmitted');
-    if (hasSubmitted) {
-      onClose();
+    if (isOpen) {
+      const hasSubmitted = localStorage.getItem('leadModalSubmitted');
+      if (hasSubmitted) {
+        onClose();
+      }
     }
-  }, [onClose]);
+  }, [isOpen, onClose]);
 
   // Prevent background scroll when modal is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
-      // Check if modal was already shown in this session
-      const wasShown = sessionStorage.getItem('leadModalShown');
-      if (wasShown) {
-        onClose();
-      } else {
-        // Mark as shown in this session
-        sessionStorage.setItem('leadModalShown', 'true');
-      }
     } else {
       document.body.style.overflow = "";
     }
     return () => { 
       document.body.style.overflow = "";
-      // Clean up session storage when component unmounts
-      if (!isOpen) {
-        sessionStorage.removeItem('leadModalShown');
-      }
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   const validate = () => {
     const errs = {};
@@ -59,13 +59,49 @@ const LeadModal = ({ isOpen, onClose }) => {
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
     
-    // Store submission in localStorage
-    localStorage.setItem('leadModalSubmitted', 'true');
+    setIsLoading(true);
     
-    setSubmitted(true);
-    setTimeout(() => {
-      onClose();
-    }, 3000);
+    try {
+      // Prepare template parameters for EmailJS
+      const templateParams = {
+        name: name.trim(),
+        phone: phone.trim(),
+        // Add timestamp and source for reference
+        timestamp: new Date().toLocaleString('pl-PL'),
+        source: 'Lead Modal - 60% rabatu',
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      // Store submission in localStorage to prevent showing again
+      localStorage.setItem('leadModalSubmitted', 'true');
+      
+      // Success - show success message
+      setSubmitted(true);
+      setIsLoading(false);
+      
+      // Auto-close after 3 seconds and reset form
+      setTimeout(() => {
+        onClose();
+        setName("");
+        setPhone("");
+        setPolicy(false);
+        setSubmitted(false);
+        setErrors({});
+      }, 3000);
+    } catch (error) {
+      // Handle error
+      console.error('EmailJS Error:', error);
+      setIsLoading(false);
+      setErrors({ 
+        submit: 'Wystąpił błąd podczas wysyłania. Spróbuj ponownie później.' 
+      });
+    }
   };
 
   if (!isOpen) return null;
@@ -150,11 +186,19 @@ const LeadModal = ({ isOpen, onClose }) => {
                   </div>
                 )}
               </div>
+              {errors.submit && (
+                <div className="flex items-center gap-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm animate-fade-in-tooltip-smooth mb-4">
+                  <AlertCircle size={18} className="text-red-500" />
+                  <span>{errors.submit}</span>
+                </div>
+              )}
               <button
                 type="submit"
-                className="w-full py-3 rounded-full transition flex items-center justify-center gap-2 group
+                disabled={isLoading}
+                className={`w-full py-3 rounded-full transition flex items-center justify-center gap-2 group
                   bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white text-lg font-semibold shadow-lg
-                  hover:from-[#FF8C00] hover:to-[#FF6200] focus:from-[#FF8C00] focus:to-[#FF6200] cursor-pointer"
+                  hover:from-[#FF8C00] hover:to-[#FF6200] focus:from-[#FF8C00] focus:to-[#FF6200]
+                  ${isLoading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
                 style={{
                   fontFamily: 'Inter, Arial, sans-serif',
                   fontWeight: 600,
@@ -162,10 +206,12 @@ const LeadModal = ({ isOpen, onClose }) => {
                   textShadow: '0 2px 8px rgba(0,0,0,0.08)',
                 }}
               >
-                Wyślij
-                <span className="transition-transform duration-200 group-hover:translate-x-1">
-                  <ArrowRight size={22} />
-                </span>
+                {isLoading ? 'Wysyłanie...' : 'Wyślij'}
+                {!isLoading && (
+                  <span className="transition-transform duration-200 group-hover:translate-x-1">
+                    <ArrowRight size={22} />
+                  </span>
+                )}
               </button>
             </form>
           </div>
