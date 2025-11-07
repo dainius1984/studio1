@@ -119,7 +119,7 @@ const ServiceCategory = () => {
                       />
                     </div>
                     {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
                       <h2 
                         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
                         style={{ 
@@ -130,7 +130,7 @@ const ServiceCategory = () => {
                         {device.title}
                       </h2>
                       <p 
-                        className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed"
+                        className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed flex-grow"
                         style={{ 
                           fontFamily: 'Inter, Arial, sans-serif',
                           lineHeight: '1.7',
@@ -139,14 +139,14 @@ const ServiceCategory = () => {
                         {device.description}
                       </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="flex flex-col gap-3 md:gap-3.5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-auto">
                           {device.features.map((feature, i) => (
                             <motion.span
                               key={i}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.1 + i * 0.05 }}
-                              className="inline-flex items-center px-5 py-3 rounded-full text-sm md:text-base font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
                               style={{
                                 fontFamily: 'Inter, Arial, sans-serif',
                                 fontWeight: 600,
@@ -190,7 +190,7 @@ const ServiceCategory = () => {
                       />
                     </div>
                     {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
                       <h2 
                         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
                         style={{ 
@@ -201,7 +201,7 @@ const ServiceCategory = () => {
                         {device.title}
                       </h2>
                       <p 
-                        className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed"
+                        className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed flex-grow"
                         style={{ 
                           fontFamily: 'Inter, Arial, sans-serif',
                           lineHeight: '1.7',
@@ -210,14 +210,14 @@ const ServiceCategory = () => {
                         {device.description}
                       </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="flex flex-col gap-3 md:gap-3.5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-auto">
                           {device.features.map((feature, i) => (
                             <motion.span
                               key={i}
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: idx * 0.1 + i * 0.05 }}
-                              className="inline-flex items-center px-5 py-3 rounded-full text-sm md:text-base font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
                               style={{
                                 fontFamily: 'Inter, Arial, sans-serif',
                                 fontWeight: 600,
@@ -318,7 +318,7 @@ const DeviceDetails = ({ device, idx }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
       <h2 
         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
         style={{ 
@@ -339,7 +339,7 @@ const DeviceDetails = ({ device, idx }) => {
         </p>
       )}
       {(device.dlugiOpis || device.description) && (
-        <div className="mb-5 md:mb-6">
+        <div className="mb-5 md:mb-6 flex-grow">
           <p 
             className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-4'}`}
             style={{ 
@@ -364,14 +364,14 @@ const DeviceDetails = ({ device, idx }) => {
         </div>
       )}
       {Array.isArray(device.features) && device.features.length > 0 && (
-        <div className="flex flex-col gap-3 md:gap-3.5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-auto">
           {device.features.map((feature, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: idx * 0.1 + i * 0.05 }}
-              className="inline-flex items-center px-5 py-3 rounded-full text-sm md:text-base font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
               style={{
                 fontFamily: 'Inter, Arial, sans-serif',
                 fontWeight: 600,
