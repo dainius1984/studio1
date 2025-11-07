@@ -142,6 +142,8 @@ const Navigation = () => {
           isOpen={isMenuOpen}
           handleNavigation={handleNavigation}
           handleContactClick={handleContactClick}
+          isActive={isActive}
+          onClose={() => setIsMenuOpen(false)}
         />
       </nav>
 
