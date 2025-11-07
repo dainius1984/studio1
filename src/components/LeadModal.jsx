@@ -29,6 +29,17 @@ const LeadModal = ({ isOpen, onClose }) => {
       }
     }
   }, [isOpen, onClose]);
+  
+  // Listen for storage changes (in case submitted in another tab)
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === 'leadModalSubmitted' && e.newValue === 'true') {
+        onClose();
+      }
+    };
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [onClose]);
 
   // Prevent background scroll when modal is open
   useEffect(() => {
