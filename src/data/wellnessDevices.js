@@ -13,7 +13,7 @@ export const wellnessDevices = [
   },
   {
     title: 'Elektrostymulacja',
-    image: '/images/rolka.jpg',
+    image: '/img/tools/elektrostymulacja_1.jpg',
     description: 'Zabieg polegający na wysyłaniu impulsów elektrycznych do organizmu człowieka, które doprowadzają do skurczu określonego mięśnia lub grupy mięśni. Każdy taki skurcz wiąże się z pracą, w związku z czym przyczynia się do spalania będącej nośnikiem energii tkanki tłuszczowej, a także modelowania mięśni. Urządzenie posiada też specjalistyczne pady do ujędrniania.',
     features: [
       'wzmocnienie mięśni',
@@ -33,6 +33,28 @@ export const wellnessDevices = [
       'pobudzenie metabolizmu',
       'stymulacja wydalania toksyn z organizmu',
       'poprawa krążenia krwi i dotlenienie tkanek'
+    ]
+  },
+  {
+    title: 'Beauty Hood',
+    image: '/img/tools/beauty_hood.jpg',
+    description: 'Innowacyjne urządzenie do pielęgnacji twarzy, szyi i dekoltu, wykorzystujące kilka technologii: maskę fotonową, fale radiowe, mezoterapię bezigłową, sonoforezę, hydrabrazję, infuzję tlenową i głowicę chłodzącą. Dzięki nim urządzenie spłyca zmarszczki oraz widocznie odmładza skórę, dogłębnie ją dotleniając i odżywiając.',
+    features: [
+      'odmłodzenie skóry',
+      'dotlenienie i nawilżenie skóry',
+      'wygładzenie zmarszczek',
+      'stymulacja produkcji kolagenu, elastyny i kwasu hialuronowego',
+      'poprawa owalu twarzy'
+    ]
+  },
+  {
+    title: 'Ice Tech',
+    image: '/img/tools/ICE_tech_1.jpg',
+    description: 'Zabieg modelujący i wyszczuplający sylwetkę. Kriolipoliza Ice Tech polega na uzyskaniu niskiej temperatury w wybranym obszarze tkanki tłuszczowej, doprowadzając w ten sposób do jej wymrożenia. Zabieg poleca się w szczególności osobom będącym na diecie, regularnie ćwiczącym i w dalszym ciągu borykającym się z problemem nadmiaru tkanki tłuszczowej.',
+    features: [
+      'redukcja drugiego podbródka',
+      'wspomaganie procesu odchudzania',
+      'modelowanie sylwetki'
     ]
   }
 ]; 

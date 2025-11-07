@@ -27,7 +27,7 @@ export const kosmetologiaDevices = [
   },
   {
     title: 'Multipolar PRO',
-    image: '/images/multipolar-pro.jpg',
+    image: '/img/tools/multipolar.jpg',
     krotkiOpis: 'Multipolarne fale radiowe i podciśnienie dla ujędrnienia i modelowania ciała.',
     dlugiOpis: 'Zabieg, który za pomocą multipolarnych fal radiowych modeluje sylwetkę oraz wygładza i ujędrnia ciało. Dzięki dodatkowej głowicy z podciśnieniem za pomocą urządzenia można przyspieszyć proces oczyszczania organizmu z toksyn. Sesja może być wykonywana na całym ciele, także na szyi, dekolcie i twarzy.',
     features: [
@@ -52,7 +52,7 @@ export const kosmetologiaDevices = [
   },
   {
     title: 'Opalanie natryskowe',
-    image: '/images/opalanie-natryskowe.jpg',
+    image: '/img/tools/opalanie_natryskowe.jpg',
     krotkiOpis: 'Szybka, bezpieczna opalenizna bez UV, z nawilżającą i odżywczą mgiełką.',
     dlugiOpis: 'Szybkie i bezpieczne opalanie natryskowe. Sunny Studio to idealne rozwiązanie dla osób o jasnej karnacji, ze skłonnościami do podrażnień i poparzeń słonecznych, a także tych, którzy po prostu nie chcą narażać swojej skóry na promieniowanie UV. Odcień opalenizny dobierany jest indywidualnie do karnacji, a mgiełka wykorzystywana do zabiegu dodatkowo nawilża i odżywia skórę.',
     features: [
@@ -65,7 +65,7 @@ export const kosmetologiaDevices = [
   },
   {
     title: 'Beauty Shaper',
-    image: '/images/beauty-shaper.jpg',
+    image: '/img/tools/beauty shaper.jpg',
     krotkiOpis: 'Bezbolesne modelowanie sylwetki i redukcja cellulitu bez rekonwalescencji.',
     dlugiOpis: 'Rewolucyjna i bezbolesna metoda modelowania sylwetki oraz wyszczuplania najbardziej problematycznych partii ciała. Dzięki połączeniu najnowocześniejszych technologii z kosmetologii estetycznej pozwala na bezinwazyjną, a ponadto niewymagającą rekonwalescencji redukcję cellulitu oraz wspomaga odchudzanie.',
     features: [
