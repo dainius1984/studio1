@@ -20,42 +20,7 @@ const LeadModal = ({ isOpen, onClose }) => {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  // Check if modal has been submitted before - safety check
-  useEffect(() => {
-    if (isOpen) {
-      const hasSubmitted = localStorage.getItem('leadModalSubmitted');
-      if (hasSubmitted === 'true') {
-        onClose();
-      }
-    }
-  }, [isOpen, onClose]);
-  
-  // Listen for storage changes (in case submitted in another tab or same window)
-  useEffect(() => {
-    const handleStorageChange = (e) => {
-      if (e.key === 'leadModalSubmitted' && e.newValue === 'true') {
-        onClose();
-      }
-    };
-    
-    // Listen for changes in other tabs/windows
-    window.addEventListener('storage', handleStorageChange);
-    
-    // Also listen for custom event for same-window changes
-    const handleCustomStorageChange = () => {
-      const hasSubmitted = localStorage.getItem('leadModalSubmitted');
-      if (hasSubmitted === 'true') {
-        onClose();
-      }
-    };
-    
-    window.addEventListener('leadModalSubmitted', handleCustomStorageChange);
-    
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-      window.removeEventListener('leadModalSubmitted', handleCustomStorageChange);
-    };
-  }, [onClose]);
+  // Note: Modal will always show on page load/refresh, regardless of previous submissions
 
   // Prevent background scroll when modal is open
   useEffect(() => {

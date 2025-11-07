@@ -18,20 +18,11 @@ const AppContent = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Check if modal has been submitted before
-    const hasSubmitted = localStorage.getItem('leadModalSubmitted');
-    
-    // Only show if not submitted before
-    if (hasSubmitted !== 'true') {
-      // Show modal after 1 second delay
-      const timer = setTimeout(() => {
-        setShowModal(true);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else {
-      // If already submitted, make sure modal is closed
-      setShowModal(false);
-    }
+    // Always show modal after 1 second delay (regardless of previous submissions)
+    const timer = setTimeout(() => {
+      setShowModal(true);
+    }, 1000);
+    return () => clearTimeout(timer);
   }, [location.pathname]); // Re-check when route changes
 
   return (

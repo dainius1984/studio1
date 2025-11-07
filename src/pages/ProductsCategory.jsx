@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Footer from '../components/Footer';
@@ -16,6 +16,38 @@ const tabs = {
   }
 };
 
+// Product Image Component with error handling
+const ProductImage = ({ src, alt, title }) => {
+  const [imageError, setImageError] = useState(false);
+
+  if (imageError) {
+    return (
+      <div className="flex items-center justify-center w-full h-full p-8">
+        <div className="text-center">
+          <div className="text-5xl mb-4 opacity-50">📦</div>
+          <div className="text-gray-400 font-semibold text-lg" style={{ fontFamily: 'Inter, Arial, sans-serif' }}>
+            {title.split('\n')[0]}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className="w-full h-full object-cover md:object-contain relative z-10 p-6 md:p-8 lg:p-10"
+      loading="lazy"
+      style={{
+        objectPosition: 'center',
+        maxHeight: '100%',
+      }}
+      onError={() => setImageError(true)}
+    />
+  );
+};
+
 const ProductsCategory = () => {
   const { category } = useParams();
   const navigate = useNavigate();
@@ -24,7 +56,7 @@ const ProductsCategory = () => {
   const items = productsData[current];
 
   return (
-    <div className="bg-gradient-to-br from-orange-50 to-orange-100 py-12">
+    <div className="bg-[#faf8f5] py-12 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Tabs */}
         <div className="flex flex-wrap justify-center mb-12 gap-4">
@@ -45,38 +77,77 @@ const ProductsCategory = () => {
           ))}
         </div>
 
-        {/* Grid */}
-        <div className="space-y-10">
+        {/* Product Cards */}
+        <div className="space-y-8 md:space-y-10">
           {items.map((product, idx) => (
             <motion.div
               key={product.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.05 }}
-              className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+              whileHover={{ y: -4 }}
+              className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
+              style={{
+                boxShadow: '0 4px 20px 0 rgba(0,0,0,0.08), 0 1px 4px 0 rgba(0,0,0,0.04)',
+              }}
             >
-              <div className="md:w-1/3 w-full h-64 md:h-auto flex items-center justify-center bg-orange-50">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="object-contain max-h-56 w-auto mx-auto"
-                />
+              {/* Image Container */}
+              <div className="md:w-1/2 w-full h-64 md:h-auto md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-orange-50/30 to-orange-50 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-orange-50/40 to-transparent pointer-events-none"></div>
+                <ProductImage src={product.image} alt={product.title} title={product.title} />
               </div>
-              <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2 whitespace-pre-line">{product.title}</h2>
-                <p className="text-gray-600 mb-4 text-base md:text-lg whitespace-pre-line">{product.description}</p>
-                <div className="flex flex-wrap gap-2">
+              {/* Text Container */}
+              <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+                <h2 
+                  className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight whitespace-pre-line"
+                  style={{ 
+                    fontFamily: 'Raleway, Arial, sans-serif',
+                    letterSpacing: '-0.5px',
+                  }}
+                >
+                  {product.title}
+                </h2>
+                <p 
+                  className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed whitespace-pre-line"
+                  style={{ 
+                    fontFamily: 'Inter, Arial, sans-serif',
+                    lineHeight: '1.7',
+                  }}
+                >
+                  {product.description}
+                </p>
+                <div className="flex flex-wrap gap-3 md:gap-3.5">
                   {product.polskiProdukt && (
-                    <span className="inline-flex items-center gap-2 rounded-full bg-green-50 text-green-800 border border-green-200 px-3 py-1 text-xs md:text-sm font-semibold shadow-sm w-fit">
-                      <Flag size={16} className="text-green-600" />
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: idx * 0.05 + 0.1 }}
+                      className="inline-flex items-center gap-2 rounded-full bg-green-50 text-green-800 border-2 border-green-200 px-4 py-2.5 text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                      style={{
+                        fontFamily: 'Inter, Arial, sans-serif',
+                        fontWeight: 600,
+                        boxShadow: '0 2px 8px 0 rgba(34,197,94,0.2)',
+                      }}
+                    >
+                      <Flag size={18} className="text-green-600" />
                       Wyprodukowano w Polsce
-                    </span>
+                    </motion.span>
                   )}
                   {product.packaging && (
-                    <span className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-800 border border-orange-200 px-3 py-1 text-xs md:text-sm font-medium shadow-sm w-fit">
-                      <Package size={16} className="text-orange-600" />
-                      <span className="font-semibold">Opakowanie:</span> {product.packaging}
-                    </span>
+                    <motion.span
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: idx * 0.05 + 0.15 }}
+                      className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-800 border-2 border-orange-200 px-4 py-2.5 text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                      style={{
+                        fontFamily: 'Inter, Arial, sans-serif',
+                        fontWeight: 600,
+                        boxShadow: '0 2px 8px 0 rgba(255,98,0,0.2)',
+                      }}
+                    >
+                      <Package size={18} className="text-orange-600" />
+                      <span>Opakowanie:</span> {product.packaging}
+                    </motion.span>
                   )}
                 </div>
               </div>
