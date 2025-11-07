@@ -69,7 +69,7 @@ const ServiceCategory = () => {
     <div className="min-h-screen flex flex-col">
       <Navigation />
       <main className="flex-grow pt-16">
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 py-12">
+        <div className="bg-[#faf8f5] py-12 min-h-screen">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Category Navigation */}
             <div className="flex flex-wrap justify-center mb-12 gap-4">
@@ -92,34 +92,43 @@ const ServiceCategory = () => {
 
             {/* Category Content */}
             {category === 'fitness' ? (
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 {fitnessDevices.map((device, idx) => (
                   <motion.div
                     key={device.title}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+                    whileHover={{ y: -4 }}
+                    className="bg-white rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
                   >
-                    <div className="md:w-1/3 w-full h-64 md:h-auto flex items-center justify-center bg-orange-50">
+                    <div className="md:w-2/5 w-full h-64 md:h-80 lg:h-96 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
                       <img
                         src={device.image}
                         alt={device.title}
-                        className="object-contain max-h-56 w-auto mx-auto"
+                        className="w-full h-full object-cover md:object-contain p-4 md:p-6"
+                        loading="lazy"
                       />
                     </div>
-                    <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
-                      <p className="text-gray-600 mb-4 text-base md:text-lg">{device.description}</p>
+                    <div className="md:w-3/5 w-full p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
+                        {device.title}
+                      </h2>
+                      <p className="text-gray-700 mb-5 md:mb-6 text-base md:text-lg leading-relaxed">
+                        {device.description}
+                      </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2.5 md:gap-3">
                           {device.features.map((feature, i) => (
-                            <span
+                            <motion.span
                               key={i}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-orange-100 text-orange-800 border border-orange-200 font-medium"
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: idx * 0.1 + i * 0.05 }}
+                              className="inline-flex items-center px-4 py-2 rounded-full text-sm md:text-base font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-sm hover:shadow-md transition-shadow"
                             >
                               {formatFeature(feature)}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
                       )}
@@ -128,34 +137,43 @@ const ServiceCategory = () => {
                 ))}
               </div>
             ) : category === 'wellness' ? (
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 {wellnessDevices.map((device, idx) => (
                   <motion.div
                     key={device.title}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+                    whileHover={{ y: -4 }}
+                    className="bg-white rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
                   >
-                    <div className="md:w-1/3 w-full h-64 md:h-auto flex items-center justify-center bg-orange-50">
+                    <div className="md:w-2/5 w-full h-64 md:h-80 lg:h-96 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
                       <img
                         src={device.image}
                         alt={device.title}
-                        className="object-contain max-h-56 w-auto mx-auto"
+                        className="w-full h-full object-cover md:object-contain p-4 md:p-6"
+                        loading="lazy"
                       />
                     </div>
-                    <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
-                      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
-                      <p className="text-gray-600 mb-4 text-base md:text-lg">{device.description}</p>
+                    <div className="md:w-3/5 w-full p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
+                        {device.title}
+                      </h2>
+                      <p className="text-gray-700 mb-5 md:mb-6 text-base md:text-lg leading-relaxed">
+                        {device.description}
+                      </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex flex-wrap gap-2.5 md:gap-3">
                           {device.features.map((feature, i) => (
-                            <span
+                            <motion.span
                               key={i}
-                              className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-orange-100 text-orange-800 border border-orange-200 font-medium"
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: idx * 0.1 + i * 0.05 }}
+                              className="inline-flex items-center px-4 py-2 rounded-full text-sm md:text-base font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-sm hover:shadow-md transition-shadow"
                             >
                               {formatFeature(feature)}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
                       )}
@@ -164,23 +182,25 @@ const ServiceCategory = () => {
                 ))}
               </div>
             ) : category === 'kosmetologia' ? (
-              <div className="space-y-10">
+              <div className="space-y-8 md:space-y-10">
                 {kosmetologiaDevices.map((device, idx) => (
                   <motion.div
                     key={device.title}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    className="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center md:items-stretch"
+                    whileHover={{ y: -4 }}
+                    className="bg-white rounded-2xl md:rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
                   >
-                    <div className="md:w-1/3 w-full h-64 md:h-auto flex items-center justify-center bg-orange-50">
+                    <div className="md:w-2/5 w-full h-64 md:h-80 lg:h-96 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
                       <img
                         src={device.image}
                         alt={device.title}
-                        className="object-contain max-h-56 w-auto mx-auto"
+                        className="w-full h-full object-cover md:object-contain p-4 md:p-6"
+                        loading="lazy"
                       />
                     </div>
-                    <DeviceDetails device={device} />
+                    <DeviceDetails device={device} idx={idx} />
                   </motion.div>
                 ))}
               </div>
@@ -234,39 +254,45 @@ const ServiceCategory = () => {
 export default ServiceCategory; 
 
 // Local component for cosmetology device details with expand/collapse
-const DeviceDetails = ({ device }) => {
+const DeviceDetails = ({ device, idx }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="md:w-2/3 w-full p-8 flex flex-col justify-center">
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">{device.title}</h2>
+    <div className="md:w-3/5 w-full p-6 md:p-8 lg:p-10 flex flex-col justify-center">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 md:mb-4 leading-tight">
+        {device.title}
+      </h2>
       {device.krotkiOpis && (
-        <p className="text-gray-700 mb-3 text-base md:text-lg">{device.krotkiOpis}</p>
+        <p className="text-gray-700 mb-3 text-base md:text-lg font-medium">{device.krotkiOpis}</p>
       )}
       {(device.dlugiOpis || device.description) && (
-        <div className="mb-4">
-          <p className={`text-gray-600 text-sm md:text-base ${expanded ? '' : 'line-clamp-3'}`}>
+        <div className="mb-5 md:mb-6">
+          <p className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-4'}`}>
             {device.dlugiOpis || device.description}
           </p>
-          {(device.dlugiOpis || device.description)?.length > 180 && (
+          {(device.dlugiOpis || device.description)?.length > 200 && (
             <button
               onClick={() => setExpanded((v) => !v)}
-              className="mt-2 inline-flex items-center text-orange-600 hover:text-orange-700 font-semibold text-sm"
+              className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors"
             >
               {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+              <span className="ml-1">{expanded ? '↑' : '↓'}</span>
             </button>
           )}
         </div>
       )}
       {Array.isArray(device.features) && device.features.length > 0 && (
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2.5 md:gap-3">
           {device.features.map((feature, i) => (
-            <span
+            <motion.span
               key={i}
-              className="inline-flex items-center px-3 py-1 rounded-full text-sm md:text-base bg-orange-100 text-orange-800 border border-orange-200 font-medium"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: idx * 0.1 + i * 0.05 }}
+              className="inline-flex items-center px-4 py-2 rounded-full text-sm md:text-base font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-sm hover:shadow-md transition-shadow"
             >
               {typeof feature === 'string' && feature.length > 0 ? feature.charAt(0).toUpperCase() + feature.slice(1) : feature}
-            </span>
+            </motion.span>
           ))}
         </div>
       )}
