@@ -34,20 +34,24 @@ const ProductImage = ({ src, alt, title }) => {
   }
 
   return (
-    <img
-      src={src}
-      alt={alt}
-      className="object-contain relative z-10"
-      loading="lazy"
-      style={{
-        objectPosition: 'center',
-        width: '100%',
-        height: '100%',
-        transform: 'scale(1.3)',
-        transformOrigin: 'center',
-      }}
-      onError={() => setImageError(true)}
-    />
+    <div className="w-full h-full flex items-center justify-center relative z-10" style={{ overflow: 'hidden' }}>
+      <img
+        src={src}
+        alt={alt}
+        className="object-contain"
+        loading="lazy"
+        style={{
+          objectPosition: 'center',
+          width: 'auto',
+          height: 'auto',
+          maxWidth: '120%',
+          maxHeight: '120%',
+          transform: 'scale(1.5)',
+          transformOrigin: 'center',
+        }}
+        onError={() => setImageError(true)}
+      />
+    </div>
   );
 };
 
