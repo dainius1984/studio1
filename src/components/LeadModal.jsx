@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { X, ArrowRight, AlertCircle } from "lucide-react";
+import { X, ArrowRight, AlertCircle, Sparkles, Gift } from "lucide-react";
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 
 // EmailJS configuration
@@ -68,7 +69,7 @@ const LeadModal = ({ isOpen, onClose }) => {
         phone: phone.trim(),
         // Add timestamp and source for reference
         timestamp: new Date().toLocaleString('pl-PL'),
-        source: 'Lead Modal - 60% rabatu',
+        source: 'Lead Modal - 60% na zabieg Stabłowice',
       };
 
       // Send email using EmailJS
@@ -107,150 +108,320 @@ const LeadModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md overflow-y-auto">
-      <div
-        className="bg-white rounded-3xl shadow-2xl p-4 sm:p-8 max-w-full sm:max-w-md w-full relative my-8 animate-fade-in"
-        style={{
-          boxShadow: '0 8px 40px 0 rgba(255,98,0,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.10)',
-          border: '2px solid #FF6200',
-          paddingTop: 40,
-        }}
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md overflow-y-auto p-4"
+        onClick={(e) => e.target === e.currentTarget && onClose()}
       >
-        <button
-          className="absolute top-4 right-4 text-gray-400 hover:text-orange-500 text-2xl transition z-50"
-          onClick={onClose}
-          aria-label="Zamknij"
+        <motion.div
+          initial={{ scale: 0.9, opacity: 0, y: 20 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.9, opacity: 0, y: 20 }}
+          transition={{ type: "spring", duration: 0.5 }}
+          className="bg-white rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 max-w-full sm:max-w-md w-full relative my-4 sm:my-8"
+          style={{
+            boxShadow: '0 8px 40px 0 rgba(255,98,0,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.10)',
+            border: '2px solid #FF6200',
+          }}
         >
-          <X size={28} />
-        </button>
-        {!submitted ? (
-          <div className="max-h-[calc(100vh-8rem)] overflow-y-auto">
-            <h2 className="text-center mb-2" style={{ fontFamily: 'Raleway, Arial, sans-serif', fontWeight: 800, color: '#FF6200', fontSize: 28, letterSpacing: '-0.5px', lineHeight: 1.1 }}>
-              Przejdź z nami metamorfozę
-            </h2>
-            <p className="text-center mb-6" style={{ fontFamily: 'Raleway, Arial, sans-serif', fontWeight: 700, color: '#333', fontSize: 18 }}>
-              60% rabatu na wszystko
-            </p>
-            <form onSubmit={sendEmail} className="space-y-4">
-              <div className="mb-4">
-                <label className="block font-semibold mb-1">Imię*</label>
-                <input
-                  type="text"
-                  className={`w-full border-2 rounded-2xl px-5 py-3 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition placeholder-gray-400 text-lg ${errors.name ? "border-red-400" : "border-gray-200"}`}
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                  placeholder="np. Ania"
-                />
-                {errors.name && (
-                  <div className="flex items-center gap-2 mt-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm animate-fade-in-tooltip-smooth">
-                    <AlertCircle size={18} className="text-red-500" />
-                    <span>{errors.name}</span>
+          <button
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-orange-500 text-2xl transition z-50 p-1 hover:bg-orange-50 rounded-full"
+            onClick={onClose}
+            aria-label="Zamknij"
+          >
+            <X size={24} className="sm:w-7 sm:h-7" />
+          </button>
+          {!submitted ? (
+            <div className="max-h-[calc(100vh-4rem)] sm:max-h-[calc(100vh-8rem)] overflow-y-auto">
+              {/* Header with discount badge */}
+              <div className="text-center mb-6 sm:mb-8">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  className="inline-flex items-center justify-center mb-4"
+                >
+                  <div className="relative">
+                    <motion.div
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                      className="bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white px-6 py-3 rounded-full shadow-lg"
+                      style={{
+                        fontFamily: 'Raleway, Arial, sans-serif',
+                        fontWeight: 800,
+                        fontSize: 'clamp(20px, 5vw, 32px)',
+                        letterSpacing: '-0.5px',
+                      }}
+                    >
+                      <div className="flex items-center gap-2">
+                        <Gift size={24} className="sm:w-8 sm:h-8" />
+                        <span>-60%</span>
+                        <Sparkles size={20} className="sm:w-6 sm:h-6" />
+                      </div>
+                    </motion.div>
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full border-2 border-white"
+                    />
                   </div>
-                )}
+                </motion.div>
+                
+                <motion.h2
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="mb-3 sm:mb-4"
+                  style={{
+                    fontFamily: 'Raleway, Arial, sans-serif',
+                    fontWeight: 800,
+                    color: '#FF6200',
+                    fontSize: 'clamp(22px, 5vw, 32px)',
+                    letterSpacing: '-0.5px',
+                    lineHeight: 1.2,
+                  }}
+                >
+                  Przejdź z nami metamorfozę
+                </motion.h2>
+                
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4 }}
+                  className="text-gray-700 mb-2"
+                  style={{
+                    fontFamily: 'Raleway, Arial, sans-serif',
+                    fontWeight: 700,
+                    fontSize: 'clamp(16px, 4vw, 20px)',
+                  }}
+                >
+                  Specjalna oferta dla Ciebie!
+                </motion.p>
+                
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-gray-600 text-sm sm:text-base"
+                  style={{
+                    fontFamily: 'Inter, Arial, sans-serif',
+                    fontSize: 'clamp(14px, 3.5vw, 16px)',
+                  }}
+                >
+                  -60% na zabieg w Studio Figura Stabłowice
+                </motion.p>
               </div>
-              <div className="mb-4">
-                <label className="block font-semibold mb-1">Numer telefonu*</label>
-                <input
-                  type="tel"
-                  className={`w-full border-2 rounded-2xl px-5 py-3 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition placeholder-gray-400 text-lg ${errors.phone ? "border-red-400" : "border-gray-200"}`}
-                  value={phone}
-                  onChange={e => setPhone(e.target.value)}
-                  maxLength={9}
-                  pattern="[0-9]{9}"
-                  placeholder="np. 503537701"
-                />
-                {errors.phone && (
-                  <div className="flex items-center gap-2 mt-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm animate-fade-in-tooltip-smooth">
-                    <AlertCircle size={18} className="text-red-500" />
-                    <span>{errors.phone}</span>
-                  </div>
-                )}
-              </div>
-              <div className="mb-4">
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    id="policy"
-                    checked={policy}
-                    onChange={e => setPolicy(e.target.checked)}
-                    className="mr-2 accent-orange-500"
-                  />
-                  <label htmlFor="policy" className="text-sm">
-                    Akceptuję <Link to="/polityka-prywatnosci" onClick={handlePrivacyPolicyClick} className="underline text-orange-500">Politykę Prywatności</Link> i zgadzam się na kontakt
-                  </label>
-                </div>
-                {errors.policy && (
-                  <div className="flex items-center gap-2 mt-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm animate-fade-in-tooltip-smooth">
-                    <AlertCircle size={18} className="text-red-500" />
-                    <span>{errors.policy}</span>
-                  </div>
-                )}
-              </div>
-              {errors.submit && (
-                <div className="flex items-center gap-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm animate-fade-in-tooltip-smooth mb-4">
-                  <AlertCircle size={18} className="text-red-500" />
-                  <span>{errors.submit}</span>
-                </div>
-              )}
-              <button
-                type="submit"
-                disabled={isLoading}
-                className={`w-full py-3 rounded-full transition flex items-center justify-center gap-2 group
-                  bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white text-lg font-semibold shadow-lg
-                  hover:from-[#FF8C00] hover:to-[#FF6200] focus:from-[#FF8C00] focus:to-[#FF6200]
-                  ${isLoading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
-                style={{
-                  fontFamily: 'Inter, Arial, sans-serif',
-                  fontWeight: 600,
-                  letterSpacing: '1px',
-                  textShadow: '0 2px 8px rgba(0,0,0,0.08)',
-                }}
+              <motion.form
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                onSubmit={sendEmail}
+                className="space-y-4"
               >
-                {isLoading ? 'Wysyłanie...' : 'Wyślij'}
-                {!isLoading && (
-                  <span className="transition-transform duration-200 group-hover:translate-x-1">
-                    <ArrowRight size={22} />
-                  </span>
-                )}
-              </button>
-            </form>
+                <div className="mb-4">
+                  <label className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
+                    Imię*
+                  </label>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="text"
+                    className={`w-full border-2 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition-all placeholder-gray-400 text-base sm:text-lg ${errors.name ? "border-red-400 shake" : "border-gray-200"}`}
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                    placeholder="np. Ania"
+                  />
+                  <AnimatePresence>
+                    {errors.name && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="flex items-center gap-2 mt-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm"
+                      >
+                        <AlertCircle size={16} className="text-red-500 flex-shrink-0" />
+                        <span>{errors.name}</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                
+                <div className="mb-4">
+                  <label className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
+                    Numer telefonu*
+                  </label>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="tel"
+                    className={`w-full border-2 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition-all placeholder-gray-400 text-base sm:text-lg ${errors.phone ? "border-red-400 shake" : "border-gray-200"}`}
+                    value={phone}
+                    onChange={e => setPhone(e.target.value.replace(/\D/g, ''))}
+                    maxLength={9}
+                    pattern="[0-9]{9}"
+                    placeholder="np. 503537701"
+                  />
+                  <AnimatePresence>
+                    {errors.phone && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="flex items-center gap-2 mt-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm"
+                      >
+                        <AlertCircle size={16} className="text-red-500 flex-shrink-0" />
+                        <span>{errors.phone}</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                
+                <div className="mb-4">
+                  <div className="flex items-start gap-2 sm:gap-3">
+                    <motion.input
+                      whileTap={{ scale: 0.95 }}
+                      type="checkbox"
+                      id="policy"
+                      checked={policy}
+                      onChange={e => setPolicy(e.target.checked)}
+                      className="mt-1 accent-orange-500 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 cursor-pointer"
+                    />
+                    <label htmlFor="policy" className="text-xs sm:text-sm text-gray-700 leading-relaxed cursor-pointer">
+                      Akceptuję <Link to="/polityka-prywatnosci" onClick={handlePrivacyPolicyClick} className="underline text-orange-500 hover:text-orange-600 transition-colors">Politykę Prywatności</Link> i zgadzam się na kontakt
+                    </label>
+                  </div>
+                  <AnimatePresence>
+                    {errors.policy && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="flex items-center gap-2 mt-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm"
+                      >
+                        <AlertCircle size={16} className="text-red-500 flex-shrink-0" />
+                        <span>{errors.policy}</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+                
+                <AnimatePresence>
+                  {errors.submit && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="flex items-center gap-2 bg-red-100 text-red-700 rounded-xl px-3 py-2 text-sm shadow-sm mb-4"
+                    >
+                      <AlertCircle size={16} className="text-red-500 flex-shrink-0" />
+                      <span>{errors.submit}</span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  whileHover={!isLoading ? { scale: 1.02 } : {}}
+                  whileTap={!isLoading ? { scale: 0.98 } : {}}
+                  className={`w-full py-3.5 sm:py-4 rounded-full transition-all flex items-center justify-center gap-2 group
+                    bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white text-base sm:text-lg font-semibold shadow-lg
+                    hover:from-[#FF8C00] hover:to-[#FF6200] focus:from-[#FF8C00] focus:to-[#FF6200]
+                    ${isLoading ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer hover:shadow-xl'}`}
+                  style={{
+                    fontFamily: 'Inter, Arial, sans-serif',
+                    fontWeight: 600,
+                    letterSpacing: '1px',
+                    textShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                  }}
+                >
+                  {isLoading ? (
+                    <>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                      />
+                      <span>Wysyłanie...</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>Odbierz rabat -60%</span>
+                      <ArrowRight size={20} className="sm:w-6 sm:h-6 transition-transform duration-200 group-hover:translate-x-1" />
+                    </>
+                  )}
+                </motion.button>
+              </motion.form>
           </div>
         ) : (
-          <div className="text-center py-8 animate-fade-in">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="text-center py-6 sm:py-8"
+          >
             <div className="mb-4">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-50 to-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-success-circle">
-                <svg 
-                  className="w-12 h-12 text-green-500 animate-checkmark-draw" 
-                  viewBox="0 0 24 24" 
-                  fill="none" 
-                  stroke="currentColor" 
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-50 to-green-100 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <motion.svg
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="w-10 h-10 sm:w-12 sm:h-12 text-green-500"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
                   strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  style={{ strokeDasharray: '100', strokeDashoffset: '100' }}
                 >
                   <path d="M20 6L9 17L4 12" />
-                </svg>
-              </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-4 animate-slide-up" style={{ fontFamily: 'Raleway, Arial, sans-serif' }}>
+                </motion.svg>
+              </motion.div>
+              <motion.h3
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3 sm:mb-4"
+                style={{ fontFamily: 'Raleway, Arial, sans-serif' }}
+              >
                 Dziękujemy!
-              </h3>
-              <p className="text-gray-600 text-xl animate-slide-up-delayed max-w-sm mx-auto" style={{ fontFamily: 'Inter, Arial, sans-serif' }}>
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="text-gray-600 text-lg sm:text-xl max-w-sm mx-auto px-4"
+                style={{ fontFamily: 'Inter, Arial, sans-serif' }}
+              >
                 Skontaktujemy się z Tobą wkrótce
-              </p>
-              <div className="mt-8 animate-fade-in-delayed">
-                <button
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="mt-6 sm:mt-8"
+              >
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={onClose}
-                  className="px-8 py-3 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-colors shadow-md"
+                  className="px-6 sm:px-8 py-3 rounded-full bg-orange-500 text-white font-semibold hover:bg-orange-600 transition-colors shadow-md text-sm sm:text-base"
                 >
                   Zamknij
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         )}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
+    </AnimatePresence>
   );
 };
 
