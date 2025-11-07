@@ -37,12 +37,12 @@ const ProductImage = ({ src, alt, title }) => {
     <img
       src={src}
       alt={alt}
-      className="w-full h-full object-contain relative z-10 p-8 md:p-10 lg:p-12"
+      className="w-full h-full object-contain relative z-10"
       loading="lazy"
       style={{
         objectPosition: 'center',
-        maxWidth: '100%',
-        maxHeight: '100%',
+        width: '100%',
+        height: '100%',
       }}
       onError={() => setImageError(true)}
     />
@@ -95,7 +95,7 @@ const ProductsCategory = () => {
               {/* Image Container */}
               <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-orange-50/30 to-orange-50 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-50/40 to-transparent pointer-events-none"></div>
-                <div className="w-full h-full flex items-center justify-center p-4 md:p-6">
+                <div className="w-full h-full flex items-center justify-center p-1 md:p-3">
                   <ProductImage src={product.image} alt={product.title} title={product.title} />
                 </div>
               </div>
