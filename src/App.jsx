@@ -22,7 +22,7 @@ const AppContent = () => {
     const hasSubmitted = localStorage.getItem('leadModalSubmitted');
     
     // Only show if not submitted before
-    if (!hasSubmitted) {
+    if (hasSubmitted !== 'true') {
       // Show modal after 1 second delay
       const timer = setTimeout(() => {
         setShowModal(true);

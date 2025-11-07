@@ -24,21 +24,37 @@ const LeadModal = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       const hasSubmitted = localStorage.getItem('leadModalSubmitted');
-      if (hasSubmitted) {
+      if (hasSubmitted === 'true') {
         onClose();
       }
     }
   }, [isOpen, onClose]);
   
-  // Listen for storage changes (in case submitted in another tab)
+  // Listen for storage changes (in case submitted in another tab or same window)
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === 'leadModalSubmitted' && e.newValue === 'true') {
         onClose();
       }
     };
+    
+    // Listen for changes in other tabs/windows
     window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
+    
+    // Also listen for custom event for same-window changes
+    const handleCustomStorageChange = () => {
+      const hasSubmitted = localStorage.getItem('leadModalSubmitted');
+      if (hasSubmitted === 'true') {
+        onClose();
+      }
+    };
+    
+    window.addEventListener('leadModalSubmitted', handleCustomStorageChange);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('leadModalSubmitted', handleCustomStorageChange);
+    };
   }, [onClose]);
 
   // Prevent background scroll when modal is open
@@ -92,6 +108,9 @@ const LeadModal = ({ isOpen, onClose }) => {
 
       // Store submission in localStorage to prevent showing again
       localStorage.setItem('leadModalSubmitted', 'true');
+      
+      // Dispatch custom event for same-window listeners
+      window.dispatchEvent(new Event('leadModalSubmitted'));
       
       // Success - show success message
       setSubmitted(true);
