@@ -6,7 +6,7 @@ export const productsData = {
       description: 'Eliksir potreningowy łączący cytrynian magnezu, kreatynę i naturalne ekstrakty (traganek, czarny bez, mangostan) dla regeneracji mięśni i redukcji zmęczenia po treningu.',
       polskiProdukt: true,
       packaging: '7 fiolek x 10 ml',
-      image: '/images/products/go-active-shots-pro.jpg'
+      image: '/img/wellnes/active shots.jpg'
     },
     {
       category: 'Suplementy',
@@ -22,7 +22,7 @@ export const productsData = {
       description: 'Miesięczna kuracja dla wyższej efektywności i szybszej regeneracji: kapsułki Go Active PRO pobudzają metabolizm, a Shots PRO dodają energii.',
       polskiProdukt: true,
       packaging: '60 kapsułek + 14 fiolek x 10 ml',
-      image: '/images/products/kuracja-dla-aktywnych.jpg'
+      image: '/img/wellnes/set treningowy biale tlo.jpg'
     },
     {
       category: 'Suplementy',
@@ -30,7 +30,7 @@ export const productsData = {
       description: 'Ekstrakt z młodego jęczmienia z witaminą C wspierający detoksykację, przygotowanie do odchudzania i odporność.',
       polskiProdukt: true,
       packaging: '500 ml',
-      image: '/images/products/go-young-barley-pro.jpg'
+      image: '/img/wellnes/yung barley biale tlo.jpg'
     },
     {
       category: 'Suplementy',
@@ -46,7 +46,7 @@ export const productsData = {
       description: 'Płynny suplement zwiększający poziom kolagenu, wspiera kondycję skóry, włosów, paznokci i stawów.',
       polskiProdukt: true,
       packaging: '500 ml',
-      image: '/images/products/go-collagen-liquid-pro.jpg'
+      image: '/img/wellnes/go collagen biale tlo.jpg'
     },
     {
       category: 'Suplementy',
@@ -54,7 +54,7 @@ export const productsData = {
       description: 'Naturalny suplement do picia – zmniejsza łaknienie i usprawnia metabolizm, wspierając utratę wagi; bogaty w antyoksydanty.',
       polskiProdukt: true,
       packaging: '500 ml',
-      image: '/images/products/go-slim-liquid-pro.jpg'
+      image: '/img/wellnes/slim liquid biale.jpg'
     },
     {
       category: 'Suplementy',
@@ -62,7 +62,7 @@ export const productsData = {
       description: 'Wegańskie tabletki wspierające utrzymanie prawidłowej wagi: zmniejszają łaknienie, poprawiają metabolizm i wspierają oczyszczanie.',
       polskiProdukt: true,
       packaging: '90 tabletek',
-      image: '/images/products/go-slim-pro.jpg'
+      image: '/img/wellnes/go slim biale tlo.jpg'
     }
   ],
   kosmetyki: [
@@ -80,7 +80,7 @@ export const productsData = {
       description: 'Kompleksowy zestaw do pielęgnacji ciała: oczyszcza, nawilża i ujędrnia skórę, zapewniając odżywienie i gładkość oraz działanie antycellulitowe.',
       polskiProdukt: true,
       packaging: '3×150 ml',
-      image: '/images/products/domowy-zestaw-pielegnacyjny.jpg'
+      image: '/img/wellnes/domowy body wrapping.jpg'
     },
     {
       category: 'Kosmetyki',
@@ -128,7 +128,7 @@ export const productsData = {
       description: 'Zestaw kremów z ekstraktami z zielonej herbaty i grejpfruta o działaniu ujędrniającym i przeciwstarzeniowym. Morski kolagen natywny zwiększa nawilżenie i elastyczność skóry.',
       polskiProdukt: true,
       packaging: '2×50 ml',
-      image: '/images/products/kremy-kolagenowe.jpg'
+      image: '/img/wellnes/go collagen day & night krem.jpg'
     },
     {
       category: 'Kosmetyki',
@@ -136,7 +136,7 @@ export const productsData = {
       description: 'Serum marchewkowe ujędrniająco-napinające, które nadaje skórze świeży, promienny wygląd; zawiera ekstrakt z kurkumy, marchwi i witaminę C.',
       polskiProdukt: true,
       packaging: '30 ml',
-      image: '/images/products/orange-glow.jpg'
+      image: '/img/wellnes/orange glow biale tlo.jpg'
     },
     {
       category: 'Kosmetyki',

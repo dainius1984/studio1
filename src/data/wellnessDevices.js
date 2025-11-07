@@ -1,7 +1,7 @@
 export const wellnessDevices = [
   {
     title: 'Limfodrenaż',
-    image: '/images/rolka.jpg',
+    image: '/img/tools/limfodrenaz.jpg',
     description: 'Limfodrenaż to urządzenie, które wykonuje masaż uciskowy, pobudzający układ limfatyczny. Stymuluje organizm do szybszego oczyszczania się z toksyn oraz skutecznego odprężenia ciała i umysłu. Limfodrenaż stanowi jedną z najskuteczniejszych metod modelowania łydek i ud, odchudzania oraz usuwania cellulitu.',
     features: [
       'wspomaganie redukcji tkanki tłuszczowej',
@@ -25,7 +25,7 @@ export const wellnessDevices = [
   },
   {
     title: 'Elektrostymulacja z IR',
-    image: '/images/rolka.jpg',
+    image: '/img/tools/elektrostymulacja z IR (2).jpg',
     description: 'Zabieg modelujący sylwetkę i wzmacniający mięśnie. Elektrostymulacja z IR pozwala na bezproblemowe spalenie zbędnej tkanki tłuszczowej przy jednoczesnym ujędrnieniu ciała oraz poprawie kondycji skóry. Pół godziny na tym urządzeniu odpowiada około kilkugodzinnemu wysiłkowi fizycznemu.',
     features: [
       'ujędrnienie i poprawa kondycji skóry',

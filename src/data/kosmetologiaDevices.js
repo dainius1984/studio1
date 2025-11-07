@@ -1,7 +1,7 @@
 export const kosmetologiaDevices = [
   {
     title: 'Power Shaper',
-    image: '/images/power-shaper.jpg',
+    image: '/img/tools/_power shaper przod.jpg',
     krotkiOpis: 'Zaawansowana stymulacja mięśni, rzeźbi sylwetkę i redukuje tłuszcz bez wysiłku.',
     dlugiOpis: 'Najnowocześniejsza technologia do kształtowania sylwetki, oparta na silnej elektrostymulacji. Zabieg oferuje wzmożony trening mięśni, który nie wymaga fizycznego wysiłku. Power Shaper, korzystając z pola elektromagnetycznego, działa na wszystkie warstwy skóry i tkankę tłuszczową, aż do głębokich mięśni szkieletowych, które są trudne do dotarcia na siłowni. W rezultacie mięśnie pracują intensywnie, co prowadzi do ich wzmocnienia i zredukowania tkanki tłuszczowej.',
     features: [
@@ -14,7 +14,7 @@ export const kosmetologiaDevices = [
   },
   {
     title: 'HIFU 4D',
-    image: '/images/hifu-4d.jpg',
+    image: '/img/tools/hifu4D.jpg',
     krotkiOpis: 'Skoncentrowane ultradźwięki dla liftingu, ujędrnienia i poprawy owalu twarzy.',
     dlugiOpis: 'Zabieg odmładzający ciało, który polega na poprawie jakości skóry, modelowaniu sylwetki i konturów twarzy oraz redukcji tkanki tłuszczowej. HIFU 4D wytwarza bezpieczną falę ultradźwiękową, która pobudza ciało do produkcji kolagenu, co pozwala między innymi wygładzić i spłycić zmarszczki oraz przeprowadzić lifting ciała, w tym twarzy.',
     features: [
@@ -40,7 +40,7 @@ export const kosmetologiaDevices = [
   },
   {
     title: 'Slim 4D',
-    image: '/images/slim-4d.jpg',
+    image: '/img/tools/Slim4D.jpg',
     krotkiOpis: 'Zimny laser diodowy redukuje tłuszcz i poprawia wygląd skóry.',
     dlugiOpis: 'Zabieg redukujący tkankę tłuszczową za pomocą lasera. Slim 4D wykorzystuje technologię zimnego lasera diodowego o różnych długościach, które poprawiają także wygląd skóry, redukują cellulit i wspierają metabolizm.',
     features: [
