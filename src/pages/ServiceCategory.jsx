@@ -106,12 +106,12 @@ const ServiceCategory = () => {
                     }}
                   >
                     {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:h-auto md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                    <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
                       <img
                         src={device.image}
                         alt={device.title}
-                        className="w-full h-full object-cover md:object-cover relative z-10"
+                        className="w-full h-full object-cover relative z-10"
                         loading="lazy"
                         style={{
                           objectPosition: 'center',
@@ -119,7 +119,7 @@ const ServiceCategory = () => {
                       />
                     </div>
                     {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
+                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:h-[500px]">
                       <h2 
                         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
                         style={{ 
@@ -177,12 +177,12 @@ const ServiceCategory = () => {
                     }}
                   >
                     {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:h-auto md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                    <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
                       <img
                         src={device.image}
                         alt={device.title}
-                        className="w-full h-full object-cover md:object-cover relative z-10"
+                        className="w-full h-full object-cover relative z-10"
                         loading="lazy"
                         style={{
                           objectPosition: 'center',
@@ -190,7 +190,7 @@ const ServiceCategory = () => {
                       />
                     </div>
                     {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
+                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:h-[500px]">
                       <h2 
                         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
                         style={{ 
@@ -248,12 +248,12 @@ const ServiceCategory = () => {
                     }}
                   >
                     {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:h-auto md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                    <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
                       <img
                         src={device.image}
                         alt={device.title}
-                        className="w-full h-full object-cover md:object-cover relative z-10"
+                        className="w-full h-full object-cover relative z-10"
                         loading="lazy"
                         style={{
                           objectPosition: 'center',
@@ -318,7 +318,7 @@ const DeviceDetails = ({ device, idx }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center min-h-[500px]">
+    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:h-[500px]">
       <h2 
         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
         style={{ 

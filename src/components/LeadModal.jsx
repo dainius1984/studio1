@@ -116,7 +116,7 @@ const LeadModal = ({ isOpen, onClose }) => {
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="bg-white rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 max-w-full sm:max-w-md w-full relative max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-2rem)] flex flex-col"
+          className="bg-white rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 max-w-full sm:max-w-md w-full relative max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-2rem)] flex flex-col overflow-visible"
           style={{
             boxShadow: '0 8px 40px 0 rgba(255,98,0,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.10)',
             border: '2px solid #FF6200',
@@ -130,16 +130,16 @@ const LeadModal = ({ isOpen, onClose }) => {
             <X size={24} className="sm:w-7 sm:h-7" />
           </button>
           {!submitted ? (
-            <div className="overflow-y-auto overflow-x-hidden flex-1 min-h-0 pr-1 -mr-1 pb-2" style={{ scrollbarWidth: 'thin' }}>
+            <div className="overflow-y-auto overflow-x-visible flex-1 min-h-0 pb-2" style={{ scrollbarWidth: 'thin' }}>
               {/* Header with discount badge */}
-              <div className="text-center mb-6 sm:mb-8 pt-1">
+              <div className="text-center mb-6 sm:mb-8 pt-2 px-1">
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                   className="inline-flex items-center justify-center mb-4"
                 >
-                  <div className="relative">
+                  <div className="relative px-2 py-2">
                     <motion.div
                       animate={{ rotate: [0, 10, -10, 0] }}
                       transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
@@ -160,7 +160,7 @@ const LeadModal = ({ isOpen, onClose }) => {
                     <motion.div
                       animate={{ scale: [1, 1.1, 1] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
-                      className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full border-2 border-white"
+                      className="absolute top-1 right-1 w-4 h-4 bg-yellow-400 rounded-full border-2 border-white"
                     />
                   </div>
                 </motion.div>
@@ -214,20 +214,22 @@ const LeadModal = ({ isOpen, onClose }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
                 onSubmit={sendEmail}
-                className="space-y-4"
+                className="space-y-4 px-1"
               >
                 <div className="mb-4">
                   <label className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
                     Imię*
                   </label>
-                  <motion.input
-                    whileFocus={{ scale: 1.02 }}
-                    type="text"
-                    className={`w-full border-2 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition-all placeholder-gray-400 text-base sm:text-lg ${errors.name ? "border-red-400 shake" : "border-gray-200"}`}
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    placeholder="np. Ania"
-                  />
+                  <div className="relative">
+                    <motion.input
+                      whileFocus={{ scale: 1.01 }}
+                      type="text"
+                      className={`w-full border-2 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition-all placeholder-gray-400 text-base sm:text-lg ${errors.name ? "border-red-400 shake" : "border-gray-200"}`}
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                      placeholder="np. Ania"
+                    />
+                  </div>
                   <AnimatePresence>
                     {errors.name && (
                       <motion.div
@@ -247,16 +249,18 @@ const LeadModal = ({ isOpen, onClose }) => {
                   <label className="block font-semibold mb-2 text-gray-700 text-sm sm:text-base">
                     Numer telefonu*
                   </label>
-                  <motion.input
-                    whileFocus={{ scale: 1.02 }}
-                    type="tel"
-                    className={`w-full border-2 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition-all placeholder-gray-400 text-base sm:text-lg ${errors.phone ? "border-red-400 shake" : "border-gray-200"}`}
-                    value={phone}
-                    onChange={e => setPhone(e.target.value.replace(/\D/g, ''))}
-                    maxLength={9}
-                    pattern="[0-9]{9}"
-                    placeholder="np. 503537701"
-                  />
+                  <div className="relative">
+                    <motion.input
+                      whileFocus={{ scale: 1.01 }}
+                      type="tel"
+                      className={`w-full border-2 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 bg-orange-50/60 shadow-sm focus:shadow-lg focus:outline-none focus:border-orange-500 focus:bg-white transition-all placeholder-gray-400 text-base sm:text-lg ${errors.phone ? "border-red-400 shake" : "border-gray-200"}`}
+                      value={phone}
+                      onChange={e => setPhone(e.target.value.replace(/\D/g, ''))}
+                      maxLength={9}
+                      pattern="[0-9]{9}"
+                      placeholder="np. 503537701"
+                    />
+                  </div>
                   <AnimatePresence>
                     {errors.phone && (
                       <motion.div
@@ -318,8 +322,8 @@ const LeadModal = ({ isOpen, onClose }) => {
                 <motion.button
                   type="submit"
                   disabled={isLoading}
-                  whileHover={!isLoading ? { scale: 1.02 } : {}}
-                  whileTap={!isLoading ? { scale: 0.98 } : {}}
+                  whileHover={!isLoading ? { scale: 1.01 } : {}}
+                  whileTap={!isLoading ? { scale: 0.99 } : {}}
                   className={`w-full py-3.5 sm:py-4 rounded-full transition-all flex items-center justify-center gap-2 group mb-2
                     bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white text-base sm:text-lg font-semibold shadow-lg
                     hover:from-[#FF8C00] hover:to-[#FF6200] focus:from-[#FF8C00] focus:to-[#FF6200]
