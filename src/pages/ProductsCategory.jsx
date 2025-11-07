@@ -37,11 +37,10 @@ const ProductImage = ({ src, alt, title }) => {
     <img
       src={src}
       alt={alt}
-      className="w-full h-full object-cover md:object-contain relative z-10 p-6 md:p-8 lg:p-10"
+      className="w-full h-full object-cover relative z-10 p-6 md:p-8 lg:p-10"
       loading="lazy"
       style={{
         objectPosition: 'center',
-        maxHeight: '100%',
       }}
       onError={() => setImageError(true)}
     />
@@ -92,12 +91,12 @@ const ProductsCategory = () => {
               }}
             >
               {/* Image Container */}
-              <div className="md:w-1/2 w-full h-64 md:h-auto md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-orange-50/30 to-orange-50 relative overflow-hidden">
+              <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-orange-50/30 to-orange-50 relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-50/40 to-transparent pointer-events-none"></div>
                 <ProductImage src={product.image} alt={product.title} title={product.title} />
               </div>
               {/* Text Container */}
-              <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center">
+              <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:h-[500px]">
                 <h2 
                   className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight whitespace-pre-line"
                   style={{ 
@@ -108,7 +107,7 @@ const ProductsCategory = () => {
                   {product.title}
                 </h2>
                 <p 
-                  className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed whitespace-pre-line"
+                  className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed whitespace-pre-line flex-grow"
                   style={{ 
                     fontFamily: 'Inter, Arial, sans-serif',
                     lineHeight: '1.7',
@@ -116,37 +115,37 @@ const ProductsCategory = () => {
                 >
                   {product.description}
                 </p>
-                <div className="flex flex-wrap gap-3 md:gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-auto">
                   {product.polskiProdukt && (
                     <motion.span
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 + 0.1 }}
-                      className="inline-flex items-center gap-2 rounded-full bg-green-50 text-green-800 border-2 border-green-200 px-4 py-2.5 text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-green-50 text-green-800 border-2 border-green-200 px-4 py-2.5 text-xs sm:text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
                       style={{
                         fontFamily: 'Inter, Arial, sans-serif',
                         fontWeight: 600,
                         boxShadow: '0 2px 8px 0 rgba(34,197,94,0.2)',
                       }}
                     >
-                      <Flag size={18} className="text-green-600" />
-                      Wyprodukowano w Polsce
+                      <Flag size={16} className="text-green-600 flex-shrink-0" />
+                      <span>Wyprodukowano w Polsce</span>
                     </motion.span>
                   )}
                   {product.packaging && (
                     <motion.span
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: idx * 0.05 + 0.15 }}
-                      className="inline-flex items-center gap-2 rounded-full bg-orange-50 text-orange-800 border-2 border-orange-200 px-4 py-2.5 text-sm md:text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                      className="inline-flex items-center justify-center gap-2 rounded-full bg-orange-50 text-orange-800 border-2 border-orange-200 px-4 py-2.5 text-xs sm:text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
                       style={{
                         fontFamily: 'Inter, Arial, sans-serif',
                         fontWeight: 600,
                         boxShadow: '0 2px 8px 0 rgba(255,98,0,0.2)',
                       }}
                     >
-                      <Package size={18} className="text-orange-600" />
-                      <span>Opakowanie:</span> {product.packaging}
+                      <Package size={16} className="text-orange-600 flex-shrink-0" />
+                      <span>Opakowanie: {product.packaging}</span>
                     </motion.span>
                   )}
                 </div>
