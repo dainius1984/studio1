@@ -134,25 +134,27 @@ const ServiceCategory = () => {
                             {device.title}
                           </h2>
                           <div className="mb-5 md:mb-6 flex-grow min-h-0">
-                            <p 
-                              className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}
-                              style={{ 
-                                fontFamily: 'Inter, Arial, sans-serif',
-                                lineHeight: '1.7',
-                              }}
-                            >
-                              {device.description}
-                            </p>
+                            <div className="overflow-hidden transition-all duration-500 ease-in-out">
+                              <p 
+                                className={`text-gray-700 text-base md:text-lg leading-relaxed transition-all duration-500 ease-in-out ${expanded ? '' : 'line-clamp-3'}`}
+                                style={{ 
+                                  fontFamily: 'Inter, Arial, sans-serif',
+                                  lineHeight: '1.7',
+                                }}
+                              >
+                                {device.description}
+                              </p>
+                            </div>
                             {device.description?.length > 150 && (
                               <button
                                 onClick={() => setExpanded((v) => !v)}
-                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors"
+                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors p-2.5 -m-2.5"
                                 style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
                                 }}
                               >
                                 {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-                                <span className="ml-1">{expanded ? '↑' : '↓'}</span>
+                                <span className="ml-1 transition-transform duration-300">{expanded ? '↑' : '↓'}</span>
                               </button>
                             )}
                           </div>
@@ -229,25 +231,27 @@ const ServiceCategory = () => {
                             {device.title}
                           </h2>
                           <div className="mb-5 md:mb-6 flex-grow min-h-0">
-                            <p 
-                              className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}
-                              style={{ 
-                                fontFamily: 'Inter, Arial, sans-serif',
-                                lineHeight: '1.7',
-                              }}
-                            >
-                              {device.description}
-                            </p>
+                            <div className="overflow-hidden transition-all duration-500 ease-in-out">
+                              <p 
+                                className={`text-gray-700 text-base md:text-lg leading-relaxed transition-all duration-500 ease-in-out ${expanded ? '' : 'line-clamp-3'}`}
+                                style={{ 
+                                  fontFamily: 'Inter, Arial, sans-serif',
+                                  lineHeight: '1.7',
+                                }}
+                              >
+                                {device.description}
+                              </p>
+                            </div>
                             {device.description?.length > 150 && (
                               <button
                                 onClick={() => setExpanded((v) => !v)}
-                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors"
+                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors p-2.5 -m-2.5"
                                 style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
                                 }}
                               >
                                 {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-                                <span className="ml-1">{expanded ? '↑' : '↓'}</span>
+                                <span className="ml-1 transition-transform duration-300">{expanded ? '↑' : '↓'}</span>
                               </button>
                             )}
                           </div>
@@ -389,25 +393,27 @@ const DeviceDetails = ({ device, idx }) => {
       )}
       {(device.dlugiOpis || device.description) && (
         <div className="mb-5 md:mb-6 flex-grow min-h-0">
-          <p 
-            className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}
-            style={{ 
-              fontFamily: 'Inter, Arial, sans-serif',
-              lineHeight: '1.7',
-            }}
-          >
-            {device.dlugiOpis || device.description}
-          </p>
+          <div className="overflow-hidden transition-all duration-500 ease-in-out">
+            <p 
+              className={`text-gray-700 text-base md:text-lg leading-relaxed transition-all duration-500 ease-in-out ${expanded ? '' : 'line-clamp-3'}`}
+              style={{ 
+                fontFamily: 'Inter, Arial, sans-serif',
+                lineHeight: '1.7',
+              }}
+            >
+              {device.dlugiOpis || device.description}
+            </p>
+          </div>
           {(device.dlugiOpis || device.description)?.length > 200 && (
             <button
               onClick={() => setExpanded((v) => !v)}
-              className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors"
+              className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors p-2.5 -m-2.5"
               style={{ 
                 fontFamily: 'Inter, Arial, sans-serif',
               }}
             >
               {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-              <span className="ml-1">{expanded ? '↑' : '↓'}</span>
+              <span className="ml-1 transition-transform duration-300">{expanded ? '↑' : '↓'}</span>
             </button>
           )}
         </div>
