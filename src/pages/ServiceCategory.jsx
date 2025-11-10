@@ -119,7 +119,7 @@ const ServiceCategory = () => {
                       />
                     </div>
                     {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:h-[500px]">
+                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:min-h-[500px]">
                       <h2 
                         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
                         style={{ 
@@ -139,7 +139,7 @@ const ServiceCategory = () => {
                         {device.description}
                       </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
                           {device.features.map((feature, i) => (
                             <motion.span
                               key={i}
@@ -190,7 +190,7 @@ const ServiceCategory = () => {
                       />
                     </div>
                     {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:h-[500px]">
+                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:min-h-[500px]">
                       <h2 
                         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
                         style={{ 
@@ -210,7 +210,7 @@ const ServiceCategory = () => {
                         {device.description}
                       </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
                           {device.features.map((feature, i) => (
                             <motion.span
                               key={i}
@@ -248,7 +248,7 @@ const ServiceCategory = () => {
                     }}
                   >
                     {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                    <div className="md:w-1/2 w-full h-64 md:h-[500px] md:self-start flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
                       <img
                         src={device.image}
@@ -318,7 +318,7 @@ const DeviceDetails = ({ device, idx }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:h-[500px]">
+    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col md:min-h-[500px]">
       <h2 
         className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
         style={{ 
@@ -339,7 +339,7 @@ const DeviceDetails = ({ device, idx }) => {
         </p>
       )}
       {(device.dlugiOpis || device.description) && (
-        <div className="mb-5 md:mb-6 flex-grow">
+        <div className="mb-5 md:mb-6 flex-grow min-h-0">
           <p 
             className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-4'}`}
             style={{ 
@@ -364,7 +364,7 @@ const DeviceDetails = ({ device, idx }) => {
         </div>
       )}
       {Array.isArray(device.features) && device.features.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
           {device.features.map((feature, i) => (
             <motion.span
               key={i}
