@@ -13,28 +13,43 @@ const iconStyle = {
 const ServicesSection = () => {
   const services = [
     {
-      title: "Strefa Wellness",
-      description: "Nowoczesne podejście do ćwiczeń, dzięki któremu dostrzeżesz efekty szybciej niż podczas tradycyjnych treningów.",
-      icon: <CubeIcon style={iconStyle} />,
-      features: ["Masaże relaksacyjne", "Sauna", "Jaccuzi", "Zabiegi odprężające"],
-      video: process.env.PUBLIC_URL + "/video/1.mp4",
-      category: "wellness"
-    },
-    {
       title: "Strefa Fitness",
-      description: "Nowoczesne podejście do ćwiczeń, dzięki któremu dostrzeżesz efekty szybciej niż podczas tradycyjnych treningów.",
+      description: "Nowoczesne podejście do ćwiczeń dzięki, któremu dostrzeżesz efekty szybciej niz podczas tradycyjnych treningów:",
       icon: <BoltIcon style={iconStyle} />,
-      features: ["Treningi personalne", "Zajęcia grupowe", "Sprzęt najnowszej generacji", "Konsultacje z trenerem"],
+      features: ["Vacu Shaper", "Swan Shaper", "Body Speed", "Roll Shaper"],
       video: process.env.PUBLIC_URL + "/video/2.mp4",
       category: "fitness"
     },
     {
-      title: "Kosmetologia Estetyczna",
-      description: "Nowoczesne podejście do ćwiczeń, dzięki któremu dostrzeżesz efekty szybciej niż podczas tradycyjnych treningów.",
+      title: "Strefa Wellness",
+      description: "Odkryj harmonię ciała i umysłu w naszej strefie wellness – Twoje miejsce na relaks i regenerację!",
+      icon: <CubeIcon style={iconStyle} />,
+      features: ["Limfodrenaż", "Elektrostymulacja z IR", "Elektrostymulacja", "Roll Shaper", "Sauna karbonowa"],
+      video: process.env.PUBLIC_URL + "/video/1.mp4",
+      category: "wellness"
+    },
+    {
+      title: "Strefa Kosmetologii",
+      description: "Podkreśl swoje piękno z naszą kosmetologią estetyczną – bo zasługujesz na to, co najlepsze!",
       icon: <SparklesIcon style={iconStyle} />,
-      features: ["Zabiegi na twarz", "Zabiegi na ciało", "Depilacja laserowa", "Zabiegi anti-aging"],
+      features: [
+        "Endomasaż",
+        "Fala RF",
+        "Hifu 4D",
+        "Kriolipoliza",
+        "Slim laser 4D",
+        "Beauty Hood",
+        "Mezoterapia bezigłowa",
+        "Oczyszczanie wodorowe",
+        "Maska fotonowa",
+        "Infuzja tlenowa",
+        "Bipolarna fala radiowa",
+        "Sonoforeza",
+        "Peeling kawitacyjny"
+      ],
       video: process.env.PUBLIC_URL + "/video/3.mp4",
-      category: "kosmetologia"
+      category: "kosmetologia",
+      useGrid: true // Flag to use grid layout for features
     }
   ];
 
@@ -60,6 +75,7 @@ const ServicesSection = () => {
               features={service.features}
               video={service.video}
               category={service.category}
+              useGrid={service.useGrid}
             />
           ))}
         </div>

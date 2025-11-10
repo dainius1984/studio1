@@ -2,7 +2,7 @@ import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const ServiceCard = ({ title, description, icon, features, video, category }) => {
+const ServiceCard = ({ title, description, icon, features, video, category, useGrid }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -31,14 +31,25 @@ const ServiceCard = ({ title, description, icon, features, video, category }) =>
         </div>
         <h3 className="text-2xl font-bold text-gray-800 mb-4" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.12)' }}>{title}</h3>
         <p className="text-gray-700 mb-6 leading-relaxed text-base font-medium" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>{description}</p>
-        <ul className="space-y-2 mb-6">
-          {features.map((feature, idx) => (
-            <li key={idx} className="flex items-center text-gray-700 justify-center" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
-              <ChevronRight className="w-4 h-4 text-orange-500 mr-2" />
-              {feature}
-            </li>
-          ))}
-        </ul>
+        {useGrid ? (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-6 text-left">
+            {features.map((feature, idx) => (
+              <li key={idx} className="flex items-center text-gray-700" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
+                <ChevronRight className="w-4 h-4 text-orange-500 mr-2 flex-shrink-0" />
+                <span className="text-sm">{feature}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <ul className="space-y-2 mb-6">
+            {features.map((feature, idx) => (
+              <li key={idx} className="flex items-center text-gray-700 justify-center" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.10)' }}>
+                <ChevronRight className="w-4 h-4 text-orange-500 mr-2" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        )}
         <button 
           onClick={handleClick}
           className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full font-semibold transition-all transform hover:scale-105 shadow-md group" 
