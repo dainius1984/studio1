@@ -93,153 +93,193 @@ const ServiceCategory = () => {
             {/* Category Content */}
             {category === 'fitness' ? (
               <div className="space-y-8 md:space-y-10">
-                {fitnessDevices.map((device, idx) => (
-                  <motion.div
-                    key={device.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -4 }}
-                    className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
-                    style={{
-                      boxShadow: '0 4px 20px 0 rgba(0,0,0,0.08), 0 1px 4px 0 rgba(0,0,0,0.04)',
-                    }}
-                  >
-                    {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:self-stretch md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
-                      <img
-                        src={device.image}
-                        alt={device.title}
-                        className="w-full h-full object-cover relative z-10"
-                        loading="lazy"
+                {fitnessDevices.map((device, idx) => {
+                  const FitnessDeviceCard = () => {
+                    const [expanded, setExpanded] = useState(false);
+                    return (
+                      <motion.div
+                        key={device.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: idx * 0.1 }}
+                        whileHover={{ y: -4 }}
+                        className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
                         style={{
-                          objectPosition: 'center center',
-                          minHeight: '100%',
-                        }}
-                      />
-                    </div>
-                    {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:min-h-[500px]">
-                      <h2 
-                        className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
-                        style={{ 
-                          fontFamily: 'Raleway, Arial, sans-serif',
-                          letterSpacing: '-0.5px',
+                          boxShadow: '0 4px 20px 0 rgba(0,0,0,0.08), 0 1px 4px 0 rgba(0,0,0,0.04)',
                         }}
                       >
-                        {device.title}
-                      </h2>
-                      <p 
-                        className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed flex-grow"
-                        style={{ 
-                          fontFamily: 'Inter, Arial, sans-serif',
-                          lineHeight: '1.7',
-                        }}
-                      >
-                        {device.description}
-                      </p>
-                      {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
-                          {device.features.map((feature, i) => {
-                            const isLastOdd = i === device.features.length - 1 && device.features.length % 2 !== 0;
-                            return (
-                              <motion.span
-                                key={i}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: idx * 0.1 + i * 0.05 }}
-                                className={`inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center ${isLastOdd ? 'sm:col-span-2 sm:max-w-fit sm:mx-auto' : ''}`}
-                                style={{
+                        {/* Image Container */}
+                        <div className="md:w-1/2 w-full h-64 md:self-stretch md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
+                          <img
+                            src={device.image}
+                            alt={device.title}
+                            className="w-full h-full object-cover relative z-10"
+                            loading="lazy"
+                            style={{
+                              objectPosition: 'center center',
+                              minHeight: '100%',
+                            }}
+                          />
+                        </div>
+                        {/* Text Container */}
+                        <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:min-h-[500px]">
+                          <h2 
+                            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
+                            style={{ 
+                              fontFamily: 'Raleway, Arial, sans-serif',
+                              letterSpacing: '-0.5px',
+                            }}
+                          >
+                            {device.title}
+                          </h2>
+                          <div className="mb-5 md:mb-6 flex-grow min-h-0">
+                            <p 
+                              className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}
+                              style={{ 
+                                fontFamily: 'Inter, Arial, sans-serif',
+                                lineHeight: '1.7',
+                              }}
+                            >
+                              {device.description}
+                            </p>
+                            {device.description?.length > 150 && (
+                              <button
+                                onClick={() => setExpanded((v) => !v)}
+                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors"
+                                style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
-                                  fontWeight: 600,
-                                  boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
                                 }}
                               >
-                                {formatFeature(feature)}
-                              </motion.span>
-                            );
-                          })}
+                                {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+                                <span className="ml-1">{expanded ? '↑' : '↓'}</span>
+                              </button>
+                            )}
+                          </div>
+                          {Array.isArray(device.features) && device.features.length > 0 && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
+                              {device.features.map((feature, i) => {
+                                const isLastOdd = i === device.features.length - 1 && device.features.length % 2 !== 0;
+                                return (
+                                  <motion.span
+                                    key={i}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.1 + i * 0.05 }}
+                                    className={`inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center ${isLastOdd ? 'sm:col-span-2 sm:max-w-fit sm:mx-auto' : ''}`}
+                                    style={{
+                                      fontFamily: 'Inter, Arial, sans-serif',
+                                      fontWeight: 600,
+                                      boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
+                                    }}
+                                  >
+                                    {formatFeature(feature)}
+                                  </motion.span>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
+                      </motion.div>
+                    );
+                  };
+                  return <FitnessDeviceCard key={device.title} />;
+                })}
               </div>
             ) : category === 'wellness' ? (
               <div className="space-y-8 md:space-y-10">
-                {wellnessDevices.map((device, idx) => (
-                  <motion.div
-                    key={device.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -4 }}
-                    className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
-                    style={{
-                      boxShadow: '0 4px 20px 0 rgba(0,0,0,0.08), 0 1px 4px 0 rgba(0,0,0,0.04)',
-                    }}
-                  >
-                    {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:self-stretch md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
-                      <img
-                        src={device.image}
-                        alt={device.title}
-                        className="w-full h-full object-cover relative z-10"
-                        loading="lazy"
+                {wellnessDevices.map((device, idx) => {
+                  const WellnessDeviceCard = () => {
+                    const [expanded, setExpanded] = useState(false);
+                    return (
+                      <motion.div
+                        key={device.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: idx * 0.1 }}
+                        whileHover={{ y: -4 }}
+                        className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
                         style={{
-                          objectPosition: 'center center',
-                          minHeight: '100%',
-                        }}
-                      />
-                    </div>
-                    {/* Text Container */}
-                    <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:min-h-[500px]">
-                      <h2 
-                        className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
-                        style={{ 
-                          fontFamily: 'Raleway, Arial, sans-serif',
-                          letterSpacing: '-0.5px',
+                          boxShadow: '0 4px 20px 0 rgba(0,0,0,0.08), 0 1px 4px 0 rgba(0,0,0,0.04)',
                         }}
                       >
-                        {device.title}
-                      </h2>
-                      <p 
-                        className="text-gray-700 mb-6 md:mb-8 text-base md:text-lg leading-relaxed flex-grow"
-                        style={{ 
-                          fontFamily: 'Inter, Arial, sans-serif',
-                          lineHeight: '1.7',
-                        }}
-                      >
-                        {device.description}
-                      </p>
-                      {Array.isArray(device.features) && device.features.length > 0 && (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
-                          {device.features.map((feature, i) => {
-                            const isLastOdd = i === device.features.length - 1 && device.features.length % 2 !== 0;
-                            return (
-                              <motion.span
-                                key={i}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: idx * 0.1 + i * 0.05 }}
-                                className={`inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center ${isLastOdd ? 'sm:col-span-2 sm:max-w-fit sm:mx-auto' : ''}`}
-                                style={{
+                        {/* Image Container */}
+                        <div className="md:w-1/2 w-full h-64 md:self-stretch md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                          <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
+                          <img
+                            src={device.image}
+                            alt={device.title}
+                            className="w-full h-full object-cover relative z-10"
+                            loading="lazy"
+                            style={{
+                              objectPosition: 'center center',
+                              minHeight: '100%',
+                            }}
+                          />
+                        </div>
+                        {/* Text Container */}
+                        <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col justify-center md:min-h-[500px]">
+                          <h2 
+                            className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-4 md:mb-5 leading-tight"
+                            style={{ 
+                              fontFamily: 'Raleway, Arial, sans-serif',
+                              letterSpacing: '-0.5px',
+                            }}
+                          >
+                            {device.title}
+                          </h2>
+                          <div className="mb-5 md:mb-6 flex-grow min-h-0">
+                            <p 
+                              className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}
+                              style={{ 
+                                fontFamily: 'Inter, Arial, sans-serif',
+                                lineHeight: '1.7',
+                              }}
+                            >
+                              {device.description}
+                            </p>
+                            {device.description?.length > 150 && (
+                              <button
+                                onClick={() => setExpanded((v) => !v)}
+                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors"
+                                style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
-                                  fontWeight: 600,
-                                  boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
                                 }}
                               >
-                                {formatFeature(feature)}
-                              </motion.span>
-                            );
-                          })}
+                                {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
+                                <span className="ml-1">{expanded ? '↑' : '↓'}</span>
+                              </button>
+                            )}
+                          </div>
+                          {Array.isArray(device.features) && device.features.length > 0 && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
+                              {device.features.map((feature, i) => {
+                                const isLastOdd = i === device.features.length - 1 && device.features.length % 2 !== 0;
+                                return (
+                                  <motion.span
+                                    key={i}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: idx * 0.1 + i * 0.05 }}
+                                    className={`inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center ${isLastOdd ? 'sm:col-span-2 sm:max-w-fit sm:mx-auto' : ''}`}
+                                    style={{
+                                      fontFamily: 'Inter, Arial, sans-serif',
+                                      fontWeight: 600,
+                                      boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
+                                    }}
+                                  >
+                                    {formatFeature(feature)}
+                                  </motion.span>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
-                      )}
-                    </div>
-                  </motion.div>
-                ))}
+                      </motion.div>
+                    );
+                  };
+                  return <WellnessDeviceCard key={device.title} />;
+                })}
               </div>
             ) : category === 'kosmetologia' ? (
               <div className="space-y-8 md:space-y-10">
@@ -350,7 +390,7 @@ const DeviceDetails = ({ device, idx }) => {
       {(device.dlugiOpis || device.description) && (
         <div className="mb-5 md:mb-6 flex-grow min-h-0">
           <p 
-            className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-4'}`}
+            className={`text-gray-700 text-base md:text-lg leading-relaxed ${expanded ? '' : 'line-clamp-3'}`}
             style={{ 
               fontFamily: 'Inter, Arial, sans-serif',
               lineHeight: '1.7',
