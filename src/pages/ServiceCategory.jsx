@@ -106,7 +106,7 @@ const ServiceCategory = () => {
                     }}
                   >
                     {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                    <div className="md:w-1/2 w-full h-64 md:self-stretch md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
                       <img
                         src={device.image}
@@ -114,7 +114,8 @@ const ServiceCategory = () => {
                         className="w-full h-full object-cover relative z-10"
                         loading="lazy"
                         style={{
-                          objectPosition: 'center',
+                          objectPosition: 'center center',
+                          minHeight: '100%',
                         }}
                       />
                     </div>
@@ -140,22 +141,25 @@ const ServiceCategory = () => {
                       </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
-                          {device.features.map((feature, i) => (
-                            <motion.span
-                              key={i}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: idx * 0.1 + i * 0.05 }}
-                              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
-                              style={{
-                                fontFamily: 'Inter, Arial, sans-serif',
-                                fontWeight: 600,
-                                boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
-                              }}
-                            >
-                              {formatFeature(feature)}
-                            </motion.span>
-                          ))}
+                          {device.features.map((feature, i) => {
+                            const isLastOdd = i === device.features.length - 1 && device.features.length % 2 !== 0;
+                            return (
+                              <motion.span
+                                key={i}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.1 + i * 0.05 }}
+                                className={`inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center ${isLastOdd ? 'sm:col-span-2 sm:max-w-fit sm:mx-auto' : ''}`}
+                                style={{
+                                  fontFamily: 'Inter, Arial, sans-serif',
+                                  fontWeight: 600,
+                                  boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
+                                }}
+                              >
+                                {formatFeature(feature)}
+                              </motion.span>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -177,7 +181,7 @@ const ServiceCategory = () => {
                     }}
                   >
                     {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                    <div className="md:w-1/2 w-full h-64 md:self-stretch md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
                       <img
                         src={device.image}
@@ -185,7 +189,8 @@ const ServiceCategory = () => {
                         className="w-full h-full object-cover relative z-10"
                         loading="lazy"
                         style={{
-                          objectPosition: 'center',
+                          objectPosition: 'center center',
+                          minHeight: '100%',
                         }}
                       />
                     </div>
@@ -211,22 +216,25 @@ const ServiceCategory = () => {
                       </p>
                       {Array.isArray(device.features) && device.features.length > 0 && (
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
-                          {device.features.map((feature, i) => (
-                            <motion.span
-                              key={i}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: idx * 0.1 + i * 0.05 }}
-                              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
-                              style={{
-                                fontFamily: 'Inter, Arial, sans-serif',
-                                fontWeight: 600,
-                                boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
-                              }}
-                            >
-                              {formatFeature(feature)}
-                            </motion.span>
-                          ))}
+                          {device.features.map((feature, i) => {
+                            const isLastOdd = i === device.features.length - 1 && device.features.length % 2 !== 0;
+                            return (
+                              <motion.span
+                                key={i}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.1 + i * 0.05 }}
+                                className={`inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center ${isLastOdd ? 'sm:col-span-2 sm:max-w-fit sm:mx-auto' : ''}`}
+                                style={{
+                                  fontFamily: 'Inter, Arial, sans-serif',
+                                  fontWeight: 600,
+                                  boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
+                                }}
+                              >
+                                {formatFeature(feature)}
+                              </motion.span>
+                            );
+                          })}
                         </div>
                       )}
                     </div>
@@ -248,7 +256,7 @@ const ServiceCategory = () => {
                     }}
                   >
                     {/* Image Container */}
-                    <div className="md:w-1/2 w-full h-64 md:h-[500px] md:self-start flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
+                    <div className="md:w-1/2 w-full h-64 md:self-stretch md:min-h-[500px] flex items-center justify-center bg-gradient-to-br from-gray-50 via-gray-50 to-gray-100 relative overflow-hidden">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-50/30 to-transparent pointer-events-none"></div>
                       <img
                         src={device.image}
@@ -256,7 +264,8 @@ const ServiceCategory = () => {
                         className="w-full h-full object-cover relative z-10"
                         loading="lazy"
                         style={{
-                          objectPosition: 'center',
+                          objectPosition: 'center center',
+                          minHeight: '100%',
                         }}
                       />
                     </div>
@@ -365,22 +374,25 @@ const DeviceDetails = ({ device, idx }) => {
       )}
       {Array.isArray(device.features) && device.features.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 md:gap-3 mt-4">
-          {device.features.map((feature, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.1 + i * 0.05 }}
-              className="inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center"
-              style={{
-                fontFamily: 'Inter, Arial, sans-serif',
-                fontWeight: 600,
-                boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
-              }}
-            >
-              {typeof feature === 'string' && feature.length > 0 ? feature.charAt(0).toUpperCase() + feature.slice(1) : feature}
-            </motion.span>
-          ))}
+          {device.features.map((feature, i) => {
+            const isLastOdd = i === device.features.length - 1 && device.features.length % 2 !== 0;
+            return (
+              <motion.span
+                key={i}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: idx * 0.1 + i * 0.05 }}
+                className={`inline-flex items-center justify-center px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-[#FF6200] to-[#FF8C00] text-white shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] text-center ${isLastOdd ? 'sm:col-span-2 sm:justify-self-center' : ''}`}
+                style={{
+                  fontFamily: 'Inter, Arial, sans-serif',
+                  fontWeight: 600,
+                  boxShadow: '0 2px 8px 0 rgba(255,98,0,0.3)',
+                }}
+              >
+                {typeof feature === 'string' && feature.length > 0 ? feature.charAt(0).toUpperCase() + feature.slice(1) : feature}
+              </motion.span>
+            );
+          })}
         </div>
       )}
     </div>
