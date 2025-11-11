@@ -48,7 +48,7 @@ export const pricingData = {
       {
         device: "ROWER POZIOMY",
         duration: "30/60 MIN",
-        price: 40,
+        price: "40/60",
         image: "/img/test.jpg",
         description: "Profesjonalny sprzęt fitness do treningu cardio"
       },
@@ -56,29 +56,15 @@ export const pricingData = {
     wellnessZone: [
       {
         device: "LIMFODRENAŻ SPODNIE",
-        duration: "30 MIN",
-        price: 40,
-        image: "/img/test.jpg",
-        description: "Drenaż limfatyczny z wykorzystaniem presoterapii"
-      },
-      {
-        device: "LIMFODRENAŻ SPODNIE",
-        duration: "60 MIN",
-        price: 60,
+        duration: "30/60 MIN",
+        price: "40/60",
         image: "/img/test.jpg",
         description: "Drenaż limfatyczny z wykorzystaniem presoterapii"
       },
       {
         device: "LIMFODRENAŻ + BODY WRAPPING",
-        duration: "30 MIN",
-        price: 45,
-        image: "/img/test.jpg",
-        description: "Kompleksowy zabieg drenujący z owijaniem ciała"
-      },
-      {
-        device: "LIMFODRENAŻ + BODY WRAPPING",
-        duration: "60 MIN",
-        price: 70,
+        duration: "30/60 MIN",
+        price: "45/70",
         image: "/img/test.jpg",
         description: "Kompleksowy zabieg drenujący z owijaniem ciała"
       },
@@ -229,6 +215,75 @@ export const pricingData = {
         },
       ],
       note: "STRÓJ DO ENDOMASAŻU 60 ZŁ, PRZY ZAKUPIE KARNETU 12 WEJŚĆ GRATIS."
+    },
+    
+    rfTreatments: {
+      face: [
+        {
+          title: "FALA RF | TWARZ",
+          details: "1 ZABIEG GŁOWICĄ | 30 MIN",
+          image: "/img/test.jpg",
+          basePrice: 170,
+          packages: [
+            { entries: "1 WEJŚCIE", originalPrice: 170, discountedPrice: null, pricePer: 170 },
+            { entries: "4 WEJŚCIA", originalPrice: 680, discountedPrice: 544, discount: 20, pricePer: 136 },
+            { entries: "6 WEJŚĆ", originalPrice: 1020, discountedPrice: 663, discount: 35, pricePer: 110 },
+            { entries: "8 WEJŚĆ", originalPrice: 1360, discountedPrice: 748, discount: 45, pricePer: 93 },
+          ],
+        },
+        {
+          title: "FALA RF | TWARZ, SZYJA, DEKOLT",
+          details: "1 ZABIEG GŁOWICĄ | 30 MIN",
+          image: "/img/test.jpg",
+          basePrice: 200,
+          packages: [
+            { entries: "1 WEJŚCIE", originalPrice: 200, discountedPrice: null, pricePer: 200 },
+            { entries: "4 WEJŚCIA", originalPrice: 800, discountedPrice: 640, discount: 20, pricePer: 160 },
+            { entries: "6 WEJŚĆ", originalPrice: 1200, discountedPrice: 780, discount: 35, pricePer: 130 },
+            { entries: "8 WEJŚĆ", originalPrice: 1600, discountedPrice: 880, discount: 45, pricePer: 110 },
+          ],
+        },
+      ],
+      body: [
+        {
+          title: "FALA RF / VACU RF | WYBRANA PARTIA CIAŁA",
+          details: "1 ZABIEG GŁOWICĄ | 30 MIN",
+          image: "/img/test.jpg",
+          basePrice: 320,
+          packages: [
+            { entries: "1 WEJŚCIE", originalPrice: 320, discountedPrice: null, pricePer: 320 },
+            { entries: "8 WEJŚĆ", originalPrice: 2560, discountedPrice: 1792, discount: 30, pricePer: 224 },
+            { entries: "10 WEJŚĆ", originalPrice: 3200, discountedPrice: 2080, discount: 35, pricePer: 208 },
+            { entries: "12 WEJŚĆ", originalPrice: 3840, discountedPrice: 2112, discount: 45, pricePer: 176 },
+          ],
+        },
+        {
+          title: "FALA RF / VACU RF | WYBRANA PARTIA CIAŁA",
+          details: "1 ZABIEG GŁOWICĄ | 50 MIN",
+          image: "/img/test.jpg",
+          basePrice: 460,
+          packages: [
+            { entries: "1 WEJŚCIE", originalPrice: 460, discountedPrice: null, pricePer: 460 },
+            { entries: "8 WEJŚĆ", originalPrice: 3680, discountedPrice: 2576, discount: 30, pricePer: 322 },
+            { entries: "10 WEJŚĆ", originalPrice: 4600, discountedPrice: 2990, discount: 35, pricePer: 299 },
+            { entries: "12 WEJŚĆ", originalPrice: 5520, discountedPrice: 3036, discount: 45, pricePer: 253 },
+          ],
+        },
+      ],
+      hands: [
+        {
+          title: "FALA RF | DŁONIE",
+          details: "1 ZABIEG GŁOWICĄ | 30 MIN",
+          image: "/img/test.jpg",
+          basePrice: 160,
+          packages: [
+            { entries: "1 WEJŚCIE", originalPrice: 160, discountedPrice: null, pricePer: 160 },
+            { entries: "4 WEJŚCIA", originalPrice: 640, discountedPrice: 512, discount: 20, pricePer: 128 },
+            { entries: "6 WEJŚĆ", originalPrice: 960, discountedPrice: 624, discount: 35, pricePer: 104 },
+            { entries: "8 WEJŚĆ", originalPrice: 1280, discountedPrice: 704, discount: 45, pricePer: 88 },
+          ],
+        },
+      ],
     },
     
     slim4d: [
@@ -474,21 +529,91 @@ export const pricingData = {
         },
       ],
     },
+    therapyPrograms: {
+      slimming: [
+        {
+          name: "SET ODCHUDZAJĄCY",
+          description: "GO SLIM LIQUID PRO + GO SLIM PRO",
+          details: "ZESTAW WEGAŃSKICH NATURALNYCH SUPLEMENTÓW WSPOMAGAJĄCYCH PROCES ODCHUDZANIA",
+          price: 119,
+          duration: "KURACJA 10-DNIOWA",
+          image: "/img/test.jpg"
+        },
+        {
+          name: "KURACJA SLIM | SET ODCHUDZAJĄCY",
+          description: "3X GO SLIM LIQUID PRO + 3X GO SLIM PRO",
+          price: 329,
+          duration: "KURACJA MIESIĘCZNA",
+          image: "/img/test.jpg"
+        },
+      ],
+      cleansing: [
+        {
+          name: "SET OCZYSZCZAJĄCY",
+          description: "GO YOUNG BARLEY PRO + GO CLEAN PRO",
+          details: "MŁODY JĘCZMIEŃ - BIOAKTYWNY EKSTRAKT ZE SOKIEM Z JABŁEK + ZIOŁOWE TABLETKI",
+          price: 119,
+          duration: "KURACJA 10-DNIOWA",
+          image: "/img/test.jpg"
+        },
+        {
+          name: "KURACJA DETOX | SET OCZYSZCZAJĄCY",
+          description: "3X GO YOUNG BARLEY PRO + 3X GO CLEAN PRO",
+          price: 329,
+          duration: "KURACJA MIESIĘCZNA",
+          image: "/img/test.jpg"
+        },
+      ],
+      collagen: [
+        {
+          name: "SET KOLAGENOWY",
+          description: "GO COLLAGEN LIQUID PRO + GO COLLAGEN NATURAL DAY & NIGHT PRO",
+          details: "KOLAGEN ORAZ PRZECIWZMARSZCZKOWE KREMY NA DZIEŃ I NA NOC",
+          price: 159,
+          duration: "KURACJA 10-DNIOWA",
+          image: "/img/test.jpg"
+        },
+        {
+          name: "KURACJA KOLAGENOWA",
+          description: "3X GO COLLAGEN LIQUID PRO",
+          price: 189,
+          duration: "KURACJA MIESIĘCZNA",
+          image: "/img/test.jpg"
+        },
+        {
+          name: "KURACJA KOLAGENOWA | SET KOLAGENOWY",
+          description: "3X GO COLLAGEN LIQUID PRO + GO COLLAGEN NATURAL DAY & NIGHT PRO",
+          price: 269,
+          duration: "KURACJA MIESIĘCZNA",
+          image: "/img/test.jpg"
+        },
+      ],
+      active: [
+        {
+          name: "KURACJA ACTIVE PRO",
+          description: "1X GO ACTIVE PRO + 2X GO ACTIVE SHOTS",
+          price: 169,
+          duration: "KURACJA MIESIĘCZNA",
+          image: "/img/test.jpg"
+        },
+      ],
+    },
+    
     cosmetics: {
       products: [
           { name: "GO SCRUB PRO", description: "150 ML", price: 69, image: "/img/test.jpg" },
           { name: "GO SHAPE PRO", description: "150 ML", price: 69, image: "/img/test.jpg" },
+          { name: "GO CELLULITE BUSTER PRO", description: "150 ML", price: 69, image: "/img/test.jpg" },
+          { name: "GO UP BREAST PRO", description: "100 ML", price: 99, image: "/img/test.jpg" },
+          { name: "GO COLLAGEN NATURAL DAY & NIGHT PRO", description: "2X 50 ML", price: 109, image: "/img/test.jpg" },
+          { name: "GO NATURAL CANDLE PRO", description: "1 SZT.", price: 99, image: "/img/test.jpg" },
+          { name: "SILKY HANDS | KREM DO RĄK", description: "90 ML", price: 22, image: "/img/test.jpg" },
+          { name: "SILKY HAIR | SZAMPON", description: "1 SZT.", price: 30, image: "/img/test.jpg" },
+          { name: "POMADKA MENTOLOVE", description: "4,5 G", price: 12, image: "/img/test.jpg" },
+          { name: "POMADKA POMARAŃCZOWA", description: "4,5 G", price: 12, image: "/img/test.jpg" },
+          { name: "ORANGE GLOW", description: "30 ML", price: 119, image: "/img/test.jpg" },
           { name: "DOMOWE SPA: ZESTAW KOSMETYKÓW", description: "GO SCRUB PRO + GO SHAPE PRO + GO CELLULITE BUSTER PRO", price: 180, image: "/img/test.jpg" },
           { name: "MY MICELLAR", description: "500 ML", price: 29, image: "/img/test.jpg" },
-          { name: "GO CELLULITE BUSTER PRO", description: "150 ML", price: 69, image: "/img/test.jpg", longDescription: "Rozgrzewające serum redukujące cellulit" },
-          { name: "GO UP BREAST PRO", description: "100 ML", price: 99, image: "/img/test.jpg", longDescription: "Witaminowa kuracja ujędrniająca biust i dekolt" },
-          { name: "GO COLLAGEN NATURAL DAY & NIGHT PRO", description: "2X 50 ML", price: 109, image: "/img/test.jpg", longDescription: "Kolagenowe kremy na dzień i noc" },
-          { name: "GO NATURAL CANDLE PRO", description: "1 SZT.", price: 99, image: "/img/test.jpg", longDescription: "Liczi & Wanilia sojowe świece zapachowe" },
-          { name: "SILKY HANDS | KREM DO RĄK", description: "90 ML", price: 22, image: "/img/test.jpg", longDescription: "Nawilżający krem do rąk" },
-          { name: "SILKY HAIR | SZAMPON", description: "1 SZT.", price: 30, image: "/img/test.jpg", longDescription: "Szampon do włosów" },
-          { name: "POMADKA MENTOLOVE", description: "4,5 G", price: 12, image: "/img/test.jpg", longDescription: "Pomadka ochronna nawilżająca" },
-          { name: "POMADKA POMARAŃCZOWA", description: "4,5 G", price: 12, image: "/img/test.jpg", longDescription: "Pomadka ochronna ujędrniająca oraz dająca efekt push-up" },
-          { name: "ORANGE GLOW", description: "30 ML", price: 119, image: "/img/test.jpg", longDescription: "Rewitalizujące i poprawiające koloryt skóry serum do twarzy" },
       ],
     }
 };
