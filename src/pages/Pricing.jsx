@@ -148,24 +148,22 @@ const Pricing = () => {
         {/* Cosmetology Treatments Section */}
         <section className="bg-white rounded-2xl shadow-md p-6 mb-8 border border-orange-100">
           <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Zabiegi Kosmetologiczne</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Endomasaż</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {pricingData.cosmetologyTreatments.endomassage.map((service, index) => (
-                  <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
-                    <h4 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h4>
-                    <p className="text-gray-600 text-xs mb-4">{service.details}</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {service.packages.map(renderPackage)}
-                    </div>
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Endomasaż</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {pricingData.cosmetologyTreatments.endomassage.map((service, index) => (
+                <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                  <h4 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h4>
+                  <p className="text-gray-600 text-xs mb-4">{service.details}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {service.packages.map(renderPackage)}
                   </div>
-                ))}
-              </div>
-              {pricingData.cosmetologyTreatments.note && (
-                <p className="text-sm text-gray-600 mt-4 italic">{pricingData.cosmetologyTreatments.note}</p>
-              )}
+                </div>
+              ))}
             </div>
+            {pricingData.cosmetologyTreatments.note && (
+              <p className="text-sm text-gray-600 mt-4 italic">{pricingData.cosmetologyTreatments.note}</p>
+            )}
           </div>
         </section>
 
