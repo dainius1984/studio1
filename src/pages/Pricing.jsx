@@ -151,7 +151,7 @@ const Pricing = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Endomasaż</h3>
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {pricingData.cosmetologyTreatments.endomassage.map((service, index) => (
                   <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
                     <h4 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h4>

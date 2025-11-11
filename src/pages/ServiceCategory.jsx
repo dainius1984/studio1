@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
@@ -96,6 +96,33 @@ const ServiceCategory = () => {
                 {fitnessDevices.map((device, idx) => {
                   const FitnessDeviceCard = () => {
                     const [expanded, setExpanded] = useState(false);
+                    const contentRef = useRef(null);
+                    const [maxHeight, setMaxHeight] = useState('auto');
+
+                    useEffect(() => {
+                      if (contentRef.current) {
+                        const fullHeight = contentRef.current.scrollHeight;
+                        const lineHeight = parseFloat(getComputedStyle(contentRef.current).lineHeight) || 27.2;
+                        const collapsedHeight = lineHeight * 3; // 3 lines
+                        
+                        if (expanded) {
+                          setMaxHeight(`${fullHeight}px`);
+                        } else {
+                          setMaxHeight(`${collapsedHeight}px`);
+                        }
+                      }
+                    }, [expanded]);
+
+                    useEffect(() => {
+                      // Set initial collapsed height on mount
+                      if (contentRef.current) {
+                        const lineHeight = parseFloat(getComputedStyle(contentRef.current).lineHeight) || 27.2;
+                        const collapsedHeight = lineHeight * 3;
+                        setMaxHeight(`${collapsedHeight}px`);
+                      }
+                      // eslint-disable-next-line react-hooks/exhaustive-deps
+                    }, []);
+
                     return (
                       <motion.div
                         key={device.title}
@@ -134,9 +161,16 @@ const ServiceCategory = () => {
                             {device.title}
                           </h2>
                           <div className="mb-5 md:mb-6 flex-grow min-h-0">
-                            <div className="overflow-hidden transition-all duration-500 ease-in-out">
+                            <div 
+                              className="overflow-hidden transition-all duration-700 ease-in-out"
+                              style={{
+                                maxHeight: maxHeight,
+                                transition: 'max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+                              }}
+                            >
                               <p 
-                                className={`text-gray-700 text-base md:text-lg leading-relaxed transition-all duration-500 ease-in-out ${expanded ? '' : 'line-clamp-3'}`}
+                                ref={contentRef}
+                                className="text-gray-700 text-base md:text-lg leading-relaxed"
                                 style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
                                   lineHeight: '1.7',
@@ -148,13 +182,13 @@ const ServiceCategory = () => {
                             {device.description?.length > 150 && (
                               <button
                                 onClick={() => setExpanded((v) => !v)}
-                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors p-2.5 -m-2.5"
+                                className="mt-4 inline-flex items-center justify-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-all duration-200 px-4 py-3 rounded-lg hover:bg-orange-50 active:bg-orange-100 min-h-[44px]"
                                 style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
                                 }}
                               >
                                 {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-                                <span className="ml-1 transition-transform duration-300">{expanded ? '↑' : '↓'}</span>
+                                <span className="ml-2 transition-transform duration-300 transform">{expanded ? '↑' : '↓'}</span>
                               </button>
                             )}
                           </div>
@@ -193,6 +227,32 @@ const ServiceCategory = () => {
                 {wellnessDevices.map((device, idx) => {
                   const WellnessDeviceCard = () => {
                     const [expanded, setExpanded] = useState(false);
+                    const contentRef = useRef(null);
+                    const [maxHeight, setMaxHeight] = useState('auto');
+
+                    useEffect(() => {
+                      if (contentRef.current) {
+                        const fullHeight = contentRef.current.scrollHeight;
+                        const lineHeight = parseFloat(getComputedStyle(contentRef.current).lineHeight) || 27.2;
+                        const collapsedHeight = lineHeight * 3;
+                        
+                        if (expanded) {
+                          setMaxHeight(`${fullHeight}px`);
+                        } else {
+                          setMaxHeight(`${collapsedHeight}px`);
+                        }
+                      }
+                    }, [expanded]);
+
+                    useEffect(() => {
+                      if (contentRef.current) {
+                        const lineHeight = parseFloat(getComputedStyle(contentRef.current).lineHeight) || 27.2;
+                        const collapsedHeight = lineHeight * 3;
+                        setMaxHeight(`${collapsedHeight}px`);
+                      }
+                      // eslint-disable-next-line react-hooks/exhaustive-deps
+                    }, []);
+
                     return (
                       <motion.div
                         key={device.title}
@@ -231,9 +291,16 @@ const ServiceCategory = () => {
                             {device.title}
                           </h2>
                           <div className="mb-5 md:mb-6 flex-grow min-h-0">
-                            <div className="overflow-hidden transition-all duration-500 ease-in-out">
+                            <div 
+                              className="overflow-hidden transition-all duration-700 ease-in-out"
+                              style={{
+                                maxHeight: maxHeight,
+                                transition: 'max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+                              }}
+                            >
                               <p 
-                                className={`text-gray-700 text-base md:text-lg leading-relaxed transition-all duration-500 ease-in-out ${expanded ? '' : 'line-clamp-3'}`}
+                                ref={contentRef}
+                                className="text-gray-700 text-base md:text-lg leading-relaxed"
                                 style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
                                   lineHeight: '1.7',
@@ -245,13 +312,13 @@ const ServiceCategory = () => {
                             {device.description?.length > 150 && (
                               <button
                                 onClick={() => setExpanded((v) => !v)}
-                                className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors p-2.5 -m-2.5"
+                                className="mt-4 inline-flex items-center justify-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-all duration-200 px-4 py-3 rounded-lg hover:bg-orange-50 active:bg-orange-100 min-h-[44px]"
                                 style={{ 
                                   fontFamily: 'Inter, Arial, sans-serif',
                                 }}
                               >
                                 {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-                                <span className="ml-1 transition-transform duration-300">{expanded ? '↑' : '↓'}</span>
+                                <span className="ml-2 transition-transform duration-300 transform">{expanded ? '↑' : '↓'}</span>
                               </button>
                             )}
                           </div>
@@ -369,6 +436,31 @@ export default ServiceCategory;
 // Local component for cosmetology device details with expand/collapse
 const DeviceDetails = ({ device, idx }) => {
   const [expanded, setExpanded] = useState(false);
+  const contentRef = useRef(null);
+  const [maxHeight, setMaxHeight] = useState('auto');
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const fullHeight = contentRef.current.scrollHeight;
+      const lineHeight = parseFloat(getComputedStyle(contentRef.current).lineHeight) || 27.2;
+      const collapsedHeight = lineHeight * 3;
+      
+      if (expanded) {
+        setMaxHeight(`${fullHeight}px`);
+      } else {
+        setMaxHeight(`${collapsedHeight}px`);
+      }
+    }
+  }, [expanded]);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      const lineHeight = parseFloat(getComputedStyle(contentRef.current).lineHeight) || 27.2;
+      const collapsedHeight = lineHeight * 3;
+      setMaxHeight(`${collapsedHeight}px`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="md:w-1/2 w-full p-8 md:p-10 lg:p-12 flex flex-col md:min-h-[500px]">
@@ -393,9 +485,16 @@ const DeviceDetails = ({ device, idx }) => {
       )}
       {(device.dlugiOpis || device.description) && (
         <div className="mb-5 md:mb-6 flex-grow min-h-0">
-          <div className="overflow-hidden transition-all duration-500 ease-in-out">
+          <div 
+            className="overflow-hidden transition-all duration-700 ease-in-out"
+            style={{
+              maxHeight: maxHeight,
+              transition: 'max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
+            }}
+          >
             <p 
-              className={`text-gray-700 text-base md:text-lg leading-relaxed transition-all duration-500 ease-in-out ${expanded ? '' : 'line-clamp-3'}`}
+              ref={contentRef}
+              className="text-gray-700 text-base md:text-lg leading-relaxed"
               style={{ 
                 fontFamily: 'Inter, Arial, sans-serif',
                 lineHeight: '1.7',
@@ -407,13 +506,13 @@ const DeviceDetails = ({ device, idx }) => {
           {(device.dlugiOpis || device.description)?.length > 200 && (
             <button
               onClick={() => setExpanded((v) => !v)}
-              className="mt-3 inline-flex items-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-colors p-2.5 -m-2.5"
+              className="mt-4 inline-flex items-center justify-center text-[#FF6200] hover:text-[#FF8C00] font-semibold text-sm md:text-base transition-all duration-200 px-4 py-3 rounded-lg hover:bg-orange-50 active:bg-orange-100 min-h-[44px]"
               style={{ 
                 fontFamily: 'Inter, Arial, sans-serif',
               }}
             >
               {expanded ? 'Pokaż mniej' : 'Pokaż więcej'}
-              <span className="ml-1 transition-transform duration-300">{expanded ? '↑' : '↓'}</span>
+              <span className="ml-2 transition-transform duration-300 transform">{expanded ? '↑' : '↓'}</span>
             </button>
           )}
         </div>
