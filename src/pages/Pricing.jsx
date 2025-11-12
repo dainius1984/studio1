@@ -167,6 +167,139 @@ const Pricing = () => {
           </div>
         </section>
 
+        {/* RF Treatments Section */}
+        {pricingData.rfTreatments && (
+          <section className="bg-white rounded-2xl shadow-md p-6 mb-8 border border-orange-100">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Fala RF</h2>
+            {pricingData.rfTreatments.face && pricingData.rfTreatments.face.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Twarz</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {pricingData.rfTreatments.face.map((service, index) => (
+                    <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                      <h4 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h4>
+                      <p className="text-gray-600 text-xs mb-4">{service.details}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {service.packages.map(renderPackage)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {pricingData.rfTreatments.body && pricingData.rfTreatments.body.length > 0 && (
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Ciało</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {pricingData.rfTreatments.body.map((service, index) => (
+                    <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                      <h4 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h4>
+                      <p className="text-gray-600 text-xs mb-4">{service.details}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {service.packages.map(renderPackage)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {pricingData.rfTreatments.hands && pricingData.rfTreatments.hands.length > 0 && (
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Dłonie</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {pricingData.rfTreatments.hands.map((service, index) => (
+                    <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                      <h4 className="text-base font-semibold text-gray-900 mb-2">{service.title}</h4>
+                      <p className="text-gray-600 text-xs mb-4">{service.details}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {service.packages.map(renderPackage)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* Peeling Kawitacyjny Section */}
+        {pricingData.peelingKawitacyjny && pricingData.peelingKawitacyjny.length > 0 && (
+          <section className="bg-white rounded-2xl shadow-md p-6 mb-8 border border-orange-100">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Peeling Kawitacyjny</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {pricingData.peelingKawitacyjny.map((service, index) => (
+                <div key={index} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{service.title}</h3>
+                  <p className="text-gray-600 mb-4 text-sm">{service.details}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {service.packages.map(renderPackage)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Beauty Hood Section */}
+        {pricingData.beautyHood && (
+          <section className="bg-white rounded-2xl shadow-md p-6 mb-8 border border-orange-100">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Beauty Hood</h2>
+            
+            {pricingData.beautyHood.individualTreatments && pricingData.beautyHood.individualTreatments.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Zabiegi Indywidualne</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {pricingData.beautyHood.individualTreatments.map((treatment, index) => (
+                    <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                      <h4 className="text-base font-semibold text-gray-900 mb-2">{treatment.name}</h4>
+                      {treatment.duration && <p className="text-gray-500 text-xs mb-2">{treatment.duration}</p>}
+                      <p className="text-blue-700 font-bold text-lg">{treatment.price} zł</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {pricingData.beautyHood.discounts && pricingData.beautyHood.discounts.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Zniżki na Karnety</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {pricingData.beautyHood.discounts.map((discount, index) => (
+                    <div key={index} className="bg-orange-50 rounded-lg p-6 border border-orange-100">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4">{discount.entries}</h4>
+                      <ul className="space-y-2">
+                        {discount.discounts.map((item, i) => (
+                          <li key={i} className="flex justify-between items-center text-gray-600">
+                            <span>{item.station}</span>
+                            <span className="text-red-600 font-semibold">{item.discount}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {pricingData.beautyHood.packages && pricingData.beautyHood.packages.length > 0 && (
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Pakiety Zabiegów</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {pricingData.beautyHood.packages.map((service, index) => (
+                    <div key={index} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-2">{service.title}</h4>
+                      <p className="text-gray-600 mb-4 text-sm">{service.details}</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {service.packages.map(renderPackage)}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
+        )}
+
         {/* Slim 4D Section */}
         <section className="bg-white rounded-2xl shadow-md p-6 mb-8 border border-orange-100">
           <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Slim 4D</h2>
@@ -200,6 +333,82 @@ const Pricing = () => {
             ))}
           </div>
         </section>
+
+        {/* Therapy Programs Section */}
+        {pricingData.therapyPrograms && (
+          <section className="bg-white rounded-2xl shadow-md p-6 mb-8 border border-orange-100">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6 pb-2 border-b border-gray-200">Kuracje Wspomagające</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {pricingData.therapyPrograms.slimming && pricingData.therapyPrograms.slimming.length > 0 && (
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Kuracje Odchudzające</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    {pricingData.therapyPrograms.slimming.map((item, index) => (
+                      <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{item.name}</h4>
+                        <p className="text-gray-600 text-xs mb-1">{item.description}</p>
+                        {item.details && <p className="text-gray-500 text-xs mb-2 italic">{item.details}</p>}
+                        <p className="text-gray-500 text-xs mb-2">{item.duration}</p>
+                        <p className="text-blue-700 font-bold">{item.price} zł</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {pricingData.therapyPrograms.cleansing && pricingData.therapyPrograms.cleansing.length > 0 && (
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Kuracje Oczyszczające</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    {pricingData.therapyPrograms.cleansing.map((item, index) => (
+                      <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{item.name}</h4>
+                        <p className="text-gray-600 text-xs mb-1">{item.description}</p>
+                        {item.details && <p className="text-gray-500 text-xs mb-2 italic">{item.details}</p>}
+                        <p className="text-gray-500 text-xs mb-2">{item.duration}</p>
+                        <p className="text-blue-700 font-bold">{item.price} zł</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {pricingData.therapyPrograms.collagen && pricingData.therapyPrograms.collagen.length > 0 && (
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Kuracje Kolagenowe</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    {pricingData.therapyPrograms.collagen.map((item, index) => (
+                      <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{item.name}</h4>
+                        <p className="text-gray-600 text-xs mb-1">{item.description}</p>
+                        {item.details && <p className="text-gray-500 text-xs mb-2 italic">{item.details}</p>}
+                        <p className="text-gray-500 text-xs mb-2">{item.duration}</p>
+                        <p className="text-blue-700 font-bold">{item.price} zł</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {pricingData.therapyPrograms.active && pricingData.therapyPrograms.active.length > 0 && (
+                <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-orange-100">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Kuracje Aktywnościowe</h3>
+                  <div className="grid grid-cols-1 gap-4">
+                    {pricingData.therapyPrograms.active.map((item, index) => (
+                      <div key={index} className="bg-orange-50 rounded-lg p-4 border border-orange-100">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{item.name}</h4>
+                        <p className="text-gray-600 text-xs mb-1">{item.description}</p>
+                        {item.details && <p className="text-gray-500 text-xs mb-2 italic">{item.details}</p>}
+                        <p className="text-gray-500 text-xs mb-2">{item.duration}</p>
+                        <p className="text-blue-700 font-bold">{item.price} zł</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* Supplements & Cosmetics Section */}
         <section className="bg-white rounded-2xl shadow-md p-6 mb-8 border border-orange-100">
