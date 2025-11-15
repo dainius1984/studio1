@@ -22,15 +22,20 @@ const LeadModal = ({ isOpen, onClose }) => {
 
   // Note: Modal will always show on page load/refresh, regardless of previous submissions
 
-  // Prevent background scroll when modal is open
+  // Prevent background scroll when modal is open - set immediately to prevent scrollbar flash
   useEffect(() => {
     if (isOpen) {
+      // Set overflow hidden immediately to prevent scrollbar flash
       document.body.style.overflow = "hidden";
+      // Also set on html element for better browser compatibility
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
     return () => { 
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [isOpen]);
 
@@ -108,18 +113,20 @@ const LeadModal = ({ isOpen, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md p-3 sm:p-4"
+        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md p-3 sm:p-4 overflow-hidden"
         onClick={(e) => e.target === e.currentTarget && onClose()}
+        style={{ overflow: 'hidden' }}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
           transition={{ type: "spring", duration: 0.5 }}
-          className="bg-white rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 max-w-full sm:max-w-md w-full relative max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-2rem)] flex flex-col overflow-visible"
+          className="bg-white rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 max-w-full sm:max-w-md w-full relative max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-2rem)] flex flex-col overflow-hidden"
           style={{
             boxShadow: '0 8px 40px 0 rgba(255,98,0,0.25), 0 1.5px 8px 0 rgba(0,0,0,0.10)',
             border: '2px solid #FF6200',
+            overflow: 'hidden',
           }}
         >
           <button
@@ -130,7 +137,7 @@ const LeadModal = ({ isOpen, onClose }) => {
             <X size={24} className="sm:w-7 sm:h-7" />
           </button>
           {!submitted ? (
-            <div className="overflow-y-auto overflow-x-visible flex-1 min-h-0 pb-2" style={{ scrollbarWidth: 'thin' }}>
+            <div className="overflow-y-auto overflow-x-hidden flex-1 min-h-0 pb-2" style={{ scrollbarWidth: 'thin', WebkitOverflowScrolling: 'touch' }}>
               {/* Header with discount badge */}
               <div className="text-center mb-6 sm:mb-8 pt-2 px-1">
                 <motion.div
@@ -359,6 +366,7 @@ const LeadModal = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
             className="text-center py-6 sm:py-8 overflow-y-auto overflow-x-hidden flex-1 min-h-0"
+            style={{ scrollbarWidth: 'thin', WebkitOverflowScrolling: 'touch' }}
           >
             <div className="mb-4">
               <motion.div

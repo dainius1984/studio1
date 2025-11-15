@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Facebook, Youtube, Instagram, MapPin, X } from "lucide-react";
 
 const sidebarLinks = [
@@ -32,6 +32,21 @@ const sidebarLinks = [
 const StickySidebar = () => {
   const [showMapModal, setShowMapModal] = useState(false);
 
+  // Prevent background scroll when map modal is open
+  useEffect(() => {
+    if (showMapModal) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [showMapModal]);
+
   const handleMapClick = (e, url) => {
     e.preventDefault();
     setShowMapModal(true);
@@ -57,8 +72,14 @@ const StickySidebar = () => {
 
       {/* Map Modal */}
       {showMapModal && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md">
-          <div className="bg-white rounded-3xl shadow-2xl p-4 sm:p-8 max-w-4xl w-full relative my-8 mx-4">
+        <div 
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md overflow-hidden"
+          onClick={() => setShowMapModal(false)}
+        >
+          <div 
+            className="bg-white rounded-3xl shadow-2xl p-4 sm:p-8 max-w-4xl w-full relative my-8 mx-4"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={() => setShowMapModal(false)}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
@@ -67,7 +88,7 @@ const StickySidebar = () => {
             </button>
             <div className="aspect-video w-full rounded-xl overflow-hidden">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2507.1234567890123!2d16.987654321!3d51.123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTfCsDA3JzI0LjQiTiAxNsKwNTknMTUuNiJF!5e0!3m2!1spl!2spl!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2507.1744853!2d16.9034354!3d51.1744853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470f95002d4f2525%3A0xc9802cafe972f8f5!2sStudio%20Figura%20Wroc%C5%82aw%20Stab%C5%82owice!5e0!3m2!1spl!2spl!4v1709912345678!5m2!1spl!2spl"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
