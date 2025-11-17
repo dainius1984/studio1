@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { X, ArrowRight, AlertCircle, Sparkles, Gift } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -22,21 +22,35 @@ const LeadModal = ({ isOpen, onClose }) => {
 
   // Note: Modal will always show on page load/refresh, regardless of previous submissions
 
-  // Prevent background scroll when modal is open - set immediately to prevent scrollbar flash
-  useEffect(() => {
+  // Prevent background scroll when modal is open - useLayoutEffect runs synchronously before paint
+  useLayoutEffect(() => {
     if (isOpen) {
+      // Store original overflow values to restore later
+      const originalBodyOverflow = document.body.style.overflow;
+      const originalHtmlOverflow = document.documentElement.style.overflow;
+      
       // Set overflow hidden immediately to prevent scrollbar flash
       document.body.style.overflow = "hidden";
-      // Also set on html element for better browser compatibility
       document.documentElement.style.overflow = "hidden";
+      
+      // Also add padding to compensate for scrollbar width to prevent layout shift
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+      
+      return () => {
+        // Restore original values
+        document.body.style.overflow = originalBodyOverflow;
+        document.documentElement.style.overflow = originalHtmlOverflow;
+        document.body.style.paddingRight = "";
+      };
     } else {
+      // Clean up when modal closes
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+      document.body.style.paddingRight = "";
     }
-    return () => { 
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-    };
   }, [isOpen]);
 
   const validate = () => {
@@ -113,9 +127,12 @@ const LeadModal = ({ isOpen, onClose }) => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md p-3 sm:p-4 overflow-hidden"
+        className="fixed inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md p-3 sm:p-4"
         onClick={(e) => e.target === e.currentTarget && onClose()}
-        style={{ overflow: 'hidden' }}
+        style={{ 
+          overflow: 'hidden',
+          overscrollBehavior: 'contain'
+        }}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -217,9 +234,9 @@ const LeadModal = ({ isOpen, onClose }) => {
                 </motion.p>
               </div>
               <motion.form
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
+                transition={{ delay: 0.4, duration: 0.3, ease: "easeOut" }}
                 onSubmit={sendEmail}
                 className="space-y-4 px-1"
               >
