@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useState, useLayoutEffect, useRef } from "react";
 import { X, ArrowRight, AlertCircle, Sparkles, Gift } from "lucide-react";
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -19,38 +19,61 @@ const LeadModal = ({ isOpen, onClose }) => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const scrollbarWidthRef = useRef(0);
+  const isOverflowSetRef = useRef(false);
 
   // Note: Modal will always show on page load/refresh, regardless of previous submissions
 
-  // Prevent background scroll when modal is open - useLayoutEffect runs synchronously before paint
+  // Set overflow immediately when isOpen changes - BEFORE render (synchronous)
+  // This runs during render phase but before DOM update, preventing scrollbar flash
+  if (isOpen && !isOverflowSetRef.current) {
+    // Calculate scrollbar width BEFORE hiding it (while scrollbar is still visible)
+    scrollbarWidthRef.current = window.innerWidth - document.documentElement.clientWidth;
+    
+    // Set overflow hidden IMMEDIATELY (synchronously) to prevent scrollbar flash
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    
+    // Add padding to compensate for scrollbar width to prevent layout shift
+    if (scrollbarWidthRef.current > 0) {
+      document.body.style.paddingRight = `${scrollbarWidthRef.current}px`;
+    }
+    
+    isOverflowSetRef.current = true;
+  }
+
+  // Cleanup with useLayoutEffect to ensure proper restoration
   useLayoutEffect(() => {
     if (isOpen) {
-      // Store original overflow values to restore later
-      const originalBodyOverflow = document.body.style.overflow;
-      const originalHtmlOverflow = document.documentElement.style.overflow;
-      
-      // Set overflow hidden immediately to prevent scrollbar flash
-      document.body.style.overflow = "hidden";
-      document.documentElement.style.overflow = "hidden";
-      
-      // Also add padding to compensate for scrollbar width to prevent layout shift
-      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      // Double-check overflow is set (in case the synchronous check didn't work)
+      if (!isOverflowSetRef.current) {
+        scrollbarWidthRef.current = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.overflow = "hidden";
+        document.documentElement.style.overflow = "hidden";
+        if (scrollbarWidthRef.current > 0) {
+          document.body.style.paddingRight = `${scrollbarWidthRef.current}px`;
+        }
+        isOverflowSetRef.current = true;
       }
-      
-      return () => {
-        // Restore original values
-        document.body.style.overflow = originalBodyOverflow;
-        document.documentElement.style.overflow = originalHtmlOverflow;
-        document.body.style.paddingRight = "";
-      };
     } else {
-      // Clean up when modal closes
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      document.body.style.paddingRight = "";
+      // Restore when closing
+      if (isOverflowSetRef.current) {
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+        document.body.style.paddingRight = "";
+        isOverflowSetRef.current = false;
+      }
     }
+    
+    return () => {
+      // Final cleanup on unmount or when isOpen changes
+      if (!isOpen) {
+        document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
+        document.body.style.paddingRight = "";
+        isOverflowSetRef.current = false;
+      }
+    };
   }, [isOpen]);
 
   const validate = () => {
@@ -131,7 +154,11 @@ const LeadModal = ({ isOpen, onClose }) => {
         onClick={(e) => e.target === e.currentTarget && onClose()}
         style={{ 
           overflow: 'hidden',
-          overscrollBehavior: 'contain'
+          overscrollBehavior: 'contain',
+          // Ensure no scrollbar appears on this container
+          position: 'fixed',
+          width: '100%',
+          height: '100%',
         }}
       >
         <motion.div
