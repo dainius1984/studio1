@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Facebook, Youtube, Instagram, MapPin, X } from "lucide-react";
+import { Facebook, Instagram, MapPin, X } from "lucide-react";
 
 const sidebarLinks = [
   {
@@ -9,14 +9,8 @@ const sidebarLinks = [
     bg: "bg-[#3b5998]",
   },
   {
-    icon: <Youtube size={24} />,
-    url: "https://www.youtube.com/",
-    label: "YouTube",
-    bg: "bg-[#ff0000]",
-  },
-  {
     icon: <Instagram size={24} />,
-    url: "https://www.instagram.com/",
+    url: "https://www.instagram.com/sf_wroclaw_stablowice?igsh=MW9iOGZncDdjMnVvNw%3D%3D&utm_source=qr",
     label: "Instagram",
     bg: "bg-gradient-to-tr from-pink-500 via-red-500 to-yellow-500",
   },
