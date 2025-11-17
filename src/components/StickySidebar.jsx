@@ -25,6 +25,7 @@ const sidebarLinks = [
 
 const StickySidebar = () => {
   const [showMapModal, setShowMapModal] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   // Prevent background scroll when map modal is open
   useEffect(() => {
@@ -48,19 +49,53 @@ const StickySidebar = () => {
 
   return (
     <>
-      <div className="fixed top-1/4 right-0 z-40 hidden md:flex flex-col gap-4">
+      <div className="fixed top-1/4 right-0 z-40 hidden md:flex flex-col gap-3">
         {sidebarLinks.map((link, idx) => (
-          <a
+          <div
             key={idx}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={link.label}
-            onClick={link.isMap ? (e) => handleMapClick(e, link.url) : undefined}
-            className={`flex items-center justify-center w-12 h-12 mb-2 rounded-l-lg shadow-lg text-white hover:scale-110 transition-transform ${link.bg}`}
+            className="relative group"
+            onMouseEnter={() => setHoveredIndex(idx)}
+            onMouseLeave={() => setHoveredIndex(null)}
           >
-            {link.icon}
-          </a>
+            {/* Tooltip */}
+            <div
+              className={`absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg shadow-xl whitespace-nowrap transition-all duration-300 pointer-events-none ${
+                hoveredIndex === idx
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-2'
+              }`}
+            >
+              {link.label}
+              {/* Tooltip arrow */}
+              <div className="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-gray-900"></div>
+            </div>
+
+            {/* Icon Button */}
+            <a
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              onClick={link.isMap ? (e) => handleMapClick(e, link.url) : undefined}
+              className={`
+                flex items-center justify-center 
+                w-14 h-14 
+                rounded-l-xl 
+                text-white 
+                transition-all duration-300 ease-out
+                cursor-pointer
+                ${link.bg}
+                ${hoveredIndex === idx 
+                  ? 'scale-110 shadow-2xl -translate-x-1' 
+                  : 'scale-100 shadow-lg hover:scale-105 hover:shadow-xl'
+                }
+              `}
+            >
+              <div className={`transition-transform duration-300 ${hoveredIndex === idx ? 'scale-110' : 'scale-100'}`}>
+                {React.cloneElement(link.icon, { size: 26 })}
+              </div>
+            </a>
+          </div>
         ))}
       </div>
 
