@@ -1,3 +1,13 @@
 # https://www.robotstxt.org/robotstxt.html
+
+# Explicitly allow GPTBot (OpenAI)
+User-agent: GPTBot
+Allow: /
+
+# Explicitly allow ChatGPT-User
+User-agent: ChatGPT-User
+Allow: /
+
+# Default rules for all other bots
 User-agent: *
 Disallow:
