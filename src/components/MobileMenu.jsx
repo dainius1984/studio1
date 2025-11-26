@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Home, DollarSign, Briefcase, ShoppingBag, Mail, Calendar } from 'lucide-react';
+import { X, Home, DollarSign, Briefcase, ShoppingBag, Mail, Calendar, Store } from 'lucide-react';
 
 const MobileMenu = ({ isOpen, handleNavigation, handleContactClick, isActive, onClose }) => {
   const menuItems = [
@@ -9,6 +9,7 @@ const MobileMenu = ({ isOpen, handleNavigation, handleContactClick, isActive, on
     { label: 'Usługi', path: '/uslugi', icon: Briefcase },
     { label: 'Produkty', path: '/produkty', icon: ShoppingBag },
     { label: 'Kontakt', path: '/kontakt', icon: Mail },
+    { label: 'Sklep', path: 'https://sklep.studiofigurastablowice.pl', icon: Store, external: true },
   ];
 
   const handleItemClick = (path) => {
@@ -63,6 +64,34 @@ const MobileMenu = ({ isOpen, handleNavigation, handleContactClick, isActive, on
               {menuItems.map((item, index) => {
                 const Icon = item.icon;
                 const active = isActive ? isActive(item.path) : false;
+                
+                if (item.external) {
+                  return (
+                    <motion.a
+                      key={item.path}
+                      href={item.path}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      onClick={() => {
+                        if (onClose) onClose();
+                      }}
+                      className="w-full flex items-center gap-4 px-4 py-4 rounded-xl text-left transition-all duration-200 text-gray-700 hover:bg-gray-50 hover:text-orange-500 border-2 border-transparent"
+                      style={{
+                        fontFamily: 'Inter, Arial, sans-serif',
+                        fontWeight: 500,
+                      }}
+                    >
+                      <Icon 
+                        size={22} 
+                        className="text-gray-400" 
+                      />
+                      <span className="text-base">{item.label}</span>
+                    </motion.a>
+                  );
+                }
                 
                 return (
                   <motion.button

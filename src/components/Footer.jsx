@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Lock, FileText } from 'lucide-react';
+import { Phone, Mail, MapPin, Lock, FileText, Store } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const footerServices = [
@@ -75,6 +75,17 @@ const Footer = () => {
               <li className="flex items-start gap-2">
                 <MapPin size={16} className="mt-1" />
                 Brodzka 193<br />54-067 Wrocław
+              </li>
+              <li>
+                <a
+                  href="https://sklep.studiofigurastablowice.pl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors"
+                >
+                  <Store size={16} />
+                  Sklep
+                </a>
               </li>
             </ul>
           </div>
