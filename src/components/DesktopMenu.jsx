@@ -34,7 +34,7 @@ const DesktopMenu = ({ handleNavigation, handleContactClick, isActive, getNavLin
         Kontakt
       </button>
       <a
-        href="https://sklep.studiofigurastablowice.pl"
+        href="http://sklep.studiofigurastablowice.pl"
         target="_blank"
         rel="noopener noreferrer"
         className="px-3 py-2 text-sm font-medium transition-colors text-gray-700 hover:text-orange-500"

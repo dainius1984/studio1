@@ -78,7 +78,7 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="https://sklep.studiofigurastablowice.pl"
+                  href="http://sklep.studiofigurastablowice.pl"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 hover:text-orange-500 transition-colors"

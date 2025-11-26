@@ -9,7 +9,7 @@ const MobileMenu = ({ isOpen, handleNavigation, handleContactClick, isActive, on
     { label: 'Usługi', path: '/uslugi', icon: Briefcase },
     { label: 'Produkty', path: '/produkty', icon: ShoppingBag },
     { label: 'Kontakt', path: '/kontakt', icon: Mail },
-    { label: 'Sklep', path: 'https://sklep.studiofigurastablowice.pl', icon: Store, external: true },
+    { label: 'Sklep', path: 'http://sklep.studiofigurastablowice.pl', icon: Store, external: true },
   ];
 
   const handleItemClick = (path) => {
