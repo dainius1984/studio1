@@ -5,11 +5,11 @@ import { X, Home, DollarSign, Briefcase, ShoppingBag, Mail, Calendar, Store } fr
 const MobileMenu = ({ isOpen, handleNavigation, handleContactClick, isActive, onClose }) => {
   const menuItems = [
     { label: 'Start', path: '#top', icon: Home },
+    { label: 'Sklep', path: 'http://sklep.studiofigurastablowice.pl', icon: Store, external: true },
     { label: 'Cennik', path: '/cennik', icon: DollarSign },
     { label: 'Usługi', path: '/uslugi', icon: Briefcase },
     { label: 'Produkty', path: '/produkty', icon: ShoppingBag },
     { label: 'Kontakt', path: '/kontakt', icon: Mail },
-    { label: 'Sklep', path: 'http://sklep.studiofigurastablowice.pl', icon: Store, external: true },
   ];
 
   const handleItemClick = (path) => {

@@ -9,6 +9,14 @@ const DesktopMenu = ({ handleNavigation, handleContactClick, isActive, getNavLin
       >
         Start
       </button>
+      <a
+        href="http://sklep.studiofigurastablowice.pl"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-3 py-2 text-sm font-medium transition-colors text-gray-700 hover:text-orange-500"
+      >
+        Sklep
+      </a>
       <button
         onClick={() => handleNavigation('/cennik')}
         className={getNavLinkClass('/cennik')}
@@ -33,14 +41,6 @@ const DesktopMenu = ({ handleNavigation, handleContactClick, isActive, getNavLin
       >
         Kontakt
       </button>
-      <a
-        href="http://sklep.studiofigurastablowice.pl"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-3 py-2 text-sm font-medium transition-colors text-gray-700 hover:text-orange-500"
-      >
-        Sklep
-      </a>
       <button
         onClick={handleContactClick}
         className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors"
