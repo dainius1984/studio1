@@ -13,15 +13,13 @@ const Home = () => {
     <div className="min-h-screen bg-white font-inter pt-20">
       <Navigation />
       <StickySidebar />
-      <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-white lg:rounded-lg lg:shadow-sm">
           <HeroSection />
-          <div className="px-4 sm:px-0">
-            <ServicesSection />
-            <WhyChooseUsSection />
-            <TestimonialsSection />
-            <CTASection />
-          </div>
+          <ServicesSection />
+          <WhyChooseUsSection />
+          <TestimonialsSection />
+          <CTASection />
         </div>
       </div>
       <Footer />
