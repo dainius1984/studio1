@@ -10,7 +10,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-orange-50 to-orange-100 h-[calc(100vh-5rem)] lg:h-auto lg:py-20 overflow-hidden -mx-4 sm:-mx-6 lg:mx-0 lg:rounded-lg">
+    <section className="relative bg-gradient-to-br from-orange-50 to-orange-100 h-[calc(100vh-4rem)] lg:h-auto lg:py-20 overflow-hidden -mx-4 sm:-mx-6 lg:mx-0 lg:rounded-lg -mt-20 lg:mt-0">
       {/* Mobile background image - only visible on mobile */}
       <div 
         className="absolute inset-0 lg:hidden bg-cover bg-center bg-no-repeat"
