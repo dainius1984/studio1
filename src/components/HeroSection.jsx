@@ -11,7 +11,12 @@ const HeroSection = () => {
 
   return (
     <section className="relative bg-gradient-to-br from-orange-50 to-orange-100 h-[calc(100vh-5rem)] lg:h-auto lg:py-20 overflow-hidden -mx-4 sm:-mx-6 lg:mx-0 lg:rounded-lg">
-      <div className="absolute inset-0 bg-white/30 lg:rounded-lg"></div>
+      {/* Mobile background image - only visible on mobile */}
+      <div 
+        className="absolute inset-0 lg:hidden bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url(/img/herobackgroundmobile.png)' }}
+      ></div>
+      <div className="absolute inset-0 bg-white/30 lg:rounded-lg lg:bg-white/30"></div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full lg:h-auto flex flex-col lg:block">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 flex-grow lg:flex-grow-0">
           <div className="text-center lg:text-left flex flex-col justify-between h-full lg:h-auto py-8 lg:py-0 lg:justify-center">
