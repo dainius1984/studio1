@@ -10,20 +10,22 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative bg-gradient-to-br from-orange-50 to-orange-100 min-h-screen lg:py-20 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-orange-50 to-orange-100 h-[calc(100vh-5rem)] lg:min-h-screen lg:py-20 overflow-hidden -mx-4 sm:-mx-6 lg:mx-0">
       <div className="absolute inset-0 bg-white/30"></div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full min-h-screen lg:min-h-0 flex flex-col lg:block">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col lg:block">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 flex-grow lg:flex-grow-0">
-          <div className="text-center lg:text-left flex flex-col justify-center py-12 lg:py-0">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
-              Studio Figura Wrocław
-              <span className="block text-orange-500">Stabłowice</span>
-            </h1>
-            <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Odkryj swoje piękno i zdrowie w nowoczesnym studio kosmetycznym. 
-              Profesjonalne zabiegi, najnowsze technologie i indywidualne podejście.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-auto lg:mt-0">
+          <div className="text-center lg:text-left flex flex-col justify-between h-full py-8 lg:py-0 lg:justify-center">
+            <div className="flex-grow flex flex-col justify-center">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+                Studio Figura Wrocław
+                <span className="block text-orange-500">Stabłowice</span>
+              </h1>
+              <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed px-2 lg:px-0">
+                Odkryj swoje piękno i zdrowie w nowoczesnym studio kosmetycznym. 
+                Profesjonalne zabiegi, najnowsze technologie i indywidualne podejście.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mt-8 lg:mt-0 pb-4 lg:pb-0">
               <button 
                 onClick={scrollToServices}
                 className="group bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto"
@@ -33,7 +35,7 @@ const HeroSection = () => {
               </button>
             </div>
           </div>
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <div className="bg-gradient-to-br from-orange-200 to-orange-300 rounded-3xl p-8 transform rotate-3 hover:rotate-1 transition-transform duration-300">
               <img 
                 src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
