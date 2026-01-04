@@ -53,18 +53,25 @@ const TestimonialsSection = () => {
           isActive 
             ? 'w-full md:w-[45%] scale-100 opacity-100 z-10' 
             : isVisible
-            ? 'w-[25%] md:w-[20%] scale-75 md:scale-80 opacity-40 md:opacity-50 z-0'
+            ? 'w-[30%] md:w-[25%] scale-85 md:scale-90 opacity-60 md:opacity-70 z-0'
             : 'w-0 scale-0 opacity-0 hidden'
         }`}
       >
-        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-lg flex flex-col items-center h-full">
-          <img 
-            src={testimonial.image}
-            alt={testimonial.name}
-            className={`rounded-full border-3 border-orange-200 object-cover mb-3 shadow-md ${
-              isActive ? 'w-16 h-16 md:w-20 md:h-20' : 'w-12 h-12 md:w-14 md:h-14'
-            }`}
-          />
+        <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl md:rounded-3xl p-3 md:p-4 lg:p-6 shadow-lg flex flex-col items-center h-full overflow-hidden">
+          {!isActive && (
+            <img 
+              src={testimonial.image}
+              alt={testimonial.name}
+              className="rounded-full border-2 border-orange-200 object-cover mb-2 shadow-md w-10 h-10 md:w-12 md:h-12"
+            />
+          )}
+          {isActive && (
+            <img 
+              src={testimonial.image}
+              alt={testimonial.name}
+              className="rounded-full border-3 border-orange-200 object-cover mb-3 shadow-md w-16 h-16 md:w-20 md:h-20"
+            />
+          )}
           <div className="flex justify-center mb-2">
             {[...Array(testimonial.rating)].map((_, i) => (
               <Star key={i} className={`fill-current text-yellow-400 ${
@@ -72,16 +79,18 @@ const TestimonialsSection = () => {
               }`} />
             ))}
           </div>
-          {isActive && (
-            <>
-              <blockquote className="text-sm md:text-base lg:text-lg font-medium mb-3 leading-relaxed text-gray-700 text-center">
-                "{testimonial.text}"
-              </blockquote>
-              <cite className="text-xs md:text-sm font-semibold text-orange-600">
-                - {testimonial.name}
-              </cite>
-            </>
-          )}
+          <blockquote className={`font-medium leading-relaxed text-gray-700 text-center ${
+            isActive 
+              ? 'text-sm md:text-base lg:text-lg mb-3' 
+              : 'text-xs md:text-sm mb-2 line-clamp-3'
+          }`}>
+            "{testimonial.text}"
+          </blockquote>
+          <cite className={`font-semibold text-orange-600 ${
+            isActive ? 'text-xs md:text-sm' : 'text-xs'
+          }`}>
+            - {testimonial.name}
+          </cite>
         </div>
       </div>
     );
@@ -118,22 +127,6 @@ const TestimonialsSection = () => {
           >
             <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-orange-600" />
           </button>
-        </div>
-
-        {/* Dots indicator */}
-        <div className="flex justify-center mt-6 md:mt-8 gap-2">
-          {testimonials.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentTestimonial(index)}
-              className={`rounded-full transition-all ${
-                index === currentTestimonial 
-                  ? 'bg-orange-500 w-6 md:w-8 h-2 md:h-2.5' 
-                  : 'bg-orange-300 w-2 h-2 md:w-2.5 md:h-2.5'
-              }`}
-              aria-label={`Pokaż opinię ${index + 1}`}
-            />
-          ))}
         </div>
       </div>
     </section>
