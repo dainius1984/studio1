@@ -33,38 +33,38 @@ const TestimonialsSection = () => {
   }, [testimonials.length]);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+    <section className="py-12 md:py-16 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12">
+        <h2 className="text-2xl md:text-3xl font-bold mb-8 md:mb-10 text-gray-800">
           Co mówią nasze klientki?
         </h2>
-        <div className="relative flex justify-center items-center min-h-[350px]">
-          <div className="transition-all duration-500 ease-in-out bg-white/20 backdrop-blur-lg rounded-3xl p-8 md:p-12 shadow-xl w-full max-w-xl mx-auto flex flex-col items-center animate-fade-in">
+        <div className="relative flex justify-center items-center min-h-[280px] md:min-h-[320px]">
+          <div className="transition-all duration-500 ease-in-out bg-gradient-to-br from-orange-50 to-orange-100 rounded-2xl md:rounded-3xl p-6 md:p-8 lg:p-10 shadow-lg w-full max-w-xl mx-auto flex flex-col items-center">
             <img 
               src={testimonials[currentTestimonial].image}
               alt={testimonials[currentTestimonial].name}
-              className="w-24 h-24 rounded-full border-4 border-white/40 object-cover mb-4 shadow-lg"
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full border-3 border-orange-200 object-cover mb-4 shadow-md"
               onLoad={() => console.log('Loaded:', testimonials[currentTestimonial].image)}
             />
-            <div className="flex justify-center mb-2">
+            <div className="flex justify-center mb-3">
               {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-current text-yellow-300" />
+                <Star key={i} className="w-5 h-5 md:w-6 md:h-6 fill-current text-yellow-400" />
               ))}
             </div>
-            <blockquote className="text-lg md:text-xl font-medium mb-4 leading-relaxed text-gray-900">
+            <blockquote className="text-base md:text-lg font-medium mb-4 leading-relaxed text-gray-700">
               "{testimonials[currentTestimonial].text}"
             </blockquote>
-            <cite className="text-base font-semibold text-orange-700">
+            <cite className="text-sm md:text-base font-semibold text-orange-600">
               - {testimonials[currentTestimonial].name}
             </cite>
           </div>
-          <div className="flex justify-center mt-8 gap-2 absolute bottom-0 left-1/2 -translate-x-1/2">
+          <div className="flex justify-center mt-6 md:mt-8 gap-2">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all border border-white/50 ${
-                  index === currentTestimonial ? 'bg-white' : 'bg-white/30'
+                className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all ${
+                  index === currentTestimonial ? 'bg-orange-500 w-6 md:w-8' : 'bg-orange-300'
                 }`}
                 aria-label={`Pokaż opinię ${index + 1}`}
               />
