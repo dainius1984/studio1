@@ -19,7 +19,7 @@ const Contact = () => {
                 Skontaktuj się z <span className="text-orange-500">nami</span>
               </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Jesteśmy tutaj, aby pomóc Ci osiągnąć Twoje cele fitness. Skontaktuj się z nami, aby umówić się na bezpłatną konsultację.
+                Jesteśmy tutaj, aby pomóc Ci osiągnąć Twoje cele fitness. Skontaktuj się z nami, aby umówić się na konsultację.
               </p>
             </div>
 
@@ -68,7 +68,7 @@ const Contact = () => {
                     onClick={() => setIsContactModalOpen(true)}
                     className="w-full mt-6 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full text-base font-semibold transition-all transform hover:scale-105 shadow-lg"
                   >
-                    Umów bezpłatną konsultację
+                    Umów konsultację
                   </button>
                 </div>
               </div>

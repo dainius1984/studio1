@@ -116,7 +116,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                 Zostaw numer i imię
               </p>
               <p className="text-gray-600" style={{ fontFamily: 'Inter, Arial, sans-serif', fontSize: 16 }}>
-                Oddzwonimy w ciągu 15 minut
+                Po prostu wypełnij formularz, a my się z Tobą skontaktujemy w ciągu 24h
               </p>
             </div>
             <form onSubmit={sendContact} className="space-y-4">
@@ -224,7 +224,7 @@ const ContactModal = ({ isOpen, onClose }) => {
                 Dziękujemy!
               </h3>
               <p className="text-gray-600 text-xl animate-slide-up-delayed max-w-sm mx-auto" style={{ fontFamily: 'Inter, Arial, sans-serif' }}>
-                Oddzwonimy do Ciebie w ciągu 15 minut
+                Skontaktujemy się z Tobą w ciągu 24h
               </p>
               <div className="mt-8 animate-fade-in-delayed">
                 <button

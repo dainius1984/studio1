@@ -12,14 +12,14 @@ const CTASection = () => {
             Gotowa na <span className="text-orange-500">zmianę?</span>
           </h2>
           <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-            Umów się na bezpłatną konsultację i rozpocznij swoją transformację już dziś!
+            Umów się na konsultację i rozpocznij swoją transformację już dziś!
           </p>
           <div className="bg-gradient-to-br from-orange-50 to-orange-100 rounded-3xl p-8 md:p-12">
             <button 
               onClick={() => setIsContactModalOpen(true)}
               className="bg-orange-500 hover:bg-orange-600 text-white px-12 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 shadow-lg"
             >
-              Umów bezpłatną konsultację
+              Umów konsultację
             </button>
           </div>
         </div>

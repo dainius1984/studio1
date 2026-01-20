@@ -4,51 +4,58 @@ export const pricingData = {
     {
       name: "KONSULTACJA BASIC",
       description: "W TYM 30 MIN FITNESS/WELLNESS",
-      price: 69,
+      price: 99,
       image: "/img/test.jpg",
       longDescription: "Profesjonalna konsultacja z naszym specjalistą, w tym 30 minut na urządzeniach fitness i wellness"
     },
     {
       name: "DIETA TYGODNIOWA",
       description: "Indywidualny plan żywieniowy",
-      price: 49,
+      price: 79,
       image: "/img/test.jpg",
       longDescription: "Spersonalizowany plan żywieniowy na tydzień, dostosowany do Twoich potrzeb i celów"
     },
     {
       name: "DIETA SPECJALISTYCZNA TYGODNIOWA",
       description: "Zaawansowany plan żywieniowy",
-      price: 149,
+      price: 199,
       image: "/img/test.jpg",
       longDescription: "Kompleksowy plan żywieniowy opracowany przez specjalistę, uwzględniający indywidualne potrzeby"
+    },
+    {
+      name: "DIETA SPECJALISTYCZNA MIESIĘCZNA",
+      description: "Zaawansowany plan żywieniowy na miesiąc",
+      price: 479,
+      image: "/img/test.jpg",
+      longDescription: "Specjalistyczny plan żywieniowy na miesiąc, dostosowany do Twoich indywidualnych potrzeb"
     },
   ],
   fitnessZone: [
     {
       device: "ROLL SHAPER",
       duration: "30 MIN",
-      price: 40,
+      price: 49,
       image: "/img/test.jpg",
       description: "Zaawansowane urządzenie do modelowania sylwetki"
     },
     {
       device: "VACU SHAPER",
       duration: "30 MIN",
-      price: 60,
+      price: 69,
       image: "/img/test.jpg",
       description: "Rewolucyjne urządzenie do redukcji tkanki tłuszczowej"
     },
     {
       device: "SWAN INFRA SHAPER",
       duration: "30 MIN",
-      price: 60,
+      price: 69,
       image: "/img/test.jpg",
       description: "Innowacyjny system z technologią podczerwieni"
     },
     {
       device: "ROWER POZIOMY",
       duration: "30/60 MIN",
-      price: "40/60",
+      price: "45/70",
       image: "/img/test.jpg",
       description: "Profesjonalny sprzęt fitness do treningu cardio"
     },
@@ -57,28 +64,35 @@ export const pricingData = {
     {
       device: "LIMFODRENAŻ SPODNIE",
       duration: "30/60 MIN",
-      price: "40/60",
+      price: "59/79",
       image: "/img/test.jpg",
       description: "Drenaż limfatyczny z wykorzystaniem presoterapii"
     },
     {
       device: "LIMFODRENAŻ + BODY WRAPPING",
-      duration: "30/60 MIN",
-      price: "45/70",
+      duration: "30 MIN",
+      price: 79,
       image: "/img/test.jpg",
       description: "Kompleksowy zabieg drenujący z owijaniem ciała"
     },
     {
+      device: "ELEKTROSTYMULACJA",
+      duration: "30 MIN",
+      price: 119,
+      image: "/img/test.jpg",
+      description: "Nowoczesna elektrostymulacja mięśni"
+    },
+    {
       device: "ELEKTROSTYMULACJA IR",
       duration: "30 MIN",
-      price: 110,
+      price: 129,
       image: "/img/test.jpg",
       description: "Innowacyjny system z technologią podczerwieni"
     },
     {
       device: "ELEKTROSTYMULACJA + IR + SERUM",
       duration: "30 MIN",
-      price: 130,
+      price: 139,
       image: "/img/test.jpg",
       description: "Kompleksowy zabieg z serum aktywnym"
     },
@@ -114,12 +128,12 @@ export const pricingData = {
       title: "Zabieg na wybrane partie ciała",
       details: "1 KOMPLET GŁOWIC | 30 MIN",
       image: "/img/test.jpg",
-      basePrice: 249,
+      basePrice: 269,
       packages: [
-        { entries: "1 WEJŚCIE", originalPrice: 249, discountedPrice: null, pricePer: 249 },
-        { entries: "8 WEJŚĆ", originalPrice: 1992, discountedPrice: 1394, discount: 30, pricePer: 174 },
-        { entries: "10 WEJŚĆ", originalPrice: 2490, discountedPrice: 1618, discount: 35, pricePer: 161 },
-        { entries: "12 WEJŚĆ", originalPrice: 2988, discountedPrice: 1643, discount: 45, pricePer: 136 },
+        { entries: "1 WEJŚCIE", originalPrice: 269, discountedPrice: null, pricePer: 269 },
+        { entries: "8 WEJŚĆ", originalPrice: 2152, discountedPrice: 1506, discount: 30, pricePer: 188 },
+        { entries: "10 WEJŚĆ", originalPrice: 2690, discountedPrice: 1748, discount: 35, pricePer: 175 },
+        { entries: "12 WEJŚĆ", originalPrice: 3228, discountedPrice: 1775, discount: 45, pricePer: 148 },
       ],
     },
     {
@@ -141,12 +155,12 @@ export const pricingData = {
       title: "LIPOSUKCJA MEGA POGROMCA CELLULITU",
       details: "LIPOSUKCJA KAWITACYJNA + ENDOMASAŻ LUB FALA RF | 60 MIN",
       image: "/img/test.jpg",
-      basePrice: 490,
+      basePrice: 520,
       packages: [
-        { entries: "1 WEJŚCIE", originalPrice: 490, discountedPrice: null, pricePer: 490 },
-        { entries: "8 WEJŚĆ", originalPrice: 3920, discountedPrice: 2744, discount: 30, pricePer: 343 },
-        { entries: "10 WEJŚĆ", originalPrice: 4900, discountedPrice: 3185, discount: 35, pricePer: 318 },
-        { entries: "12 WEJŚĆ", originalPrice: 5880, discountedPrice: 3234, discount: 45, pricePer: 269 },
+        { entries: "1 WEJŚCIE", originalPrice: 520, discountedPrice: null, pricePer: 520 },
+        { entries: "8 WEJŚĆ", originalPrice: 4160, discountedPrice: 2912, discount: 30, pricePer: 364 },
+        { entries: "10 WEJŚĆ", originalPrice: 5200, discountedPrice: 3380, discount: 35, pricePer: 338 },
+        { entries: "12 WEJŚĆ", originalPrice: 6240, discountedPrice: 3432, discount: 45, pricePer: 286 },
       ],
     },
     {
@@ -693,17 +707,18 @@ export const pricingData = {
   
   cosmetics: {
     products: [
-        { name: "GO SCRUB PRO", description: "150 ML", price: 69, image: "/img/test.jpg" },
-        { name: "GO SHAPE PRO", description: "150 ML", price: 69, image: "/img/test.jpg" },
-        { name: "GO CELLULITE BUSTER PRO", description: "150 ML", price: 69, image: "/img/test.jpg" },
-        { name: "GO UP BREAST PRO", description: "100 ML", price: 99, image: "/img/test.jpg" },
-        { name: "GO COLLAGEN NATURAL DAY & NIGHT PRO", description: "2X 50 ML", price: 109, image: "/img/test.jpg" },
+        { name: "GO SCRUB PRO", description: "150 ML", price: 89, image: "/img/test.jpg" },
+        { name: "GO SHAPE PRO", description: "150 ML", price: 89, image: "/img/test.jpg" },
+        { name: "GO CELLULITE BUSTER PRO", description: "150 ML", price: 89, image: "/img/test.jpg" },
+        { name: "GO UP BREAST PRO", description: "100 ML", price: 119, image: "/img/test.jpg" },
+        { name: "GO COLLAGEN NATURAL DAY & NIGHT PRO", description: "2X 50 ML", price: 139, image: "/img/test.jpg" },
         { name: "GO NATURAL CANDLE PRO", description: "1 SZT.", price: 99, image: "/img/test.jpg" },
-        { name: "SILKY HANDS | KREM DO RĄK", description: "90 ML", price: 22, image: "/img/test.jpg" },
+        { name: "SILKY HANDS | KREM DO RĄK", description: "90 ML", price: 29, image: "/img/test.jpg" },
         { name: "SILKY HAIR | SZAMPON", description: "1 SZT.", price: 30, image: "/img/test.jpg" },
-        { name: "POMADKA MENTOLOVE", description: "4,5 G", price: 12, image: "/img/test.jpg" },
-        { name: "POMADKA POMARAŃCZOWA", description: "4,5 G", price: 12, image: "/img/test.jpg" },
-        { name: "ORANGE GLOW", description: "30 ML", price: 119, image: "/img/test.jpg" },
+        { name: "POMADKA MENTOLOVE", description: "4,5 G", price: 15, image: "/img/test.jpg" },
+        { name: "POMADKA POMARAŃCZOWA", description: "4,5 G", price: 15, image: "/img/test.jpg" },
+        { name: "BLUE GLOW", description: "30 ML", price: 199, image: "/img/test.jpg" },
+        { name: "ORANGE GLOW", description: "30 ML", price: 149, image: "/img/test.jpg" },
         { name: "DOMOWE SPA: ZESTAW KOSMETYKÓW", description: "GO SCRUB PRO + GO SHAPE PRO + GO CELLULITE BUSTER PRO", price: 180, image: "/img/test.jpg" },
         { name: "MY MICELLAR", description: "500 ML", price: 29, image: "/img/test.jpg" },
     ],
