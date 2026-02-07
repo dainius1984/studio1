@@ -91,7 +91,18 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-gray-300 text-sm">
-          <div className="mb-2 md:mb-0">Studio Figura © 2018 - {new Date().getFullYear()}</div>
+          <div className="mb-2 md:mb-0">
+            Studio Figura © 2018 - {new Date().getFullYear()}. Wszystkie prawa zastrzeżone.
+            {' | '}
+            <a
+              href="https://www.stalowewitryny.pl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-300 hover:text-orange-400 transition-colors"
+            >
+              Projekt i realizacja: stalowewitryny.pl
+            </a>
+          </div>
           <div className="flex flex-wrap items-center gap-4">
             <Link to="/polityka-prywatnosci" className="flex items-center gap-1 text-orange-400 hover:text-orange-300 transition-colors">
               <Lock size={16} className="inline-block" />
