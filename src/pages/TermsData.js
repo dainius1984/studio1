@@ -20,7 +20,7 @@ export const termsData = {
       },
       {
         term: "Sprzedający",
-        definition: "należy przez to rozumieć podmiot BODYMIND SP Z O.O. z siedzibą przy ul. Brodzka 193, 54-067 Wrocław, NIP 8943288059"
+        definition: "należy przez to rozumieć podmiot BODYMIND SP Z O.O. z siedzibą przy ul. Brodzka 193, 54-067 Wrocław, NIP 8943288059, REGON 54494164900000, KRS 0001245519"
       },
       {
         term: "Strony",
