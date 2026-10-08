@@ -20,7 +20,7 @@ export const termsData = {
       },
       {
         term: "Sprzedający",
-        definition: "należy przez to rozumieć podmiot prowadzony przez My Perfect Body S.C. z siedzibą we Wrocławiu, ul. Brodzka 193, 54-067, Wrocław, NIP 9131639799, REGON 529760508"
+        definition: "należy przez to rozumieć podmiot BODYMIND SP Z O.O. z siedzibą przy ul. Brodzka 193, 54-067 Wrocław, NIP 8943288059"
       },
       {
         term: "Strony",

@@ -22,6 +22,7 @@ const PrivacyPolicy = () => {
               <p>{privacyPolicyData.administrator.address}</p>
               <p>NIP: {privacyPolicyData.administrator.nip}</p>
               <p>REGON: {privacyPolicyData.administrator.regon}</p>
+              <p>KRS: {privacyPolicyData.administrator.krs}</p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
               <p>Email: {privacyPolicyData.administrator.contact.email}</p>

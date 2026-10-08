@@ -1,12 +1,13 @@
 export const privacyPolicyData = {
   administrator: {
-    name: "My Perfect Body S.C.",
-    address: "Ul. Brodzka 193, 54-067 Wrocław",
-    nip: "9131639799",
-    regon: "529760508",
+    name: "BODYMIND SP Z O.O.",
+    address: "ul. Brodzka 193, 54-067 Wrocław",
+    nip: "8943288059",
+    regon: "54494164900000",
+    krs: "0001245519",
     contact: {
       email: "studiofigurawroclaw@gmail.com",
-      address: "Ul. Brodzka 193, 54-067 Wrocław"
+      address: "ul. Brodzka 193, 54-067 Wrocław"
     }
   },
   introduction: {
